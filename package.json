@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/BRIGHTLAB/bright-list/issues"
   },
-  "homepage": "https://github.com/BRIGHTLAB/bright-list#readme"
+  "homepage": "https://github.com/BRIGHTLAB/bright-list#readme",
+  "publishConfig": {
+    "@brightlab:registry": "https://npm.pkg.github.com"
+  }
 }
