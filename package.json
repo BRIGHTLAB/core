@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/BRIGHTLAB/bright-list#readme",
   "publishConfig": {
-    "@brightlab:registry": "https://npm.pkg.github.com"
+    "@BRIGHTLAB:registry": "https://npm.pkg.github.com"
   }
 }
