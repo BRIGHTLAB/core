@@ -1,5 +1,5 @@
 {
-  "name": "@brightlab/bright-list",
+  "name": "@brightlab/core",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BRIGHTLAB/bright-list.git"
+    "url": "git+https://github.com/BRIGHTLAB/core.git"
   },
   "author": "Charles Daccache",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BRIGHTLAB/bright-list/issues"
+    "url": "https://github.com/BRIGHTLAB/core/issues"
   },
-  "homepage": "https://github.com/BRIGHTLAB/bright-list#readme",
+  "homepage": "https://github.com/BRIGHTLAB/core#readme",
   "publishConfig": {
     "@BRIGHTLAB:registry": "https://npm.pkg.github.com"
   }
