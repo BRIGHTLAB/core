@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/BRIGHTLAB/core#readme",
   "publishConfig": {
-    "@BRIGHTLAB:registry": "https://npm.pkg.github.com"
+    "@BRIGHTLAB:registry": "https://npm.pkg.github.com",
+    "access": "public"
   }
 }
