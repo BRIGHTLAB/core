@@ -1,5 +1,5 @@
 {
-  "name": "@brightlab/core",
+  "name": "@bright-lab/core",
   "private": false,
   "version": "0.1.1",
   "description": "",
@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BRIGHTLAB/core.git"
+    "url": "git+https://github.com/brightlab/core.git"
   },
   "author": "Charles Daccache",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BRIGHTLAB/core/issues"
+    "url": "https://github.com/brightlab/core/issues"
   },
-  "homepage": "https://github.com/BRIGHTLAB/core#readme"
+  "homepage": "https://github.com/brightlab/core#readme"
 }
