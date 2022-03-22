@@ -1,5 +1,6 @@
 {
-  "name": "@bright-lab/core",
+  "name": "@brightlab/core",
+  "private": false,
   "version": "0.0.6",
   "description": "",
   "main": "index.js",
@@ -15,9 +16,5 @@
   "bugs": {
     "url": "https://github.com/BRIGHTLAB/core/issues"
   },
-  "homepage": "https://github.com/BRIGHTLAB/core#readme",
-  "publishConfig": {
-    "@bright-lab:registry": "https://npm.pkg.github.com",
-    "access": "public"
-  }
+  "homepage": "https://github.com/BRIGHTLAB/core#readme"
 }
