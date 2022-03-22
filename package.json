@@ -5,11 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "exit 0",
-    "postpublish": "npm publish pkg --ignore-scripts --@brightlab:registry='https://registry.npmjs.org'"
-  },
-  "publishConfig": {
-    "access": "public"
+    "test": "exit 0"
   },
   "repository": {
     "type": "git",
