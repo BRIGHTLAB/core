@@ -2,10 +2,13 @@
   "name": "@bright-lab/core",
   "private": false,
   "version": "0.1.1",
-  "description": "",
-  "main": "index.js",
+  "description": "@Bright-lab/core is a core npm package based on Material UI and will be including some BRIGHT components. Stay tuned.",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "exit 0"
+    "start": "react-scripts start",
+    "build": "del -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,48 @@
   "bugs": {
     "url": "https://github.com/brightlab/core/issues"
   },
-  "homepage": "https://github.com/brightlab/core#readme"
+  "homepage": "https://github.com/brightlab/core#readme",
+  "keywords": [
+    "react",
+    "smart",
+    "simple",
+    "easy",
+    "components",
+    "ui"
+  ],
+  "files": [
+    "dist/index.js",
+    "dist/TestComp",
+    "README.md",
+    "package.json"
+  ],
+  "dependencies": {
+    "core-js": "^3.18.1",
+    "prop-types": "^15.8.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^5.0.0",
+    "web-vitals": "^1.0.1"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
