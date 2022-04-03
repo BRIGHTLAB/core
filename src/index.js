@@ -1,2 +1,2 @@
-export { default as TestComp } from './TestComp';
-export * from './TestComp';
+export TestComp from './TestComp';
+export FileUpload from './FileUpload';
