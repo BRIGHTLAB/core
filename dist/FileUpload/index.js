@@ -23,13 +23,17 @@ var _material = require("@mui/material");
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _react = require("react");
+var _react = _interopRequireWildcard(require("react"));
 
 var _react2 = require("@uppy/react");
 
 var _core = _interopRequireDefault(require("@uppy/core"));
 
 var _awsS = _interopRequireDefault(require("@uppy/aws-s3"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -127,22 +131,22 @@ function FileUpload(_ref) {
       }
     });
   }, [state, name]);
-  return /*#__PURE__*/React.createElement(_material.Grid, _extends({}, grid, {
+  return /*#__PURE__*/_react.default.createElement(_material.Grid, _extends({}, grid, {
     key: id
-  }), /*#__PURE__*/React.createElement("span", {
+  }), /*#__PURE__*/_react.default.createElement("span", {
     style: {
       color: error ? '#ff1744' : 'gray'
     }
-  }, title, " ", required ? /*#__PURE__*/React.createElement("span", {
+  }, title, " ", required ? /*#__PURE__*/_react.default.createElement("span", {
     className: "required"
-  }, "*") : ''), value && value.includes('https://') ? /*#__PURE__*/React.createElement(_material.Grid, {
+  }, "*") : ''), value && value.includes('https://') ? /*#__PURE__*/_react.default.createElement(_material.Grid, {
     container: true
-  }, /*#__PURE__*/React.createElement(_material.Grid, {
+  }, /*#__PURE__*/_react.default.createElement(_material.Grid, {
     item: true,
     xs: 1
-  }, /*#__PURE__*/React.createElement(_material.Tooltip, {
+  }, /*#__PURE__*/_react.default.createElement(_material.Tooltip, {
     title: "Delete"
-  }, /*#__PURE__*/React.createElement(_iconsMaterial.Delete, {
+  }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Delete, {
     style: {
       color: '#f23729'
     },
@@ -150,30 +154,30 @@ function FileUpload(_ref) {
     onClick: () => {
       onChange('');
     }
-  }))), /*#__PURE__*/React.createElement(_material.Grid, {
+  }))), /*#__PURE__*/_react.default.createElement(_material.Grid, {
     item: true,
     xs: 11,
     style: {
       paddingTop: '2px'
     }
-  }, /*#__PURE__*/React.createElement("a", {
+  }, /*#__PURE__*/_react.default.createElement("a", {
     href: value,
     target: "_blank"
-  }, value))) : /*#__PURE__*/React.createElement(React.Fragment, null, allowURL && /*#__PURE__*/React.createElement(_material.RadioGroup, {
+  }, value))) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, allowURL && /*#__PURE__*/_react.default.createElement(_material.RadioGroup, {
     row: true,
     "aria-label": "Upload type",
     name: "URL",
     value: URL,
     onChange: changeUploadType
-  }, /*#__PURE__*/React.createElement(_material.FormControlLabel, {
+  }, /*#__PURE__*/_react.default.createElement(_material.FormControlLabel, {
     value: "false",
-    control: /*#__PURE__*/React.createElement(_material.Radio, null),
+    control: /*#__PURE__*/_react.default.createElement(_material.Radio, null),
     label: "File Upload"
-  }), /*#__PURE__*/React.createElement(_material.FormControlLabel, {
+  }), /*#__PURE__*/_react.default.createElement(_material.FormControlLabel, {
     value: "true",
-    control: /*#__PURE__*/React.createElement(_material.Radio, null),
+    control: /*#__PURE__*/_react.default.createElement(_material.Radio, null),
     label: "Url"
-  })), URL === 'true' ? /*#__PURE__*/React.createElement(_material.TextField, {
+  })), URL === 'true' ? /*#__PURE__*/_react.default.createElement(_material.TextField, {
     size: "small",
     value: value !== null && value !== void 0 ? value : '',
     id: id,
@@ -188,7 +192,7 @@ function FileUpload(_ref) {
     },
     label: "Url",
     onChange: handleChange
-  }) : /*#__PURE__*/React.createElement(_react2.Dashboard, {
+  }) : /*#__PURE__*/_react.default.createElement(_react2.Dashboard, {
     uppy: uppy,
     showRemoveButtonAfterComplete: true,
     hideProgressAfterFinish: true,

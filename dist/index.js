@@ -9,14 +9,6 @@ Object.defineProperty(exports, "FileUpload", {
     return _FileUpload.default;
   }
 });
-Object.defineProperty(exports, "TestComp", {
-  enumerable: true,
-  get: function get() {
-    return _TestComp.default;
-  }
-});
-
-var _TestComp = _interopRequireDefault(require("./TestComp"));
 
 var _FileUpload = _interopRequireDefault(require("./FileUpload"));
 

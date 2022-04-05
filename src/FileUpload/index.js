@@ -8,7 +8,7 @@ import {
   Tooltip,
 } from '@mui/material';
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dashboard, useUppy } from '@uppy/react';
 import Uppy from '@uppy/core';
 import AwsS3 from '@uppy/aws-s3';
