@@ -1,3 +1,4 @@
 import FileUpload from './FileUpload';
+import SelectComp from './Select';
 
-export { FileUpload };
+export { FileUpload, SelectComp as Select };
