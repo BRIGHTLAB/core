@@ -1,14 +1,16 @@
 {
   "name": "@bright-lab/core",
   "private": false,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "@Bright-lab/core is a core npm package based on Material UI and will be including some BRIGHT components. Stay tuned.",
   "main": "dist/index.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "del dist && NODE_ENV=production babel src --out-dir dist --copy-files",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -35,11 +37,11 @@
     "package.json"
   ],
   "dependencies": {
-    "core-js": "^3.18.1",
-    "prop-types": "^15.8.1",
     "@uppy/aws-s3": "^2.0.5",
     "@uppy/core": "^2.1.1",
-    "@uppy/react": "^2.1.1"
+    "@uppy/react": "^2.1.1",
+    "core-js": "^3.18.1",
+    "prop-types": "^15.8.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.7",
@@ -47,24 +49,34 @@
     "@babel/plugin-proposal-export-default-from": "^7.16.7",
     "@babel/plugin-proposal-export-namespace-from": "^7.12.1",
     "@babel/preset-env": "^7.15.6",
+    "@emotion/cache": "^11.7.1",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.3.1",
+    "@mui/material": "^5.0.6",
+    "@storybook/addon-actions": "^6.4.20",
+    "@storybook/addon-essentials": "^6.4.20",
+    "@storybook/addon-interactions": "^6.4.20",
+    "@storybook/addon-links": "^6.4.20",
+    "@storybook/builder-webpack5": "^6.4.20",
+    "@storybook/manager-webpack5": "^6.4.20",
+    "@storybook/react": "^6.4.20",
+    "@storybook/testing-library": "^0.0.9",
+    "babel-loader": "^8.2.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^5.0.0",
     "web-vitals": "^1.0.1",
-    "@mui/icons-material": "^5.3.1",
-    "@mui/material": "^5.0.6",
-    "@emotion/cache": "^11.7.1",
-    "@emotion/react": "^11.5.0",
-    "@emotion/styled": "^11.3.0"
+    "webpack": "5"
   },
   "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0",
-    "@mui/icons-material": "^5.3.1",
-    "@mui/material": "^5.0.6",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.5.0",
-    "@emotion/styled": "^11.3.0"
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.3.1",
+    "@mui/material": "^5.0.6",
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   },
   "browserslist": {
     "production": [
