@@ -16,3 +16,7 @@ stories.add('video', () => {
 stories.add('audio', () => {
   return <FileUpload handleChange={() => {}} type="audio" />;
 });
+
+stories.add('Allow URL', () => {
+  return <FileUpload handleChange={() => {}} type="video" allowURL />;
+});
