@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import PropTypes from 'prop-types';
 
 export default function SelectComp({
   id,
@@ -13,8 +14,9 @@ export default function SelectComp({
   error,
   helperText,
   required,
+  name,
 }) {
-  const [selectValue, setSelectValue] = useState(value ?? '');
+  const [selectValue, setSelectValue] = useState(value);
 
   useEffect(() => {
     setSelectValue(value);
@@ -22,16 +24,17 @@ export default function SelectComp({
 
   const onChange = (event, newValue) => {
     setSelectValue(newValue);
-    handleChange(newValue);
+    handleChange(name, newValue);
   };
+
   return (
     <Autocomplete
-      selectValue={selectValue}
+      value={selectValue}
       multiple={multi}
       fullWidth
       options={data}
-      getOptionLabel={(option) => (option.title ? option.title : '(No Title)')}
-      getOptionSelected={(option, val) => option.selectValue == val.selectValue}
+      getOptionLabel={(option) => option.title}
+      isOptionEqualToValue={(option, val) => option.value == val.value}
       id={id}
       autoComplete
       disabled={disabled}
@@ -51,3 +54,21 @@ export default function SelectComp({
     />
   );
 }
+
+SelectComp.propTypes = {
+  data: PropTypes.array,
+  multi: PropTypes.bool,
+  name: PropTypes.string,
+  id: PropTypes.any,
+  value: PropTypes.string || PropTypes.array,
+  name: PropTypes.string,
+  helperText: PropTypes.string,
+  error: PropTypes.bool,
+  required: PropTypes.bool,
+  handleChange: PropTypes.func.isRequired,
+  handleBlur: PropTypes.func,
+  label: PropTypes.string,
+  disabled: PropTypes.bool,
+};
+
+SelectComp.defaultProps = {};

@@ -18,3 +18,7 @@ stories.add('Text Area', () => {
 stories.add('Number', () => {
   return <TextField handleChange={() => {}} label="Text Area" type="number" />;
 });
+
+stories.add('Text + Max Length', () => {
+  return <TextField handleChange={() => {}} label="Text" maxLength={20} />;
+});

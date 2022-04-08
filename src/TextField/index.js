@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
+import PropTypes from 'prop-types';
+
 const IsNumber = (string) => /^[0-9]+$/.test(string);
 
 export default function TextInput({
@@ -18,6 +20,10 @@ export default function TextInput({
 }) {
   const [state, setState] = useState(value);
 
+  useEffect(() => {
+    setState(value);
+  }, [value]);
+
   const onChange = (event) => {
     if (
       type === 'number' &&
@@ -32,7 +38,7 @@ export default function TextInput({
 
   return (
     <TextField
-      value={state ?? ''}
+      value={state}
       margin="dense"
       id={id}
       size="small"
@@ -46,7 +52,7 @@ export default function TextInput({
       multiline={type === 'textarea' ? true : false}
       minRows={type === 'textarea' ? 4 : undefined}
       required={required}
-      inputProps={{ maxLength: maxLength ?? 255 }}
+      inputProps={{ maxLength: maxLength }}
       onChange={onChange}
       onBlur={(event) => {
         handleBlur(name, event.target.value);
@@ -54,3 +60,20 @@ export default function TextInput({
     />
   );
 }
+
+TextInput.propTypes = {
+  id: PropTypes.any,
+  value: PropTypes.string,
+  name: PropTypes.string,
+  type: PropTypes.string,
+  helperText: PropTypes.string,
+  error: PropTypes.bool,
+  required: PropTypes.bool,
+  handleChange: PropTypes.func.isRequired,
+  handleBlur: PropTypes.func,
+  label: PropTypes.string,
+  disabled: PropTypes.bool,
+  maxLength: PropTypes.number,
+};
+
+TextInput.defaultProps = { value: '' };
