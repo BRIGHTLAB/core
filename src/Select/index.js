@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from "react";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
+import PropTypes from "prop-types";
 
 export default function SelectComp({
   id,
@@ -42,9 +42,9 @@ export default function SelectComp({
       renderInput={(params) => (
         <TextField
           {...params}
+          margin="dense"
           label={label}
           required={required}
-          margin="normal"
           helperText={helperText}
           error={error}
         />

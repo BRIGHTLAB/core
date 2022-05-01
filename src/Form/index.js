@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import dynamic from "next/dynamic";
+import React, { useState, useEffect, lazy, Suspense } from "react";
+import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
-
-const useStyles = makeStyles((theme) => ({}));
 
 const DynamicForm = (props) => {
   const [customFieldsData, setCustomFieldsData] = useState([]);
@@ -45,23 +41,33 @@ const DynamicForm = (props) => {
       // load each component by its file in the fields folder
       let DynamicComponent;
       if (!data[item.type]) {
-        DynamicComponent = dynamic(() => import(`./fields/${item.type}`));
+        DynamicComponent = lazy(() =>
+          import(`../${item.type}`).catch((e) => console.log("===", e))
+        );
         data[item.type] = DynamicComponent;
       } else {
         DynamicComponent = data[item.type];
       }
 
       return (
-        <DynamicComponent
-          key={idx}
-          {...item}
-          fullWidth
-          helperText={customFieldsErrorData[item.name] || item.helperText}
-          error={item.name in customFieldsErrorData}
-          value={customFieldsData[item.name] || null}
-          onChange={(key, value) => handleFieldChange(key, value, item.id)}
-        />
+        <Grid item {...item.grid}>
+          <Suspense fallback={<p>component not loaded</p>}>
+            <DynamicComponent
+              key={idx}
+              {...item}
+              fullWidth
+              helperText={customFieldsErrorData[item.name] || item.helperText}
+              error={item.name in customFieldsErrorData}
+              value={customFieldsData[item.name] || null}
+              handleChange={(key, value) =>
+                handleFieldChange(key, value, item.id)
+              }
+            />
+          </Suspense>
+        </Grid>
       );
+
+      return <p>not loaded</p>;
     });
   };
 
