@@ -1,6 +1,11 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
+
+// loading the default components
+import Select from "../Select";
+import FileUpload from "../FileUpload";
+import TextField from "../TextField";
 
 const DynamicForm = (props) => {
   const [customFieldsData, setCustomFieldsData] = useState([]);
@@ -33,47 +38,59 @@ const DynamicForm = (props) => {
     if (props.onChange) props.onChange(newFieldsData);
   };
 
-  const renderFields = (data) => {
+  const renderFields = (data, customComponents) => {
     if (!data) return null;
     if (data.length < 1) return null;
 
     return data.map((item, idx) => {
-      // load each component by its file in the fields folder
+      // load each component
       let DynamicComponent;
-      if (!data[item.type]) {
-        DynamicComponent = lazy(() =>
-          import(`../${item.type}`).catch((e) => console.log("===", e))
-        );
-        data[item.type] = DynamicComponent;
-      } else {
-        DynamicComponent = data[item.type];
+      switch (item.type) {
+        case "Select":
+          DynamicComponent = (props) => <Select {...props} />;
+          break;
+
+        case "TextField":
+          DynamicComponent = (props) => <TextField {...props} />;
+          break;
+
+        case "FileUpload":
+          DynamicComponent = (props) => <FileUpload {...props} />;
+          break;
+
+        // if the component is different than the one we have, that means the user has defined
+        default:
+          DynamicComponent = (props) => {
+            for (var index in customComponents) {
+              const row = customComponents[index];
+              if (row.type == item.type) return row.renderItem(props);
+            }
+            return null;
+          };
+          break;
       }
 
       return (
         <Grid item {...item.grid}>
-          <Suspense fallback={<p>component not loaded</p>}>
-            <DynamicComponent
-              key={idx}
-              {...item}
-              fullWidth
-              helperText={customFieldsErrorData[item.name] || item.helperText}
-              error={item.name in customFieldsErrorData}
-              value={customFieldsData[item.name] || null}
-              handleChange={(key, value) =>
-                handleFieldChange(key, value, item.id)
-              }
-            />
-          </Suspense>
+          <DynamicComponent
+            key={idx}
+            {...item}
+            fullWidth
+            helperText={customFieldsErrorData[item.name] || item.helperText}
+            error={item.name in customFieldsErrorData}
+            value={customFieldsData[item.name] || null}
+            handleChange={(key, value) =>
+              handleFieldChange(key, value, item.id)
+            }
+          />
         </Grid>
       );
-
-      return <p>not loaded</p>;
     });
   };
 
   return (
     <Grid container spacing={2}>
-      {renderFields(props.fields)}
+      {renderFields(props.fields, props.customComponents)}
     </Grid>
   );
 };
@@ -83,10 +100,12 @@ DynamicForm.propTypes = {
   fields: PropTypes.array.isRequired,
   defaultValues: PropTypes.object,
   onChange: PropTypes.func,
+  customComponents: PropTypes.array,
 };
 
 DynamicForm.defaultProps = {
   defaultValues: [],
+  customComponents: [],
 };
 
 export default DynamicForm;

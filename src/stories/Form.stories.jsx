@@ -5,7 +5,7 @@ import Form from '../Form';
 
 const stories = storiesOf('Form', module);
 
-const fields = [
+let fields = [
   {
     id: "123",
     name: "country",
@@ -45,7 +45,8 @@ const fields = [
     }
   },
   {
-    type: 'Custom',
+    type: 'custom',
+    title: 'charles',
     grid:{
       xs: 12,
       md: 6,
@@ -53,6 +54,16 @@ const fields = [
   }
 ];
 
+
 stories.add('Init', () => {
-  return <Form fields={fields} handleChange={(values) => console.log("changed", values)} />;
+  return <Form 
+    fields={fields} 
+    handleChange={(values) => console.log("changed", values)} 
+    customComponents={[
+      {
+        type: "custom",
+        renderItem: (item)=> <p>{item.title}</p>
+      }
+    ]}
+    />;
 });
