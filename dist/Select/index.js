@@ -15,6 +15,8 @@ var _Autocomplete = _interopRequireDefault(require("@mui/material/Autocomplete")
 
 var _TextField = _interopRequireDefault(require("@mui/material/TextField"));
 
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -34,33 +36,34 @@ function SelectComp(_ref) {
     disabled,
     error,
     helperText,
-    required
+    required,
+    name
   } = _ref;
-  const [selectValue, setSelectValue] = (0, _react.useState)(value !== null && value !== void 0 ? value : '');
+  const [selectValue, setSelectValue] = (0, _react.useState)(value);
   (0, _react.useEffect)(() => {
     setSelectValue(value);
   }, [value]);
 
   const onChange = (event, newValue) => {
     setSelectValue(newValue);
-    handleChange(newValue);
+    handleChange(name, newValue);
   };
 
   return /*#__PURE__*/_react.default.createElement(_Autocomplete.default, {
-    selectValue: selectValue,
+    value: selectValue,
     multiple: multi,
     fullWidth: true,
     options: data,
-    getOptionLabel: option => option.title ? option.title : '(No Title)',
-    getOptionSelected: (option, val) => option.selectValue == val.selectValue,
+    getOptionLabel: option => option.title,
+    isOptionEqualToValue: (option, val) => option.value == val.value,
     id: id,
     autoComplete: true,
     disabled: disabled,
     includeInputInList: true,
     renderInput: params => /*#__PURE__*/_react.default.createElement(_TextField.default, _extends({}, params, {
+      margin: "dense",
       label: label,
       required: required,
-      margin: "normal",
       helperText: helperText,
       error: error
     })),
@@ -68,3 +71,20 @@ function SelectComp(_ref) {
     onChange: onChange
   });
 }
+
+SelectComp.propTypes = {
+  data: _propTypes.default.array,
+  multi: _propTypes.default.bool,
+  name: _propTypes.default.string,
+  id: _propTypes.default.any,
+  value: _propTypes.default.string || _propTypes.default.array,
+  name: _propTypes.default.string,
+  helperText: _propTypes.default.string,
+  error: _propTypes.default.bool,
+  required: _propTypes.default.bool,
+  handleChange: _propTypes.default.func.isRequired,
+  handleBlur: _propTypes.default.func,
+  label: _propTypes.default.string,
+  disabled: _propTypes.default.bool
+};
+SelectComp.defaultProps = {};

@@ -29,3 +29,10 @@ stories.add('Number', () => {
     type: "number"
   });
 });
+stories.add('Text + Max Length', () => {
+  return /*#__PURE__*/_react.default.createElement(_TextField.default, {
+    handleChange: () => {},
+    label: "Text",
+    maxLength: 20
+  });
+});

@@ -15,6 +15,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _TextField = _interopRequireDefault(require("@mui/material/TextField"));
 
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -39,9 +41,12 @@ function TextInput(_ref) {
     maxLength
   } = _ref;
   const [state, setState] = (0, _react.useState)(value);
+  (0, _react.useEffect)(() => {
+    setState(value);
+  }, [value]);
 
   const onChange = event => {
-    if (type === 'number' && event.target.value && !IsNumber(event.target.value)) {
+    if (type === "number" && event.target.value && !IsNumber(event.target.value)) {
       return;
     }
 
@@ -50,22 +55,22 @@ function TextInput(_ref) {
   };
 
   return /*#__PURE__*/_react.default.createElement(_TextField.default, {
-    value: state !== null && state !== void 0 ? state : '',
+    value: state,
     margin: "dense",
     id: id,
     size: "small",
     name: name,
     disabled: disabled,
     label: label,
-    type: type === 'number' ? 'text' : type,
+    type: type === "number" ? "text" : type,
     helperText: helperText,
     error: error,
     fullWidth: true,
-    multiline: type === 'textarea' ? true : false,
-    minRows: type === 'textarea' ? 4 : undefined,
+    multiline: type === "textarea" ? true : false,
+    minRows: type === "textarea" ? 4 : undefined,
     required: required,
     inputProps: {
-      maxLength: maxLength !== null && maxLength !== void 0 ? maxLength : 255
+      maxLength: maxLength
     },
     onChange: onChange,
     onBlur: event => {
@@ -73,3 +78,21 @@ function TextInput(_ref) {
     }
   });
 }
+
+TextInput.propTypes = {
+  id: _propTypes.default.any,
+  value: _propTypes.default.string,
+  name: _propTypes.default.string,
+  type: _propTypes.default.string,
+  helperText: _propTypes.default.string,
+  error: _propTypes.default.bool,
+  required: _propTypes.default.bool,
+  handleChange: _propTypes.default.func.isRequired,
+  handleBlur: _propTypes.default.func,
+  label: _propTypes.default.string,
+  disabled: _propTypes.default.bool,
+  maxLength: _propTypes.default.number
+};
+TextInput.defaultProps = {
+  value: ""
+};
