@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from 'react';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import PropTypes from 'prop-types';
 
-export default function SelectComp({
+export default function Select({
   id,
   value,
   handleChange,
@@ -55,7 +55,7 @@ export default function SelectComp({
   );
 }
 
-SelectComp.propTypes = {
+Select.propTypes = {
   data: PropTypes.array,
   multi: PropTypes.bool,
   name: PropTypes.string,
@@ -71,4 +71,4 @@ SelectComp.propTypes = {
   disabled: PropTypes.bool,
 };
 
-SelectComp.defaultProps = {};
+Select.defaultProps = {};

@@ -5,7 +5,7 @@ require("core-js/modules/es.object.assign.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = SelectComp;
+exports.default = Select;
 
 require("core-js/modules/web.dom-collections.iterator.js");
 
@@ -25,7 +25,7 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function SelectComp(_ref) {
+function Select(_ref) {
   let {
     id,
     value,
@@ -72,7 +72,7 @@ function SelectComp(_ref) {
   });
 }
 
-SelectComp.propTypes = {
+Select.propTypes = {
   data: _propTypes.default.array,
   multi: _propTypes.default.bool,
   name: _propTypes.default.string,
@@ -87,4 +87,4 @@ SelectComp.propTypes = {
   label: _propTypes.default.string,
   disabled: _propTypes.default.bool
 };
-SelectComp.defaultProps = {};
+Select.defaultProps = {};
