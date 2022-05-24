@@ -67,7 +67,9 @@ function ContainerList(_ref) {
     xs: 12
   }, /*#__PURE__*/_react.default.createElement(_material.Card, {
     sx: styles.card
-  }, "NO DATA FOUND")), /*#__PURE__*/_react.default.createElement(_material.Grid, {
+  }, loading ? /*#__PURE__*/_react.default.createElement(_material.CircularProgress, {
+    size: 40
+  }) : 'NO DATA FOUND')), /*#__PURE__*/_react.default.createElement(_material.Grid, {
     item: true,
     xs: 12,
     sx: {

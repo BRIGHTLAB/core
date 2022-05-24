@@ -34,3 +34,10 @@ stories.add('List', () => {
     renderItem: (row, idx) => /*#__PURE__*/_react.default.createElement("div", null, row.title)
   });
 });
+stories.add('Loading List', () => {
+  return /*#__PURE__*/_react.default.createElement(_List.default, {
+    dataP: [],
+    loadingP: true,
+    renderItem: (row, idx) => /*#__PURE__*/_react.default.createElement("div", null)
+  });
+});

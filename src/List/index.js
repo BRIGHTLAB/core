@@ -50,7 +50,9 @@ export default function ContainerList({
         ))
       ) : (
         <Grid item xs={12}>
-          <Card sx={styles.card}>NO DATA FOUND</Card>
+          <Card sx={styles.card}>
+            {loading ? <CircularProgress size={40} /> : 'NO DATA FOUND'}
+          </Card>
         </Grid>
       )}
       <Grid item xs={12} sx={{ textAlign: 'center', mt: '10px' }}>

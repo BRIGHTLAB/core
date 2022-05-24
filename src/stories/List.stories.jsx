@@ -21,3 +21,9 @@ stories.add('List', () => {
     <List dataP={data} renderItem={(row, idx) => <div>{row.title}</div>} />
   );
 });
+
+stories.add('Loading List', () => {
+  return (
+    <List dataP={[]} loadingP={true} renderItem={(row, idx) => <div></div>} />
+  );
+});
