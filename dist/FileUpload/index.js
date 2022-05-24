@@ -15,6 +15,8 @@ require("core-js/modules/es.regexp.exec.js");
 
 require("core-js/modules/es.string.split.js");
 
+require("core-js/modules/es.array.includes.js");
+
 require("core-js/modules/es.string.includes.js");
 
 var _iconsMaterial = require("@mui/icons-material");
