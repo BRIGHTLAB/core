@@ -13,9 +13,6 @@ import { Dashboard, useUppy } from '@uppy/react';
 import Uppy from '@uppy/core';
 import AwsS3 from '@uppy/aws-s3';
 
-import '@uppy/core/dist/style.css';
-import '@uppy/dashboard/dist/style.css';
-
 export default function FileUpload({
   value,
   name,
