@@ -71,4 +71,6 @@ Select.propTypes = {
   disabled: PropTypes.bool,
 };
 
-Select.defaultProps = {};
+Select.defaultProps = {
+  value: null,
+};

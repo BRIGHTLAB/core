@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Select from '../Select';
@@ -12,7 +12,18 @@ const data = [
 const stories = storiesOf('Select', module);
 
 stories.add('Single', () => {
-  return <Select handleChange={() => {}} data={data} label="Single" />;
+  const [disable, setDisable] = useState(true);
+  return (
+    <>
+      <button onClick={() => setDisable(!disable)}>toggle disable</button>
+      <Select
+        handleChange={() => {}}
+        data={data}
+        label="Single"
+        disabled={disable}
+      />
+    </>
+  );
 });
 
 stories.add('Multi', () => {
