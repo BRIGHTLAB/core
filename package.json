@@ -1,7 +1,7 @@
 {
   "name": "@bright-lab/core",
   "private": false,
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "@Bright-lab/core is a core npm package based on Material UI and will be including some BRIGHT components. Stay tuned.",
   "main": "dist/index.js",
   "scripts": {
@@ -74,8 +74,8 @@
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.3.1",
     "@mui/material": "^5.0.6",
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "browserslist": {
     "production": [
