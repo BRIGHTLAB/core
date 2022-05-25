@@ -87,4 +87,6 @@ Select.propTypes = {
   label: _propTypes.default.string,
   disabled: _propTypes.default.bool
 };
-Select.defaultProps = {};
+Select.defaultProps = {
+  value: null
+};

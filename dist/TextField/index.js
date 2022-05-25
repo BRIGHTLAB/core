@@ -46,7 +46,7 @@ function TextInput(_ref) {
   }, [value]);
 
   const onChange = event => {
-    if (type === "number" && event.target.value && !IsNumber(event.target.value)) {
+    if (type === 'number' && event.target.value && !IsNumber(event.target.value)) {
       return;
     }
 
@@ -62,20 +62,20 @@ function TextInput(_ref) {
     name: name,
     disabled: disabled,
     label: label,
-    type: type === "number" ? "text" : type,
+    type: type === 'number' ? 'text' : type,
     helperText: helperText,
     error: error,
     fullWidth: true,
-    multiline: type === "textarea" ? true : false,
-    minRows: type === "textarea" ? 4 : undefined,
+    multiline: type === 'textarea' ? true : false,
+    minRows: type === 'textarea' ? 4 : undefined,
     required: required,
     inputProps: {
       maxLength: maxLength
     },
     onChange: onChange,
-    onBlur: event => {
+    onBlur: handleBlur ? event => {
       handleBlur(name, event.target.value);
-    }
+    } : undefined
   });
 }
 
@@ -94,5 +94,5 @@ TextInput.propTypes = {
   maxLength: _propTypes.default.number
 };
 TextInput.defaultProps = {
-  value: ""
+  value: ''
 };
