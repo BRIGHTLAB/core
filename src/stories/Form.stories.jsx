@@ -7,63 +7,88 @@ const stories = storiesOf('Form', module);
 
 let fields = [
   {
-    id: "123",
-    name: "country",
+    id: '123',
+    name: 'country',
     type: 'Select',
-    label: "Country",
-    helperText: "Country of origin",
-    grid:{
+    label: 'Country',
+    helperText: 'Country of origin',
+    grid: {
       xs: 12,
       md: 6,
     },
     data: [
       {
-        title: "Male",
-        value: "male",
+        title: 'Male',
+        value: 'male',
       },
       {
-        title: "Female",
-        value: "female",
+        title: 'Female',
+        value: 'female',
       },
       {
-        title: "Hetero",
-        value: "Hetero",
+        title: 'Hetero',
+        value: 'Hetero',
       },
     ],
   },
   {
-    id: "asdasd",
-    name: "phone",
-    label: "Phone",
+    id: 'asdasd',
+    name: 'phone',
+    label: 'Phone',
     type: 'TextField',
-    placeholder: "Phone Number",
-    helperText: "Emergency phone number",
+    placeholder: 'Phone Number',
+    helperText: 'Emergency phone number',
     required: true,
-    grid:{
+    grid: {
       xs: 12,
       md: 6,
-    }
+    },
   },
   {
     type: 'custom',
     title: 'charles',
-    grid:{
+    grid: {
+      xs: 12,
+    },
+  },
+  {
+    id: 'radio',
+    name: 'radio',
+    type: 'RadioGroup',
+    label: 'Country',
+    helperText: 'Country of origin',
+    grid: {
       xs: 12,
       md: 6,
-    }
-  }
+    },
+    data: [
+      {
+        title: 'Male',
+        value: 'male',
+      },
+      {
+        title: 'Female',
+        value: 'female',
+      },
+      {
+        title: 'Hetero',
+        value: 'Hetero',
+      },
+    ],
+  },
 ];
 
-
 stories.add('Init', () => {
-  return <Form 
-    fields={fields} 
-    handleChange={(values) => console.log("changed", values)} 
-    customComponents={[
-      {
-        type: "custom",
-        renderItem: (item)=> <p>{item.title}</p>
-      }
-    ]}
-    />;
+  return (
+    <Form
+      fields={fields}
+      handleChange={(values) => console.log('changed', values)}
+      customComponents={[
+        {
+          type: 'custom',
+          renderItem: (item) => <p>{item.title}</p>,
+        },
+      ]}
+    />
+  );
 });

@@ -6,10 +6,12 @@ import PropTypes from 'prop-types';
 import Select from '../Select';
 import FileUpload from '../FileUpload';
 import TextField from '../TextField';
+import RadioGroupComp from '../RadioGroup';
 const components = {
   TextField: TextField,
   FileUpload: FileUpload,
   Select: Select,
+  RadioGroup: RadioGroupComp,
 };
 
 export default function Form(props) {
@@ -62,9 +64,8 @@ export default function Form(props) {
       }
 
       return (
-        <Grid item {...item.grid}>
+        <Grid item {...item.grid} key={'Dynamic_Form_' + idx}>
           <DynamicComponent
-            key={idx}
             {...item}
             type={item.itemType ?? undefined} //for textfield comp
             multi={item.multi ?? undefined} //for select comp
@@ -91,7 +92,7 @@ export default function Form(props) {
 // type checking
 Form.propTypes = {
   fields: PropTypes.array.isRequired,
-  defaultValues: PropTypes.object,
+  defaultValues: PropTypes.array,
   onChange: PropTypes.func,
   customComponents: PropTypes.array,
 };

@@ -38,7 +38,7 @@ export default function TextInput({
 
   return (
     <TextField
-      value={state}
+      value={state ? state : ''}
       margin="dense"
       id={id}
       size="small"
