@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { Grid } from "@mui/material";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from 'react';
+import { Grid } from '@mui/material';
+import PropTypes from 'prop-types';
 
 // loading the default components
-import Select from "../Select";
-import FileUpload from "../FileUpload";
-import TextField from "../TextField";
+import Select from '../Select';
+import FileUpload from '../FileUpload';
+import TextField from '../TextField';
+const components = {
+  TextField: TextField,
+  FileUpload: FileUpload,
+  Select: Select,
+};
 
-const DynamicForm = (props) => {
+export default function Form(props) {
   const [customFieldsData, setCustomFieldsData] = useState([]);
   const [customFieldsErrorData, setCustomFieldsErrorData] = useState({});
 
@@ -39,35 +44,21 @@ const DynamicForm = (props) => {
   };
 
   const renderFields = (data, customComponents) => {
-    if (!data) return null;
-    if (data.length < 1) return null;
+    if (!data || data.length < 1) return null;
 
     return data.map((item, idx) => {
       // load each component
       let DynamicComponent;
-      switch (item.type) {
-        case "Select":
-          DynamicComponent = (props) => <Select {...props} />;
-          break;
-
-        case "TextField":
-          DynamicComponent = (props) => <TextField {...props} />;
-          break;
-
-        case "FileUpload":
-          DynamicComponent = (props) => <FileUpload {...props} />;
-          break;
-
-        // if the component is different than the one we have, that means the user has defined
-        default:
-          DynamicComponent = (props) => {
-            for (var index in customComponents) {
-              const row = customComponents[index];
-              if (row.type == item.type) return row.renderItem(props);
-            }
-            return null;
-          };
-          break;
+      if (components[item.type]) {
+        DynamicComponent = components[item.type];
+      } else {
+        DynamicComponent = (props) => {
+          for (var index in customComponents) {
+            const row = customComponents[index];
+            if (row.type == item.type) return row.renderItem(props);
+          }
+          return null;
+        };
       }
 
       return (
@@ -75,6 +66,8 @@ const DynamicForm = (props) => {
           <DynamicComponent
             key={idx}
             {...item}
+            type={item.itemType ?? undefined} //for textfield comp
+            multi={item.multi ?? undefined} //for select comp
             fullWidth
             helperText={customFieldsErrorData[item.name] || item.helperText}
             error={item.name in customFieldsErrorData}
@@ -93,19 +86,17 @@ const DynamicForm = (props) => {
       {renderFields(props.fields, props.customComponents)}
     </Grid>
   );
-};
+}
 
 // type checking
-DynamicForm.propTypes = {
+Form.propTypes = {
   fields: PropTypes.array.isRequired,
   defaultValues: PropTypes.object,
   onChange: PropTypes.func,
   customComponents: PropTypes.array,
 };
 
-DynamicForm.defaultProps = {
+Form.defaultProps = {
   defaultValues: [],
   customComponents: [],
 };
-
-export default DynamicForm;

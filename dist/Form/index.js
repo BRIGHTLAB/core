@@ -5,7 +5,7 @@ require("core-js/modules/es.object.assign.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = Form;
 
 require("core-js/modules/web.dom-collections.iterator.js");
 
@@ -29,7 +29,13 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const DynamicForm = props => {
+const components = {
+  TextField: _TextField.default,
+  FileUpload: _FileUpload.default,
+  Select: _Select.default
+};
+
+function Form(props) {
   const [customFieldsData, setCustomFieldsData] = (0, _react.useState)([]);
   const [customFieldsErrorData, setCustomFieldsErrorData] = (0, _react.useState)({});
   (0, _react.useEffect)(() => {
@@ -57,40 +63,24 @@ const DynamicForm = props => {
   };
 
   const renderFields = (data, customComponents) => {
-    if (!data) return null;
-    if (data.length < 1) return null;
+    if (!data || data.length < 1) return null;
     return data.map((item, idx) => {
+      var _item$itemType, _item$multi;
+
       // load each component
       let DynamicComponent;
 
-      switch (item.type) {
-        case "Select":
-          DynamicComponent = props => /*#__PURE__*/_react.default.createElement(_Select.default, props);
+      if (components[item.type]) {
+        DynamicComponent = components[item.type];
+      } else {
+        DynamicComponent = props => {
+          for (var index in customComponents) {
+            const row = customComponents[index];
+            if (row.type == item.type) return row.renderItem(props);
+          }
 
-          break;
-
-        case "TextField":
-          DynamicComponent = props => /*#__PURE__*/_react.default.createElement(_TextField.default, props);
-
-          break;
-
-        case "FileUpload":
-          DynamicComponent = props => /*#__PURE__*/_react.default.createElement(_FileUpload.default, props);
-
-          break;
-        // if the component is different than the one we have, that means the user has defined
-
-        default:
-          DynamicComponent = props => {
-            for (var index in customComponents) {
-              const row = customComponents[index];
-              if (row.type == item.type) return row.renderItem(props);
-            }
-
-            return null;
-          };
-
-          break;
+          return null;
+        };
       }
 
       return /*#__PURE__*/_react.default.createElement(_material.Grid, _extends({
@@ -98,6 +88,10 @@ const DynamicForm = props => {
       }, item.grid), /*#__PURE__*/_react.default.createElement(DynamicComponent, _extends({
         key: idx
       }, item, {
+        type: (_item$itemType = item.itemType) !== null && _item$itemType !== void 0 ? _item$itemType : undefined //for textfield comp
+        ,
+        multi: (_item$multi = item.multi) !== null && _item$multi !== void 0 ? _item$multi : undefined //for select comp
+        ,
         fullWidth: true,
         helperText: customFieldsErrorData[item.name] || item.helperText,
         error: item.name in customFieldsErrorData,
@@ -111,18 +105,16 @@ const DynamicForm = props => {
     container: true,
     spacing: 2
   }, renderFields(props.fields, props.customComponents));
-}; // type checking
+} // type checking
 
 
-DynamicForm.propTypes = {
+Form.propTypes = {
   fields: _propTypes.default.array.isRequired,
   defaultValues: _propTypes.default.object,
   onChange: _propTypes.default.func,
   customComponents: _propTypes.default.array
 };
-DynamicForm.defaultProps = {
+Form.defaultProps = {
   defaultValues: [],
   customComponents: []
 };
-var _default = DynamicForm;
-exports.default = _default;
