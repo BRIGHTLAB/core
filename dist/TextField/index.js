@@ -55,7 +55,7 @@ function TextInput(_ref) {
   };
 
   return /*#__PURE__*/_react.default.createElement(_TextField.default, {
-    value: state,
+    value: state ? state : '',
     margin: "dense",
     id: id,
     size: "small",

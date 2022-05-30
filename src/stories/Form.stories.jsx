@@ -5,39 +5,12 @@ import Form from '../Form';
 
 const stories = storiesOf('Form', module);
 
-let fields = [
+const fields = [
   {
-    id: '123',
-    name: 'country',
-    type: 'Select',
-    label: 'Country',
-    helperText: 'Country of origin',
-    grid: {
-      xs: 12,
-      md: 6,
-    },
-    data: [
-      {
-        title: 'Male',
-        value: 'male',
-      },
-      {
-        title: 'Female',
-        value: 'female',
-      },
-      {
-        title: 'Hetero',
-        value: 'Hetero',
-      },
-    ],
-  },
-  {
-    id: 'asdasd',
-    name: 'phone',
-    label: 'Phone',
+    id: 'full_name',
+    name: 'full_name',
     type: 'TextField',
-    placeholder: 'Phone Number',
-    helperText: 'Emergency phone number',
+    label: 'Full Name',
     required: true,
     grid: {
       xs: 12,
@@ -45,36 +18,44 @@ let fields = [
     },
   },
   {
-    type: 'custom',
-    title: 'charles',
-    grid: {
-      xs: 12,
-    },
-  },
-  {
-    id: 'radio',
-    name: 'radio',
-    type: 'RadioGroup',
-    label: 'Country',
-    helperText: 'Country of origin',
+    id: 'email',
+    name: 'email',
+    type: 'TextField',
+    label: 'Email',
+    inputType: 'email',
+    helperText: 'Please enter a valid email',
+    required: true,
     grid: {
       xs: 12,
       md: 6,
     },
+  },
+  {
+    id: 'image_url',
+    name: 'image_url',
+    type: 'FileUpload',
+    label: 'Image',
+    inputType: 'image',
+    required: true,
+    grid: {
+      xs: 12,
+      md: 6,
+    },
+  },
+  {
+    id: 'deactivated',
+    name: 'deactivated',
+    type: 'RadioGroup',
+    label: 'Active',
+    required: true,
     data: [
-      {
-        title: 'Male',
-        value: 'male',
-      },
-      {
-        title: 'Female',
-        value: 'female',
-      },
-      {
-        title: 'Hetero',
-        value: 'Hetero',
-      },
+      { value: '0', title: 'Yes' },
+      { value: '1', title: 'No' },
     ],
+    grid: {
+      xs: 12,
+      md: 6,
+    },
   },
 ];
 

@@ -21,7 +21,7 @@ export default function FileUpload({
   grid,
   id,
   error,
-  title,
+  label,
   required,
   allowURL,
   disabled,
@@ -101,13 +101,13 @@ export default function FileUpload({
   }, [state, name]);
 
   return (
-    <Grid {...grid} key={id}>
+    <Grid item {...grid} key={id}>
       <span
         style={{
           color: error ? '#ff1744' : 'gray',
         }}
       >
-        {title} {required ? <span className="required">*</span> : ''}
+        {label} {required ? <span className="required">*</span> : ''}
       </span>
       {value && value.includes('https://') ? (
         <Grid container>
@@ -184,7 +184,7 @@ FileUpload.propTypes = {
   grid: PropTypes.object,
   id: PropTypes.any,
   error: PropTypes.bool,
-  title: PropTypes.string,
+  label: PropTypes.string,
   required: PropTypes.bool,
   allowURL: PropTypes.bool,
   disabled: PropTypes.bool,

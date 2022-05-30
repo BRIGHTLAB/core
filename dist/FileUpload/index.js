@@ -50,7 +50,7 @@ function FileUpload(_ref) {
     grid,
     id,
     error,
-    title,
+    label,
     required,
     allowURL,
     disabled,
@@ -133,13 +133,15 @@ function FileUpload(_ref) {
       }
     });
   }, [state, name]);
-  return /*#__PURE__*/_react.default.createElement(_material.Grid, _extends({}, grid, {
+  return /*#__PURE__*/_react.default.createElement(_material.Grid, _extends({
+    item: true
+  }, grid, {
     key: id
   }), /*#__PURE__*/_react.default.createElement("span", {
     style: {
       color: error ? '#ff1744' : 'gray'
     }
-  }, title, " ", required ? /*#__PURE__*/_react.default.createElement("span", {
+  }, label, " ", required ? /*#__PURE__*/_react.default.createElement("span", {
     className: "required"
   }, "*") : ''), value && value.includes('https://') ? /*#__PURE__*/_react.default.createElement(_material.Grid, {
     container: true
@@ -211,7 +213,7 @@ FileUpload.propTypes = {
   grid: _propTypes.default.object,
   id: _propTypes.default.any,
   error: _propTypes.default.bool,
-  title: _propTypes.default.string,
+  label: _propTypes.default.string,
   required: _propTypes.default.bool,
   allowURL: _propTypes.default.bool,
   disabled: _propTypes.default.bool,

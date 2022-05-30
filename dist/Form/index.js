@@ -21,6 +21,8 @@ var _FileUpload = _interopRequireDefault(require("../FileUpload"));
 
 var _TextField = _interopRequireDefault(require("../TextField"));
 
+var _RadioGroup = _interopRequireDefault(require("../RadioGroup"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -32,7 +34,8 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 const components = {
   TextField: _TextField.default,
   FileUpload: _FileUpload.default,
-  Select: _Select.default
+  Select: _Select.default,
+  RadioGroup: _RadioGroup.default
 };
 
 function Form(props) {
@@ -85,9 +88,9 @@ function Form(props) {
 
       return /*#__PURE__*/_react.default.createElement(_material.Grid, _extends({
         item: true
-      }, item.grid), /*#__PURE__*/_react.default.createElement(DynamicComponent, _extends({
-        key: idx
-      }, item, {
+      }, item.grid, {
+        key: 'Dynamic_Form_' + idx
+      }), /*#__PURE__*/_react.default.createElement(DynamicComponent, _extends({}, item, {
         type: (_item$itemType = item.itemType) !== null && _item$itemType !== void 0 ? _item$itemType : undefined //for textfield comp
         ,
         multi: (_item$multi = item.multi) !== null && _item$multi !== void 0 ? _item$multi : undefined //for select comp
@@ -110,7 +113,7 @@ function Form(props) {
 
 Form.propTypes = {
   fields: _propTypes.default.array.isRequired,
-  defaultValues: _propTypes.default.object,
+  defaultValues: _propTypes.default.array,
   onChange: _propTypes.default.func,
   customComponents: _propTypes.default.array
 };

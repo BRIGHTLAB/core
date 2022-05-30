@@ -32,6 +32,9 @@ stories.add('RadioGroup', () => {
   return /*#__PURE__*/_react.default.createElement(_RadioGroup.default, {
     handleChange: () => {},
     data: data,
+    required: true,
+    error: true,
+    helperText: "hello there click on a radio",
     label: "Radio"
   });
 });

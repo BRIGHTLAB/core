@@ -1,9 +1,11 @@
 "use strict";
 
+require("core-js/modules/es.object.assign.js");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = RadioGroup;
+exports.default = RadioGroupComp;
 
 require("core-js/modules/web.dom-collections.iterator.js");
 
@@ -11,7 +13,17 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _material = require("@mui/material");
+var _Radio = _interopRequireDefault(require("@mui/material/Radio"));
+
+var _RadioGroup = _interopRequireDefault(require("@mui/material/RadioGroup"));
+
+var _FormControlLabel = _interopRequireDefault(require("@mui/material/FormControlLabel"));
+
+var _FormControl = _interopRequireDefault(require("@mui/material/FormControl"));
+
+var _FormLabel = _interopRequireDefault(require("@mui/material/FormLabel"));
+
+var _Typography = _interopRequireDefault(require("@mui/material/Typography"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19,7 +31,9 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function RadioGroup(_ref) {
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function RadioGroupComp(_ref) {
   let {
     value,
     handleChange,
@@ -41,56 +55,31 @@ function RadioGroup(_ref) {
     handleChange(name, e.target.value);
   };
 
-  return (
-    /*#__PURE__*/
-    // <FormControl disabled={disabled} required={required} component="fieldset">
-    //   <FormLabel component="legend" error={error}>
-    //     {label}
-    //   </FormLabel>
-    //   <RadioGroup
-    //     row
-    //     aria-label="gender"
-    //     name={name}
-    //     value={selectValue}
-    //     onChange={onChange}
-    //   >
-    //     {data?.map((row, idx) => (
-    //       <FormControlLabel
-    //         key={name + '_' + idx}
-    //         value={row.value}
-    //         control={<Radio />}
-    //         label={row.title}
-    //         {...row.extra}
-    //       />
-    //     ))}
-    //   </RadioGroup>
-    //   <Typography variant="p" color={error ? 'error' : 'inherit'}>
-    //     {helperText}
-    //   </Typography>
-    // </FormControl>
-    _react.default.createElement(_material.FormControl, null, /*#__PURE__*/_react.default.createElement(_material.FormLabel, {
-      id: "demo-radio-buttons-group-label"
-    }, "Gender"), /*#__PURE__*/_react.default.createElement(RadioGroup, {
-      "aria-labelledby": "demo-radio-buttons-group-label",
-      defaultValue: "female",
-      name: "radio-buttons-group"
-    }, /*#__PURE__*/_react.default.createElement(_material.FormControlLabel, {
-      value: "female",
-      control: /*#__PURE__*/_react.default.createElement(_material.Radio, null),
-      label: "Female"
-    }), /*#__PURE__*/_react.default.createElement(_material.FormControlLabel, {
-      value: "male",
-      control: /*#__PURE__*/_react.default.createElement(_material.Radio, null),
-      label: "Male"
-    }), /*#__PURE__*/_react.default.createElement(_material.FormControlLabel, {
-      value: "other",
-      control: /*#__PURE__*/_react.default.createElement(_material.Radio, null),
-      label: "Other"
-    })))
-  );
+  return /*#__PURE__*/_react.default.createElement(_FormControl.default, {
+    disabled: disabled,
+    required: required,
+    component: "fieldset"
+  }, /*#__PURE__*/_react.default.createElement(_FormLabel.default, {
+    component: "legend",
+    error: error
+  }, label), /*#__PURE__*/_react.default.createElement(_RadioGroup.default, {
+    row: true,
+    "aria-label": "gender",
+    name: name,
+    value: selectValue,
+    onChange: onChange
+  }, data === null || data === void 0 ? void 0 : data.map((row, idx) => /*#__PURE__*/_react.default.createElement(_FormControlLabel.default, _extends({
+    key: name + '_' + idx,
+    value: row.value,
+    control: /*#__PURE__*/_react.default.createElement(_Radio.default, null),
+    label: row.title
+  }, row.extra)))), /*#__PURE__*/_react.default.createElement(_Typography.default, {
+    variant: "p",
+    color: error ? 'error' : 'inherit'
+  }, helperText));
 }
 
-RadioGroup.propTypes = {
+RadioGroupComp.propTypes = {
   data: _propTypes.default.array,
   name: _propTypes.default.string,
   value: _propTypes.default.string,
@@ -102,6 +91,6 @@ RadioGroup.propTypes = {
   label: _propTypes.default.string,
   disabled: _propTypes.default.bool
 };
-RadioGroup.defaultProps = {
+RadioGroupComp.defaultProps = {
   value: ''
 };
