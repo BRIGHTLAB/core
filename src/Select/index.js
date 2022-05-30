@@ -60,7 +60,7 @@ Select.propTypes = {
   multi: PropTypes.bool,
   name: PropTypes.string,
   id: PropTypes.any,
-  value: PropTypes.string || PropTypes.array,
+  value: PropTypes.object || PropTypes.array,
   name: PropTypes.string,
   helperText: PropTypes.string,
   error: PropTypes.bool,

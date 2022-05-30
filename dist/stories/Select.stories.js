@@ -30,10 +30,12 @@ const data = [{
 const stories = (0, _react2.storiesOf)('Select', module);
 stories.add('Single', () => {
   const [disable, setDisable] = (0, _react.useState)(true);
+  const [state, setState] = (0, _react.useState)(null);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("button", {
     onClick: () => setDisable(!disable)
   }, "toggle disable"), /*#__PURE__*/_react.default.createElement(_Select.default, {
-    handleChange: () => {},
+    value: state,
+    handleChange: (name, value) => setState(value),
     data: data,
     label: "Single",
     disabled: disable

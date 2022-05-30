@@ -77,7 +77,7 @@ Select.propTypes = {
   multi: _propTypes.default.bool,
   name: _propTypes.default.string,
   id: _propTypes.default.any,
-  value: _propTypes.default.string || _propTypes.default.array,
+  value: _propTypes.default.object || _propTypes.default.array,
   name: _propTypes.default.string,
   helperText: _propTypes.default.string,
   error: _propTypes.default.bool,

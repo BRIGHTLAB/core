@@ -23,26 +23,10 @@ export default function Form(props) {
   }, [props.defaultValues]);
 
   const handleFieldChange = (key, value, id) => {
-    // add the object inside the array
-    const newObj = {
-      id,
-      products_fields_id: id,
-      [key]: value,
-      value,
-      key,
-    };
+    let tempFieldsData = { ...customFieldsData, [key]: value };
 
-    const newFieldsData = [];
-    // loop through the array and check
-    customFieldsData.forEach((item) => {
-      if (item.id != newObj.id) newFieldsData.push(item);
-    });
-
-    // add it to the array
-    newFieldsData.push(newObj);
-
-    setCustomFieldsData(newFieldsData);
-    if (props.onChange) props.onChange(newFieldsData);
+    setCustomFieldsData(tempFieldsData);
+    if (props.onChange) props.onChange(tempFieldsData);
   };
 
   const renderFields = (data, customComponents) => {
@@ -92,7 +76,7 @@ export default function Form(props) {
 // type checking
 Form.propTypes = {
   fields: PropTypes.array.isRequired,
-  defaultValues: PropTypes.array,
+  defaultValues: PropTypes.object,
   onChange: PropTypes.func,
   customComponents: PropTypes.array,
 };

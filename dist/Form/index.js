@@ -31,6 +31,12 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 const components = {
   TextField: _TextField.default,
   FileUpload: _FileUpload.default,
@@ -46,23 +52,12 @@ function Form(props) {
   }, [props.defaultValues]);
 
   const handleFieldChange = (key, value, id) => {
-    // add the object inside the array
-    const newObj = {
-      id,
-      products_fields_id: id,
-      [key]: value,
-      value,
-      key
-    };
-    const newFieldsData = []; // loop through the array and check
+    let tempFieldsData = _objectSpread(_objectSpread({}, customFieldsData), {}, {
+      [key]: value
+    });
 
-    customFieldsData.forEach(item => {
-      if (item.id != newObj.id) newFieldsData.push(item);
-    }); // add it to the array
-
-    newFieldsData.push(newObj);
-    setCustomFieldsData(newFieldsData);
-    if (props.onChange) props.onChange(newFieldsData);
+    setCustomFieldsData(tempFieldsData);
+    if (props.onChange) props.onChange(tempFieldsData);
   };
 
   const renderFields = (data, customComponents) => {
@@ -113,7 +108,7 @@ function Form(props) {
 
 Form.propTypes = {
   fields: _propTypes.default.array.isRequired,
-  defaultValues: _propTypes.default.array,
+  defaultValues: _propTypes.default.object,
   onChange: _propTypes.default.func,
   customComponents: _propTypes.default.array
 };

@@ -13,11 +13,13 @@ const stories = storiesOf('Select', module);
 
 stories.add('Single', () => {
   const [disable, setDisable] = useState(true);
+  const [state, setState] = useState(null);
   return (
     <>
       <button onClick={() => setDisable(!disable)}>toggle disable</button>
       <Select
-        handleChange={() => {}}
+        value={state}
+        handleChange={(name, value) => setState(value)}
         data={data}
         label="Single"
         disabled={disable}
