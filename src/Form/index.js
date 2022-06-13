@@ -22,6 +22,10 @@ export default function Form(props) {
     setCustomFieldsData(props.defaultValues);
   }, [props.defaultValues]);
 
+  useEffect(() => {
+    setCustomFieldsErrorData(props.errorValues);
+  }, [props.errorValues]);
+
   const handleFieldChange = (key, value, id) => {
     let tempFieldsData = { ...customFieldsData, [key]: value };
 
@@ -77,11 +81,12 @@ export default function Form(props) {
 Form.propTypes = {
   fields: PropTypes.array.isRequired,
   defaultValues: PropTypes.object,
+  errorValues: PropTypes.object,
   onChange: PropTypes.func,
   customComponents: PropTypes.array,
 };
 
 Form.defaultProps = {
-  defaultValues: [],
+  errorValues: {},
   customComponents: [],
 };

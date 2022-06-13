@@ -5,12 +5,12 @@ import Form from '../Form';
 
 const stories = storiesOf('Form', module);
 
-const fields = [
+let fields = [
   {
     id: 'full_name',
     name: 'full_name',
-    type: 'TextField',
     label: 'Full Name',
+    type: 'TextField',
     required: true,
     grid: {
       xs: 12,
@@ -20,10 +20,8 @@ const fields = [
   {
     id: 'email',
     name: 'email',
-    type: 'TextField',
     label: 'Email',
-    inputType: 'email',
-    helperText: 'Please enter a valid email',
+    type: 'TextField',
     required: true,
     grid: {
       xs: 12,
@@ -33,9 +31,8 @@ const fields = [
   {
     id: 'image_url',
     name: 'image_url',
-    type: 'FileUpload',
     label: 'Image',
-    inputType: 'image',
+    type: 'FileUpload',
     required: true,
     grid: {
       xs: 12,
@@ -45,97 +42,107 @@ const fields = [
   {
     id: 'deactivated',
     name: 'deactivated',
+    label: 'Deactivated',
     type: 'RadioGroup',
-    label: 'Active',
     required: true,
-    data: [
-      { value: '0', title: 'Yes' },
-      { value: '1', title: 'No' },
-    ],
     grid: {
       xs: 12,
       md: 6,
     },
-  },
-
-  {
-    id: 'supervisor_obj',
-    name: 'supervisor_obj',
-    type: 'Select',
-    label: 'Supervisor',
-    required: true,
     data: [
-      { value: '0', title: 'Yes' },
-      { value: '1', title: 'No' },
+      {
+        title: 'Yes',
+        value: '0',
+      },
+      {
+        title: 'No',
+        value: '1',
+      },
     ],
-    grid: {
-      xs: 12,
-      md: 6,
-    },
   },
-
-  {
-    id: 'permission_obj',
-    name: 'permission_obj',
-    type: 'Select',
-    label: 'Permission',
-    required: true,
-    data: [
-      { value: '0', title: 'Yes' },
-      { value: '1', title: 'No' },
-    ],
-    grid: {
-      xs: 12,
-      md: 6,
-    },
-  },
-
   {
     id: 'company_obj',
     name: 'company_obj',
-    type: 'Select',
     label: 'Company',
+    type: 'Select',
     required: true,
-    data: [
-      { value: '0', title: 'Yes' },
-      { value: '1', title: 'No' },
-    ],
     grid: {
       xs: 12,
       md: 6,
     },
+    data: [
+      {
+        title: 'Yes',
+        value: '0',
+      },
+      {
+        title: 'No',
+        value: '1',
+      },
+    ],
   },
-
   {
     id: 'departments_obj',
     name: 'departments_obj',
-    type: 'Select',
     label: 'Department',
+    type: 'Select',
     required: true,
-    data: [
-      { value: '0', title: 'Yes' },
-      { value: '1', title: 'No' },
-    ],
     grid: {
       xs: 12,
       md: 6,
     },
+    data: [
+      {
+        title: 'Yes',
+        value: '0',
+      },
+      {
+        title: 'No',
+        value: '1',
+      },
+    ],
   },
-
   {
     id: 'positions_obj',
     name: 'positions_obj',
-    type: 'Select',
     label: 'Position',
+    type: 'Select',
     required: true,
-    data: [
-      { value: '0', title: 'Yes' },
-      { value: '1', title: 'No' },
-    ],
     grid: {
       xs: 12,
       md: 6,
     },
+    data: [
+      {
+        title: 'Yes',
+        value: '0',
+      },
+      {
+        title: 'No',
+        value: '1',
+      },
+    ],
+  },
+  {
+    id: 'supervisor_obj',
+    name: 'supervisor_obj',
+    label: 'Supervisor',
+    type: 'Select',
+    required: true,
+    grid: {
+      xs: 12,
+      md: 6,
+    },
+    data: [
+      {
+        title: 'Yes',
+        value: '0',
+      },
+      {
+        title: 'No',
+        value: '1',
+      },
+    ],
   },
 ];
 
