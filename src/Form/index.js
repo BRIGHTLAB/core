@@ -15,7 +15,7 @@ const components = {
 };
 
 export default function Form(props) {
-  const [customFieldsData, setCustomFieldsData] = useState([]);
+  const [customFieldsData, setCustomFieldsData] = useState({});
   const [customFieldsErrorData, setCustomFieldsErrorData] = useState({});
 
   useEffect(() => {
@@ -88,5 +88,6 @@ Form.propTypes = {
 
 Form.defaultProps = {
   errorValues: {},
+  defaultValues: {},
   customComponents: [],
 };

@@ -187,3 +187,14 @@ stories.add('Init', () => {
     />
   );
 });
+
+stories.add('Add', () => {
+  return (
+    <Form
+      fields={fields}
+      errorValues={{}}
+      handleChange={(values) => console.log('changed', values)}
+      defaultValues={{}}
+    />
+  );
+});

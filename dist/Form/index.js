@@ -45,7 +45,7 @@ const components = {
 };
 
 function Form(props) {
-  const [customFieldsData, setCustomFieldsData] = (0, _react.useState)([]);
+  const [customFieldsData, setCustomFieldsData] = (0, _react.useState)({});
   const [customFieldsErrorData, setCustomFieldsErrorData] = (0, _react.useState)({});
   (0, _react.useEffect)(() => {
     setCustomFieldsData(props.defaultValues);
@@ -118,5 +118,6 @@ Form.propTypes = {
 };
 Form.defaultProps = {
   errorValues: {},
+  defaultValues: {},
   customComponents: []
 };

@@ -164,3 +164,11 @@ stories.add('Init', () => {
     }
   });
 });
+stories.add('Add', () => {
+  return /*#__PURE__*/_react.default.createElement(_Form.default, {
+    fields: fields,
+    errorValues: {},
+    handleChange: values => console.log('changed', values),
+    defaultValues: {}
+  });
+});
