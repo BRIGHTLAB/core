@@ -50,6 +50,9 @@ function Form(props) {
   (0, _react.useEffect)(() => {
     setCustomFieldsData(props.defaultValues);
   }, [props.defaultValues]);
+  (0, _react.useEffect)(() => {
+    setCustomFieldsErrorData(props.errorValues);
+  }, [props.errorValues]);
 
   const handleFieldChange = (key, value, id) => {
     let tempFieldsData = _objectSpread(_objectSpread({}, customFieldsData), {}, {
@@ -109,10 +112,11 @@ function Form(props) {
 Form.propTypes = {
   fields: _propTypes.default.array.isRequired,
   defaultValues: _propTypes.default.object,
+  errorValues: _propTypes.default.object,
   onChange: _propTypes.default.func,
   customComponents: _propTypes.default.array
 };
 Form.defaultProps = {
-  defaultValues: [],
+  errorValues: {},
   customComponents: []
 };
