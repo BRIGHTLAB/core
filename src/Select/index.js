@@ -34,7 +34,7 @@ export default function Select({
       fullWidth
       options={data}
       getOptionLabel={(option) => option.title}
-      isOptionEqualToValue={(option, val) => option.value == val.value}
+      isOptionEqualToValue={(option, val) => option.value === val.value}
       id={id}
       autoComplete
       disabled={disabled}

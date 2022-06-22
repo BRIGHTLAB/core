@@ -94,7 +94,7 @@ function Form(props) {
         multi: (_item$multi = item.multi) !== null && _item$multi !== void 0 ? _item$multi : undefined //for select comp
         ,
         fullWidth: true,
-        helperText: customFieldsErrorData[item.name] || item.helperText,
+        helperText: customFieldsErrorData[item.name] || item.helperText || undefined,
         error: item.name in customFieldsErrorData,
         value: customFieldsData[item.name] || null,
         handleChange: (key, value) => handleFieldChange(key, value, item.id)

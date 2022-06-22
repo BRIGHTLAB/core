@@ -3,17 +3,21 @@ import { storiesOf } from '@storybook/react';
 
 import Select from '../Select';
 const data = [
-  { value: 1, title: 'Amine Amine' },
-  { value: 2, title: 'sharbel Mer3eb' },
-  { value: 3, title: 'Charles daccache' },
-  { value: 4, title: 'Serge Masaad' },
+  { value: 1, title: 'Amine Amine', adf: 'adf' },
+  { value: 2, title: 'sharbel Mer3eb', adf: 'adf' },
+  { value: 3, title: 'Charles daccache', adf: 'adf' },
+  { value: 4, title: 'Serge Masaad', adf: 'adf' },
 ];
 
 const stories = storiesOf('Select', module);
 
 stories.add('Single', () => {
   const [disable, setDisable] = useState(true);
-  const [state, setState] = useState(null);
+  const [state, setState] = useState({
+    value: 4,
+    title: 'Serge Masaad',
+    abc: 'abc',
+  });
   return (
     <>
       <button onClick={() => setDisable(!disable)}>toggle disable</button>

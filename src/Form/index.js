@@ -58,7 +58,9 @@ export default function Form(props) {
             type={item.itemType ?? undefined} //for textfield comp
             multi={item.multi ?? undefined} //for select comp
             fullWidth
-            helperText={customFieldsErrorData[item.name] || item.helperText}
+            helperText={
+              customFieldsErrorData[item.name] || item.helperText || undefined
+            }
             error={item.name in customFieldsErrorData}
             value={customFieldsData[item.name] || null}
             handleChange={(key, value) =>
