@@ -55,7 +55,7 @@ function Select(_ref) {
     fullWidth: true,
     options: data,
     getOptionLabel: option => option.title,
-    isOptionEqualToValue: (option, val) => option.value == val.value,
+    isOptionEqualToValue: (option, val) => option.value === val.value,
     id: id,
     autoComplete: true,
     disabled: disabled,

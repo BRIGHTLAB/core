@@ -16,21 +16,29 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 const data = [{
   value: 1,
-  title: 'Amine Amine'
+  title: 'Amine Amine',
+  adf: 'adf'
 }, {
   value: 2,
-  title: 'sharbel Mer3eb'
+  title: 'sharbel Mer3eb',
+  adf: 'adf'
 }, {
   value: 3,
-  title: 'Charles daccache'
+  title: 'Charles daccache',
+  adf: 'adf'
 }, {
   value: 4,
-  title: 'Serge Masaad'
+  title: 'Serge Masaad',
+  adf: 'adf'
 }];
 const stories = (0, _react2.storiesOf)('Select', module);
 stories.add('Single', () => {
   const [disable, setDisable] = (0, _react.useState)(true);
-  const [state, setState] = (0, _react.useState)(null);
+  const [state, setState] = (0, _react.useState)({
+    value: 4,
+    title: 'Serge Masaad',
+    abc: 'abc'
+  });
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("button", {
     onClick: () => setDisable(!disable)
   }, "toggle disable"), /*#__PURE__*/_react.default.createElement(_Select.default, {
