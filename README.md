@@ -12,8 +12,9 @@
 
 <div align="center">
 
+[![npm downloads](https://img.shields.io/npm/dy/@bright-lab/core.svg)](https://www.npmjs.com/package/@bright-lab/core)
+[![minizipped size](https://img.shields.io/bundlephobia/minzip/@bright-lab/core)](https://bundlephobia.com/package/@bright-lab/core)
 [![npm latest package](https://img.shields.io/npm/v/@bright-lab/core/latest.svg)](https://www.npmjs.com/package/@mui/material)
-[![npm downloads](https://img.shields.io/npm/dm/@bright-lab/core.svg)](https://www.npmjs.com/package/@bright-lab/core)
 
 </div>
 
