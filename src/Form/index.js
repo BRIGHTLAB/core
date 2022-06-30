@@ -7,11 +7,13 @@ import Select from '../Select';
 import FileUpload from '../FileUpload';
 import TextField from '../TextField';
 import RadioGroupComp from '../RadioGroup';
+import CheckBox from '../CheckBox';
 const components = {
   TextField: TextField,
   FileUpload: FileUpload,
   Select: Select,
   RadioGroup: RadioGroupComp,
+  CheckBox: CheckBox,
 };
 
 export default function Form(props) {

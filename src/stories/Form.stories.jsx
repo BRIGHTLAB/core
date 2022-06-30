@@ -61,6 +61,27 @@ let fields = [
     ],
   },
   {
+    id: 'testing',
+    name: 'testing',
+    label: 'Testing',
+    type: 'CheckBox',
+    required: true,
+    grid: {
+      xs: 12,
+      md: 6,
+    },
+    data: [
+      {
+        title: 'Yes',
+        value: '0',
+      },
+      {
+        title: 'No',
+        value: '1',
+      },
+    ],
+  },
+  {
     id: 'company_obj',
     name: 'company_obj',
     label: 'Company',
@@ -162,26 +183,21 @@ stories.add('Init', () => {
         total_points: '0',
         deactivated: '0',
         supervisor_obj: {
-          value: '13',
-          title: 'Nadine Nader',
+          title: 'Yes',
+          value: '0',
         },
         permission_obj: false,
         company_obj: {
-          value: '2',
-          title: 'BRIGHT LAB',
+          title: 'Yes',
+          value: '0',
         },
         departments_obj: {
-          id: '5',
-          value: '5',
-          company_id: '2',
-          title: 'QA',
+          title: 'Yes',
+          value: '0',
         },
         positions_obj: {
-          id: '1',
-          value: '1',
-          templates_id: '1',
-          key: 'dev_fe',
-          title: 'Frontend developer',
+          title: 'Yes',
+          value: '0',
         },
       }}
     />
