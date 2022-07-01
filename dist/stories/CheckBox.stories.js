@@ -30,17 +30,21 @@ const data = [{
 const stories = (0, _react2.storiesOf)('CheckBox', module);
 stories.add('CheckBox', () => {
   return /*#__PURE__*/_react.default.createElement(_CheckBox.default, {
-    handleChange: () => {},
+    value: {
+      ['1']: true
+    },
+    handleChange: (name, value) => {},
     data: data,
     required: true,
     error: true,
+    name: "checkbox1",
     helperText: "hello there click on a checkbox or more",
     label: "Checkboxes"
   });
 });
 stories.add('checkbox grid', () => {
   return /*#__PURE__*/_react.default.createElement(_CheckBox.default, {
-    handleChange: () => {},
+    handleChange: (name, value) => {},
     data: data,
     required: true,
     error: true,

@@ -1,7 +1,7 @@
 {
   "name": "@bright-lab/core",
   "private": false,
-  "version": "0.1.25",
+  "version": "0.1.26",
   "description": "@Bright-lab/core is a core npm package based on Material UI and will be including some BRIGHT components. Stay tuned.",
   "main": "dist/index.js",
   "scripts": {

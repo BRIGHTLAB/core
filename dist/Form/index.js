@@ -23,6 +23,8 @@ var _TextField = _interopRequireDefault(require("../TextField"));
 
 var _RadioGroup = _interopRequireDefault(require("../RadioGroup"));
 
+var _CheckBox = _interopRequireDefault(require("../CheckBox"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -41,7 +43,8 @@ const components = {
   TextField: _TextField.default,
   FileUpload: _FileUpload.default,
   Select: _Select.default,
-  RadioGroup: _RadioGroup.default
+  RadioGroup: _RadioGroup.default,
+  CheckBox: _CheckBox.default
 };
 
 function Form(props) {

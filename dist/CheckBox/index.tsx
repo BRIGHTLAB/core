@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
@@ -21,7 +19,7 @@ interface Props {
 }
 
 export default function CheckBoxComp({
-  value,
+  value = {},
   handleChange,
   label,
   data,
@@ -52,11 +50,12 @@ export default function CheckBoxComp({
         {data?.map((row, idx) => (
           <FormControlLabel
             key={name + '_' + idx}
-            value={row.value}
             control={
               <Checkbox
-                checked={selectValue[row.value] ? true : false}
-                name={row.value}
+                checked={
+                  selectValue ? (selectValue[row.value] ? true : false) : false
+                }
+                name={JSON.stringify(row.value)}
                 onChange={onChange}
               />
             }

@@ -73,11 +73,11 @@ let fields = [
     data: [
       {
         title: 'Yes',
-        value: '0',
+        value: 0,
       },
       {
         title: 'No',
-        value: '1',
+        value: 1,
       },
     ],
   },
@@ -171,7 +171,7 @@ stories.add('Init', () => {
   return (
     <Form
       fields={fields}
-      handleChange={(values) => console.log('changed', values)}
+      onChange={(values) => {}}
       defaultValues={{
         id: '14',
         roles_id: '1',
@@ -182,6 +182,7 @@ stories.add('Init', () => {
         image_url: 'https://static.mirsad.app/no-profile-picture.webp',
         total_points: '0',
         deactivated: '0',
+        testing: { 0: true },
         supervisor_obj: {
           title: 'Yes',
           value: '0',
@@ -209,7 +210,7 @@ stories.add('Add', () => {
     <Form
       fields={fields}
       errorValues={{}}
-      handleChange={(values) => console.log('changed', values)}
+      onChange={(values) => {}}
       defaultValues={{}}
     />
   );
