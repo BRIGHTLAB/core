@@ -1,12 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
-import PropTypes from 'prop-types';
 
-const IsNumber = (string) => /^[0-9]+$/.test(string);
+const IsNumber = (string: string) => /^[0-9]+$/.test(string);
+
+interface Props {
+  id: string;
+  value: string;
+  name: string;
+  type: string;
+  helperText: string;
+  error: boolean;
+  required: boolean;
+  handleChange: (name: string, value: any) => void;
+  handleBlur: (name: string, value: any) => void;
+  label: string;
+  disabled: boolean;
+  maxLength: number;
+}
 
 export default function TextInput({
   id,
-  value,
+  value = '',
   name,
   type,
   helperText,
@@ -17,14 +31,14 @@ export default function TextInput({
   label,
   disabled,
   maxLength,
-}) {
+}: Props) {
   const [state, setState] = useState(value);
 
   useEffect(() => {
     setState(value);
   }, [value]);
 
-  const onChange = (event) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (
       type === 'number' &&
       event.target.value &&
@@ -38,7 +52,7 @@ export default function TextInput({
 
   return (
     <TextField
-      value={state ? state : ''}
+      value={state}
       margin="dense"
       id={id}
       size="small"
@@ -64,20 +78,3 @@ export default function TextInput({
     />
   );
 }
-
-TextInput.propTypes = {
-  id: PropTypes.any,
-  value: PropTypes.string,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  helperText: PropTypes.string,
-  error: PropTypes.bool,
-  required: PropTypes.bool,
-  handleChange: PropTypes.func.isRequired,
-  handleBlur: PropTypes.func,
-  label: PropTypes.string,
-  disabled: PropTypes.bool,
-  maxLength: PropTypes.number,
-};
-
-TextInput.defaultProps = { value: '' };

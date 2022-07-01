@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import CheckBox from '../CheckBox';
@@ -33,6 +33,7 @@ stories.add('checkbox grid', () => {
       data={data}
       required={true}
       error={true}
+      name="checkbox2"
       helperText="hello there click on a checkbox or more"
       label="Checkboxes"
       view="grid"

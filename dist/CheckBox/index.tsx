@@ -6,16 +6,16 @@ import Typography from '@mui/material/Typography';
 import { Checkbox } from '@mui/material';
 
 interface Props {
-  value: { [key: string]: boolean };
+  value?: { [key: string]: boolean };
   handleChange: (name: string, value: any) => void;
-  label: string;
-  data: Array<{ value: string; title: string; attr: object }>;
-  disabled: boolean;
-  error: boolean;
-  helperText: string;
-  required: boolean;
+  label?: string;
+  data: Array<{ value: string | number; title: string; attr?: object }>;
+  disabled?: boolean;
+  error?: boolean;
+  helperText?: string;
+  required?: boolean;
   name: string;
-  view: string;
+  view?: string;
 }
 
 export default function CheckBoxComp({

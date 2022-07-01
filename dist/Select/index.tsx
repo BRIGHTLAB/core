@@ -1,7 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import PropTypes from 'prop-types';
+
+interface FilmOptionType {
+  value: string;
+  title: string;
+  attr?: object;
+}
+
+interface Props {
+  id: string;
+  value: FilmOptionType | null;
+  handleChange: (name: string, value: any) => void;
+  label: string;
+  data: Array<FilmOptionType>;
+  multi: boolean;
+  disabled: boolean;
+  error: boolean;
+  helperText: string;
+  required: boolean;
+  name: string;
+}
 
 export default function Select({
   id,
@@ -15,21 +34,24 @@ export default function Select({
   helperText,
   required,
   name,
-}) {
-  const [selectValue, setSelectValue] = useState(value);
+}: Props) {
+  const [selectValue, setSelectValue] = useState<FilmOptionType | null>(value);
 
   useEffect(() => {
     setSelectValue(value);
   }, [value]);
 
-  const onChange = (event, newValue) => {
+  const onChange = (
+    event: React.SyntheticEvent,
+    newValue: FilmOptionType | null | any //any cause its complicated
+  ) => {
     setSelectValue(newValue);
     handleChange(name, newValue);
   };
 
   return (
     <Autocomplete
-      value={selectValue}
+      value={multi && !selectValue ? [] : selectValue}
       multiple={multi}
       fullWidth
       options={data}
@@ -54,23 +76,3 @@ export default function Select({
     />
   );
 }
-
-Select.propTypes = {
-  data: PropTypes.array,
-  multi: PropTypes.bool,
-  name: PropTypes.string,
-  id: PropTypes.any,
-  value: PropTypes.object || PropTypes.array,
-  name: PropTypes.string,
-  helperText: PropTypes.string,
-  error: PropTypes.bool,
-  required: PropTypes.bool,
-  handleChange: PropTypes.func.isRequired,
-  handleBlur: PropTypes.func,
-  label: PropTypes.string,
-  disabled: PropTypes.bool,
-};
-
-Select.defaultProps = {
-  value: null,
-};

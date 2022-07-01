@@ -18,6 +18,7 @@ stories.add('RadioGroup', () => {
       data={data}
       required={true}
       error={true}
+      name="abc"
       helperText="hello there click on a radio"
       label="Radio"
     />

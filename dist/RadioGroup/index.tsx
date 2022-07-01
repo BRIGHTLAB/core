@@ -7,14 +7,14 @@ import FormLabel from '@mui/material/FormLabel';
 import Typography from '@mui/material/Typography';
 
 interface Props {
-  value: string;
+  value?: string;
   handleChange: (name: string, value: any) => void;
-  label: string;
-  data: Array<{ value: string; title: string; attr: object }>;
-  disabled: boolean;
-  error: boolean;
-  helperText: string;
-  required: boolean;
+  label?: string;
+  data: Array<{ value: string | number; title: string; attr?: object }>;
+  disabled?: boolean;
+  error?: boolean;
+  helperText?: string;
+  required?: boolean;
   name: string;
 }
 
