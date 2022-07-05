@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { value useState, value useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Typography from '@mui/material/Typography';
-import { Checkbox } from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
 
 interface Props {
   value?: { [key: string]: boolean };
   handleChange: (name: string, value: any) => void;
   label?: string;
-  data: Array<{ value: string | number; title: string; attr?: object }>;
+  data: { value: string | number; title: string; attr?: object }[];
   disabled?: boolean;
   error?: boolean;
   helperText?: string;
@@ -52,9 +52,7 @@ export default function CheckBoxComp({
             key={name + '_' + idx}
             control={
               <Checkbox
-                checked={
-                  selectValue ? (selectValue[row.value] ? true : false) : false
-                }
+                checked={selectValue ? (selectValue[row.value] ? true : false) : false}
                 name={JSON.stringify(row.value)}
                 onChange={onChange}
               />

@@ -23,10 +23,10 @@ interface Props {
   width: string;
 }
 
-export default function Popup({ open, closeModal, children, width = '400px' }) {
+export default function Popup({ open, closeModal, children, width = '400px' }: Props) {
   return (
     <Modal keepMounted open={open} onClose={closeModal}>
-      <Box sx={{ ...styles.box, width: width }}>
+      <Box sx={{ ...styles.box, width: `${width}` }}>
         <Grid container>{children}</Grid>
       </Box>
     </Modal>

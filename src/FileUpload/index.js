@@ -1,12 +1,5 @@
 import { Delete } from '@mui/icons-material';
-import {
-  FormControlLabel,
-  Grid,
-  Radio,
-  RadioGroup,
-  TextField,
-  Tooltip,
-} from '@mui/material';
+import { FormControlLabel, Grid, Radio, RadioGroup, TextField, Tooltip } from '@mui/material';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { Dashboard, useUppy } from '@uppy/react';
@@ -131,18 +124,8 @@ export default function FileUpload({
       ) : (
         <>
           {allowURL && (
-            <RadioGroup
-              row
-              aria-label="Upload type"
-              name="URL"
-              value={URL}
-              onChange={changeUploadType}
-            >
-              <FormControlLabel
-                value="false"
-                control={<Radio />}
-                label="File Upload"
-              />
+            <RadioGroup row aria-label="Upload type" name="URL" value={URL} onChange={changeUploadType}>
+              <FormControlLabel value="false" control={<Radio />} label="File Upload" />
               <FormControlLabel value="true" control={<Radio />} label="Url" />
             </RadioGroup>
           )}

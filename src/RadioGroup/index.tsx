@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { value useEffect, value useState } from 'react';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -10,7 +10,7 @@ interface Props {
   value?: string;
   handleChange: (name: string, value: any) => void;
   label?: string;
-  data: Array<{ value: string | number; title: string; attr?: object }>;
+  data: { value: string | number; title: string; attr?: object }[];
   disabled?: boolean;
   error?: boolean;
   helperText?: string;
@@ -45,13 +45,7 @@ export default function RadioGroupComp({
       <FormLabel component="legend" error={error}>
         {label}
       </FormLabel>
-      <RadioGroup
-        row
-        aria-label="gender"
-        name={name}
-        value={selectValue}
-        onChange={onChange}
-      >
+      <RadioGroup row aria-label="gender" name={name} value={selectValue} onChange={onChange}>
         {data?.map((row, idx) => (
           <FormControlLabel
             key={name + '_' + idx}

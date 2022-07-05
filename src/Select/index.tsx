@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { value useEffect, value useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
@@ -13,7 +13,7 @@ interface Props {
   value: FilmOptionType | null;
   handleChange: (name: string, value: any) => void;
   label: string;
-  data: Array<FilmOptionType>;
+  data: FilmOptionType[];
   multi: boolean;
   disabled: boolean;
   error: boolean;
@@ -43,7 +43,7 @@ export default function Select({
 
   const onChange = (
     event: React.SyntheticEvent,
-    newValue: FilmOptionType | null | any //any cause its complicated
+    newValue: FilmOptionType | null | any, //any cause its complicated
   ) => {
     setSelectValue(newValue);
     handleChange(name, newValue);
@@ -62,14 +62,7 @@ export default function Select({
       disabled={disabled}
       includeInputInList
       renderInput={(params) => (
-        <TextField
-          {...params}
-          margin="dense"
-          label={label}
-          required={required}
-          helperText={helperText}
-          error={error}
-        />
+        <TextField {...params} margin="dense" label={label} required={required} helperText={helperText} error={error} />
       )}
       size="small"
       onChange={onChange}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { value useEffect, value useState } from 'react';
 import TextField from '@mui/material/TextField';
 
 const IsNumber = (string: string) => /^[0-9]+$/.test(string);
@@ -39,11 +39,7 @@ export default function TextInput({
   }, [value]);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (
-      type === 'number' &&
-      event.target.value &&
-      !IsNumber(event.target.value)
-    ) {
+    if (type === 'number' && event.target.value && !IsNumber(event.target.value)) {
       return;
     }
     setState(event.target.value);
@@ -66,7 +62,7 @@ export default function TextInput({
       multiline={type === 'textarea' ? true : false}
       minRows={type === 'textarea' ? 4 : undefined}
       required={required}
-      inputProps={{ maxLength: maxLength }}
+      inputProps={{ maxLength: `${maxLength}` }}
       onChange={onChange}
       onBlur={
         handleBlur
