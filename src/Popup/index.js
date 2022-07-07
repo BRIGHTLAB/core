@@ -16,14 +16,14 @@ const styles = {
   },
 };
 
-interface Props {
-  open: boolean;
-  closeModal: () => void;
-  children: any;
-  width: string;
-}
+// interface Props {
+//   open: boolean;
+//   closeModal: () => void;
+//   children: any;
+//   width: string;
+// }
 
-export default function Popup({ open, closeModal, children, width = '400px' }: Props) {
+export default function Popup({ open, closeModal, children, width = '400px' }) {
   return (
     <Modal keepMounted open={open} onClose={closeModal}>
       <Box sx={{ ...styles.box, width: `${width}` }}>
