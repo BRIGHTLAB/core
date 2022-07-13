@@ -40,7 +40,8 @@ function ContainerList(_ref) {
     totalP,
     loadMoreP,
     loadingP,
-    id
+    id,
+    spacing
   } = _ref;
   const [data, setData] = (0, _react.useState)(dataP);
   const [total, setTotal] = (0, _react.useState)(totalP);
@@ -56,7 +57,7 @@ function ContainerList(_ref) {
   }, [totalP]);
   return /*#__PURE__*/_react.default.createElement(_material.Grid, {
     container: true,
-    spacing: 3
+    spacing: spacing
   }, data.length > 0 ? data.map((row, idx) => /*#__PURE__*/_react.default.createElement(_material.Grid, _extends({
     item: true,
     xs: 12
@@ -96,12 +97,14 @@ ContainerList.propTypes = {
   totalP: _propTypes.default.number,
   loadMoreP: _propTypes.default.func,
   loadingP: _propTypes.default.bool,
-  id: _propTypes.default.string
+  id: _propTypes.default.string,
+  spacing: _propTypes.default.number
 };
 ContainerList.defaultProps = {
   dataP: [],
   renderItem: null,
   loadingP: false,
   totalP: 10,
-  id: ''
+  id: '',
+  spacing: 3
 };
