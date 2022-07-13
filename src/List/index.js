@@ -18,6 +18,7 @@ export default function ContainerList({
   loadMoreP,
   loadingP,
   id,
+  spacing,
 }) {
   const [data, setData] = useState(dataP);
   const [total, setTotal] = useState(totalP);
@@ -36,7 +37,7 @@ export default function ContainerList({
   }, [totalP]);
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={spacing}>
       {data.length > 0 ? (
         data.map((row, idx) => (
           <Grid
@@ -84,6 +85,7 @@ ContainerList.propTypes = {
   loadMoreP: PropTypes.func,
   loadingP: PropTypes.bool,
   id: PropTypes.string,
+  spacing: PropTypes.number,
 };
 
 ContainerList.defaultProps = {
@@ -92,4 +94,5 @@ ContainerList.defaultProps = {
   loadingP: false,
   totalP: 10,
   id: '',
+  spacing: 3,
 };
