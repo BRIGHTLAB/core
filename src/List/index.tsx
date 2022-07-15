@@ -1,5 +1,4 @@
 import { Button, Card, CircularProgress, Grid } from '@mui/material';
-import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
 const styles = {
@@ -10,15 +9,26 @@ const styles = {
     py: '20px',
   },
 };
+
+interface Props {
+  dataP: { id: string | number }[];
+  renderItem: (row: object, idx: number) => React.ReactNode | null;
+  GridStyleItem: object;
+  totalP: number;
+  loadMoreP: () => void;
+  loadingP: boolean;
+  id: string | number;
+}
+
 export default function ContainerList({
-  dataP,
+  dataP = [],
   renderItem,
   GridStyleItem,
-  totalP,
+  totalP = 10,
   loadMoreP,
-  loadingP,
-  id,
-}) {
+  loadingP = false,
+  id = '',
+}: Props) {
   const [data, setData] = useState(dataP);
   const [total, setTotal] = useState(totalP);
   const [loading, setLoading] = useState(loadingP);
@@ -39,35 +49,19 @@ export default function ContainerList({
     <Grid container spacing={3}>
       {data.length > 0 ? (
         data.map((row, idx) => (
-          <Grid
-            item
-            xs={12}
-            {...GridStyleItem}
-            key={`${id}_${row.id || 'rand_' + idx}`}
-          >
+          <Grid item xs={12} {...GridStyleItem} key={`${id}_${row.id || 'rand_' + idx}`}>
             {renderItem(row, idx)}
           </Grid>
         ))
       ) : (
         <Grid item xs={12}>
-          <Card sx={styles.card}>
-            {loading ? <CircularProgress size={40} /> : 'NO DATA FOUND'}
-          </Card>
+          <Card sx={styles.card}>{loading ? <CircularProgress size={40} /> : 'NO DATA FOUND'}</Card>
         </Grid>
       )}
       <Grid item xs={12} sx={{ textAlign: 'center', mt: '10px' }}>
         {data.length < total && loadMoreP ? (
-          <Button
-            variant="contained"
-            color="info"
-            size="small"
-            onClick={loadMoreP}
-          >
-            {loading ? (
-              <CircularProgress size={22} sx={{ color: 'white' }} />
-            ) : (
-              'Load More'
-            )}
+          <Button variant="contained" color="info" size="small" onClick={loadMoreP}>
+            {loading ? <CircularProgress size={22} sx={{ color: 'white' }} /> : 'Load More'}
             {` ${data.length}/${total}`}
           </Button>
         ) : null}
@@ -75,21 +69,3 @@ export default function ContainerList({
     </Grid>
   );
 }
-
-ContainerList.propTypes = {
-  renderItem: PropTypes.func.isRequired,
-  dataP: PropTypes.array.isRequired,
-  GridStyleItem: PropTypes.object,
-  totalP: PropTypes.number,
-  loadMoreP: PropTypes.func,
-  loadingP: PropTypes.bool,
-  id: PropTypes.string,
-};
-
-ContainerList.defaultProps = {
-  dataP: [],
-  renderItem: null,
-  loadingP: false,
-  totalP: 10,
-  id: '',
-};

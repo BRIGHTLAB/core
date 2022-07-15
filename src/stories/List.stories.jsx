@@ -17,13 +17,9 @@ stories.add('Empty List', () => {
 });
 
 stories.add('List', () => {
-  return (
-    <List dataP={data} renderItem={(row, idx) => <div>{row.title}</div>} />
-  );
+  return <List dataP={data} renderItem={(row, idx) => <div>{row.title}</div>} />;
 });
 
 stories.add('Loading List', () => {
-  return (
-    <List dataP={[]} loadingP={true} renderItem={(row, idx) => <div></div>} />
-  );
+  return <List dataP={[]} loadingP={true} renderItem={(row, idx) => <div></div>} />;
 });
