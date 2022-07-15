@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import FileUpload from '../FileUpload';
@@ -18,5 +18,6 @@ stories.add('audio', () => {
 });
 
 stories.add('Allow URL', () => {
-  return <FileUpload handleChange={() => {}} type="video" allowURL />;
+  const [state, setState] = useState('');
+  return <FileUpload handleChange={(e) => setState(e.target.value)} type="video" allowURL value={state} />;
 });

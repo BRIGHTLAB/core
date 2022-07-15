@@ -1,10 +1,25 @@
 import { Delete } from '@mui/icons-material';
 import { FormControlLabel, Grid, Radio, RadioGroup, TextField, Tooltip } from '@mui/material';
-import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { Dashboard, useUppy } from '@uppy/react';
 import Uppy from '@uppy/core';
 import AwsS3 from '@uppy/aws-s3';
+
+interface Props {
+  value: string;
+  name: string;
+  handleChange: (value: any) => void;
+  type: string;
+  grid: object;
+  id: any;
+  error: boolean;
+  label: string;
+  required: boolean;
+  allowURL: boolean;
+  disabled: boolean;
+  lang: string;
+  Get: (url: string, lang: string) => Promise<{ signedUrl: string }>;
+}
 
 export default function FileUpload({
   value,
@@ -18,13 +33,13 @@ export default function FileUpload({
   required,
   allowURL,
   disabled,
-  lang,
+  lang = 'en',
   Get,
-}) {
+}: Props) {
   const [URL, setURL] = useState('false');
   const [state, setState] = useState(value);
 
-  let fileTypes = [];
+  let fileTypes: string[] = [];
 
   switch (type) {
     case 'image':
@@ -51,8 +66,8 @@ export default function FileUpload({
       },
     })
       .use(AwsS3, {
-        fields: [], // empty array
-        async getUploadParameters(file) {
+        // fields: [], // empty array
+        async getUploadParameters(file): Promise<any> {
           const response = await Get(`sign_url?objectName=${file.name}`, lang);
 
           return {
@@ -78,12 +93,12 @@ export default function FileUpload({
       });
   });
 
-  const changeUploadType = (e) => {
+  const changeUploadType = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange('');
     setURL(e.target.value);
   };
 
-  const onChange = (value) => setState(value);
+  const onChange = (value: string | undefined) => setState(value ?? '');
 
   useEffect(() => {
     setState(value);
@@ -158,21 +173,3 @@ export default function FileUpload({
     </Grid>
   );
 }
-
-FileUpload.propTypes = {
-  value: PropTypes.string,
-  name: PropTypes.string,
-  handleChange: PropTypes.func.isRequired,
-  type: PropTypes.string,
-  grid: PropTypes.object,
-  id: PropTypes.any,
-  error: PropTypes.bool,
-  label: PropTypes.string,
-  required: PropTypes.bool,
-  allowURL: PropTypes.bool,
-  disabled: PropTypes.bool,
-  lang: PropTypes.string,
-  Get: PropTypes.func,
-};
-
-FileUpload.defaultProps = { lang: 'en' };
