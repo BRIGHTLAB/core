@@ -18,6 +18,17 @@ let fields = [
     },
   },
   {
+    id: 'full_name',
+    name: 'full_name',
+    label: 'Full Name',
+    type: 'Custom1',
+    required: true,
+    grid: {
+      xs: 12,
+      md: 6,
+    },
+  },
+  {
     id: 'email',
     name: 'email',
     label: 'Email',
@@ -206,12 +217,33 @@ stories.add('Init', () => {
 });
 
 stories.add('Add', () => {
+  return <Form fields={fields} errorValues={{}} onChange={(values) => {}} defaultValues={{}} />;
+});
+
+stories.add('CustomComponents', () => {
   return (
     <Form
       fields={fields}
       errorValues={{}}
       onChange={(values) => {}}
       defaultValues={{}}
+      customComponents={[
+        {
+          type: 'Custom1',
+          renderItem: (row) => (
+            <div>
+              <h3>
+                <b>POSITION DESIRED *</b>
+              </h3>
+              <div>(Please specify what is the position(s) that will satisfy your career plan)</div>
+              <br></br>
+              <h4>
+                <b>1st priority</b>
+              </h4>
+            </div>
+          ),
+        },
+      ]}
     />
   );
 });
