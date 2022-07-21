@@ -6,7 +6,7 @@ import FileUpload from '../FileUpload';
 const stories = storiesOf('File Upload', module);
 
 stories.add('Image', () => {
-  return <FileUpload handleChange={() => {}} />;
+  return <FileUpload handleChange={() => {}} value="https://picsum.photos/200/300" />;
 });
 
 stories.add('video', () => {

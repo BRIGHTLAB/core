@@ -25,7 +25,7 @@ export default function FileUpload({
   value,
   name,
   handleChange,
-  type,
+  type = 'image',
   grid,
   id,
   error,
@@ -117,23 +117,24 @@ export default function FileUpload({
       >
         {label} {required ? <span className="required">*</span> : ''}
       </span>
-      {value && value.includes('https://') ? (
+      {state && state.includes('https://') ? (
         <Grid container>
-          <Grid item xs={1}>
+          <Grid item xs={12} style={{ paddingTop: '2px', display: 'flex' }}>
             <Tooltip title="Delete">
               <Delete
-                style={{ color: '#f23729' }}
-                className="pointer"
+                style={{ color: '#f23729', cursor: 'pointer' }}
                 onClick={() => {
                   onChange('');
                 }}
               />
             </Tooltip>
-          </Grid>
-          <Grid item xs={11} style={{ paddingTop: '2px' }}>
-            <a href={value} target="_blank">
-              {value}
-            </a>
+            {type == 'image' ? (
+              <img width={400} height={300} src={state} alt={state} placeholder="blur" />
+            ) : (
+              <a href={state} target="_blank">
+                {state}
+              </a>
+            )}
           </Grid>
         </Grid>
       ) : (
@@ -147,7 +148,7 @@ export default function FileUpload({
           {URL === 'true' ? (
             <TextField
               size="small"
-              value={value ?? ''}
+              value={state ?? ''}
               id={id}
               name={name}
               disabled={disabled}

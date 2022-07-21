@@ -54,9 +54,9 @@ var react_2 = require("@uppy/react");
 var core_1 = require("@uppy/core");
 var aws_s3_1 = require("@uppy/aws-s3");
 function FileUpload(_a) {
-    var value = _a.value, name = _a.name, handleChange = _a.handleChange, type = _a.type, grid = _a.grid, id = _a.id, error = _a.error, label = _a.label, required = _a.required, allowURL = _a.allowURL, disabled = _a.disabled, _b = _a.lang, lang = _b === void 0 ? 'en' : _b, Get = _a.Get;
-    var _c = (0, react_1.useState)('false'), URL = _c[0], setURL = _c[1];
-    var _d = (0, react_1.useState)(value), state = _d[0], setState = _d[1];
+    var value = _a.value, name = _a.name, handleChange = _a.handleChange, _b = _a.type, type = _b === void 0 ? 'image' : _b, grid = _a.grid, id = _a.id, error = _a.error, label = _a.label, required = _a.required, allowURL = _a.allowURL, disabled = _a.disabled, _c = _a.lang, lang = _c === void 0 ? 'en' : _c, Get = _a.Get;
+    var _d = (0, react_1.useState)('false'), URL = _d[0], setURL = _d[1];
+    var _e = (0, react_1.useState)(value), state = _e[0], setState = _e[1];
     var fileTypes = [];
     switch (type) {
         case 'image':
@@ -134,17 +134,16 @@ function FileUpload(_a) {
             label,
             " ",
             required ? react_1.default.createElement("span", { className: "required" }, "*") : ''),
-        value && value.includes('https://') ? (react_1.default.createElement(material_1.Grid, { container: true },
-            react_1.default.createElement(material_1.Grid, { item: true, xs: 1 },
+        state && state.includes('https://') ? (react_1.default.createElement(material_1.Grid, { container: true },
+            react_1.default.createElement(material_1.Grid, { item: true, xs: 12, style: { paddingTop: '2px', display: 'flex' } },
                 react_1.default.createElement(material_1.Tooltip, { title: "Delete" },
-                    react_1.default.createElement(icons_material_1.Delete, { style: { color: '#f23729' }, className: "pointer", onClick: function () {
+                    react_1.default.createElement(icons_material_1.Delete, { style: { color: '#f23729', cursor: 'pointer' }, onClick: function () {
                             onChange('');
-                        } }))),
-            react_1.default.createElement(material_1.Grid, { item: true, xs: 11, style: { paddingTop: '2px' } },
-                react_1.default.createElement("a", { href: value, target: "_blank" }, value)))) : (react_1.default.createElement(react_1.default.Fragment, null,
+                        } })),
+                type == 'image' ? (react_1.default.createElement("img", { width: 400, height: 300, src: state, alt: state, placeholder: "blur" })) : (react_1.default.createElement("a", { href: state, target: "_blank" }, state))))) : (react_1.default.createElement(react_1.default.Fragment, null,
             allowURL && (react_1.default.createElement(material_1.RadioGroup, { row: true, "aria-label": "Upload type", name: "URL", value: URL, onChange: changeUploadType },
                 react_1.default.createElement(material_1.FormControlLabel, { value: "false", control: react_1.default.createElement(material_1.Radio, null), label: "File Upload" }),
                 react_1.default.createElement(material_1.FormControlLabel, { value: "true", control: react_1.default.createElement(material_1.Radio, null), label: "Url" }))),
-            URL === 'true' ? (react_1.default.createElement(material_1.TextField, { size: "small", value: value !== null && value !== void 0 ? value : '', id: id, name: name, disabled: disabled, type: "text", error: error, fullWidth: true, required: required, inputProps: { maxLength: 255 }, label: "Url", onChange: handleChange })) : (react_1.default.createElement(react_2.Dashboard, { uppy: uppy, showRemoveButtonAfterComplete: true, hideProgressAfterFinish: true, height: 400, width: "100%" }))))));
+            URL === 'true' ? (react_1.default.createElement(material_1.TextField, { size: "small", value: state !== null && state !== void 0 ? state : '', id: id, name: name, disabled: disabled, type: "text", error: error, fullWidth: true, required: required, inputProps: { maxLength: 255 }, label: "Url", onChange: handleChange })) : (react_1.default.createElement(react_2.Dashboard, { uppy: uppy, showRemoveButtonAfterComplete: true, hideProgressAfterFinish: true, height: 400, width: "100%" }))))));
 }
 exports.default = FileUpload;
