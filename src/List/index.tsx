@@ -18,6 +18,7 @@ interface Props {
   loadMoreP: () => void;
   loadingP: boolean;
   id: string | number;
+  spacing: number;
 }
 
 export default function ContainerList({
@@ -28,6 +29,7 @@ export default function ContainerList({
   loadMoreP,
   loadingP = false,
   id = '',
+  spacing = 3,
 }: Props) {
   const [data, setData] = useState(dataP);
   const [total, setTotal] = useState(totalP);
@@ -46,7 +48,7 @@ export default function ContainerList({
   }, [totalP]);
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={spacing}>
       {data.length > 0 ? (
         data.map((row, idx) => (
           <Grid item xs={12} {...GridStyleItem} key={`${id}_${row.id || 'rand_' + idx}`}>
