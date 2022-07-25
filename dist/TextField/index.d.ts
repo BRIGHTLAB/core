@@ -12,6 +12,8 @@ interface Props {
     label: string;
     disabled: boolean;
     maxLength: number;
+    min: string;
+    max: string;
 }
-export default function TextInput({ id, value, name, type, helperText, error, required, handleChange, handleBlur, label, disabled, maxLength, }: Props): JSX.Element;
+export default function TextInput({ id, value, name, type, helperText, error, required, handleChange, handleBlur, label, disabled, maxLength, min, max, }: Props): JSX.Element;
 export {};

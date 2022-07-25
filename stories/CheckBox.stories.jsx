@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import CheckBox from '../CheckBox';
+import CheckBox from '../src/CheckBox';
 const data = [
   { value: 1, title: 'Amine Amine' },
   { value: 2, title: 'sharbel Mer3eb' },

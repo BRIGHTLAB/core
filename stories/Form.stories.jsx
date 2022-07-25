@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Form from '../Form';
+import Form from '../src/Form';
 
 const stories = storiesOf('Form', module);
 

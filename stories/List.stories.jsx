@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import List from '../List';
+import List from '../src/List';
 
 const data = [
   { value: 1, title: 'Amine Amine' },

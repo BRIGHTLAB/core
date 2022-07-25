@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
-import PropTypes from 'prop-types';
 
 // loading the default components
 import Select from '../Select';
@@ -8,6 +7,7 @@ import FileUpload from '../FileUpload';
 import TextField from '../TextField';
 import RadioGroupComp from '../RadioGroup';
 import CheckBox from '../CheckBox';
+
 const components = {
   TextField: TextField,
   FileUpload: FileUpload,
@@ -15,6 +15,8 @@ const components = {
   RadioGroup: RadioGroupComp,
   CheckBox: CheckBox,
 };
+
+type ComponentObjectKey = keyof typeof components;
 
 // data: { value: string | number; title: string; attr?: object }[];
 
@@ -32,6 +34,7 @@ interface fieldsType {
     lg: number;
     xl: number;
   };
+  multi: boolean;
   data: any[];
 }
 
@@ -52,6 +55,9 @@ export default function Form({ defaultValues = {}, errorValues = {}, onChange, f
   const [customFieldsData, setCustomFieldsData] = useState({});
   const [customFieldsErrorData, setCustomFieldsErrorData] = useState({});
 
+  type DataObjectKey = keyof typeof customFieldsData;
+  type ErrorDataObjectKey = keyof typeof customFieldsErrorData;
+
   useEffect(() => {
     setCustomFieldsData(defaultValues);
   }, [defaultValues]);
@@ -70,11 +76,11 @@ export default function Form({ defaultValues = {}, errorValues = {}, onChange, f
   const renderFields = (data: fieldsType[], customComponents: customComponentsType[]) => {
     if (!data || data.length < 1) return null;
 
-    return data.map((item, idx) => {
+    return data.map((item: fieldsType, idx) => {
       // load each component
-      let DynamicComponent;
-      if (components[item.type]) {
-        DynamicComponent = components[item.type];
+      let DynamicComponent: any;
+      if (components[item.type as ComponentObjectKey]) {
+        DynamicComponent = components[item.type as ComponentObjectKey];
       } else {
         DynamicComponent = ({
           defaultValues = {},
@@ -96,13 +102,13 @@ export default function Form({ defaultValues = {}, errorValues = {}, onChange, f
         <Grid item {...item.grid} key={'Dynamic_Form_' + idx}>
           <DynamicComponent
             {...item}
-            type={item.itemType ?? undefined} //for textfield comp
+            type={item.inputType ?? undefined} //for textfield comp
             multi={item.multi ?? undefined} //for select comp
             fullWidth
-            helperText={customFieldsErrorData[item.name] || item.helperText || undefined}
+            helperText={customFieldsErrorData[item.name as ErrorDataObjectKey] || item.helperText || undefined}
             error={item.name in customFieldsErrorData}
-            value={customFieldsData[item.name] || null}
-            handleChange={(key: string, value: any) => handleFieldChange(key, value, item.id)}
+            value={customFieldsData[item.name as DataObjectKey] || null}
+            handleChange={(name: string, value: any) => handleFieldChange(name, value, item.id)}
           />
         </Grid>
       );

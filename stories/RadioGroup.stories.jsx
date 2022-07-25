@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import RadioGroup from '../RadioGroup';
+import RadioGroup from '../src/RadioGroup';
 const data = [
   { value: 1, title: 'Amine Amine' },
   { value: 2, title: 'sharbel Mer3eb' },

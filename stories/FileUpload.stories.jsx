@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import FileUpload from '../FileUpload';
+import FileUpload from '../src/FileUpload';
 
 const stories = storiesOf('File Upload', module);
 

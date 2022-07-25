@@ -16,6 +16,8 @@ interface Props {
   label: string;
   disabled: boolean;
   maxLength: number;
+  min: string; // if type date
+  max: string; // if type date
 }
 
 export default function TextInput({
@@ -31,6 +33,8 @@ export default function TextInput({
   label,
   disabled,
   maxLength,
+  min,
+  max,
 }: Props) {
   const [state, setState] = useState(value);
 
@@ -71,6 +75,8 @@ export default function TextInput({
             }
           : undefined
       }
+      // min={min}
+      // max={max}
     />
   );
 }

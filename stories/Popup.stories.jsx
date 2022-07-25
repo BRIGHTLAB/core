@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Popup from '../Popup';
+import Popup from '../src/Popup';
 
 const stories = storiesOf('Popup', module);
 

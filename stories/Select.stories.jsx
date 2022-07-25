@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Select from '../Select';
+import Select from '../src/Select';
 const data = [
   { value: 1, title: 'Amine Amine', adf: 'adf' },
   { value: 2, title: 'sharbel Mer3eb', adf: 'adf' },

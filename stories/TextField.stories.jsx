@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import TextField from '../TextField';
+import TextField from '../src/TextField';
 
 const stories = storiesOf('Text Field', module);
 
@@ -10,9 +10,7 @@ stories.add('Text', () => {
 });
 
 stories.add('Text Area', () => {
-  return (
-    <TextField handleChange={() => {}} label="Text Area" type="textarea" />
-  );
+  return <TextField handleChange={() => {}} label="Text Area" type="textarea" />;
 });
 
 stories.add('Number', () => {
