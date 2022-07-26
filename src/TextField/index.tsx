@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 
 const IsNumber = (string: string) => /^[0-9]+$/.test(string);

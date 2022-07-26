@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
 var react_1 = require("react");
 var TextField_1 = require("@mui/material/TextField");
 var IsNumber = function (string) { return /^[0-9]+$/.test(string); };
@@ -16,7 +17,7 @@ function TextInput(_a) {
         setState(event.target.value);
         handleChange(name, event.target.value);
     };
-    return (react_1.default.createElement(TextField_1.default, { value: state, margin: "dense", id: id, size: "small", name: name, disabled: disabled, label: label, type: type === 'number' ? 'text' : type, helperText: helperText, error: error, fullWidth: true, multiline: type === 'textarea' ? true : false, minRows: type === 'textarea' ? 4 : undefined, required: required, inputProps: { maxLength: "".concat(maxLength) }, onChange: onChange, onBlur: handleBlur
+    return (React.createElement(TextField_1.default, { value: state, margin: "dense", id: id, size: "small", name: name, disabled: disabled, label: label, type: type === 'number' ? 'text' : type, helperText: helperText, error: error, fullWidth: true, multiline: type === 'textarea' ? true : false, minRows: type === 'textarea' ? 4 : undefined, required: required, inputProps: { maxLength: "".concat(maxLength) }, onChange: onChange, onBlur: handleBlur
             ? function (event) {
                 handleBlur(name, event.target.value);
             }
