@@ -11,6 +11,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
 var react_1 = require("react");
 var Autocomplete_1 = require("@mui/material/Autocomplete");
 var TextField_1 = require("@mui/material/TextField");
@@ -24,6 +25,6 @@ function Select(_a) {
         setSelectValue(newValue);
         handleChange(name, newValue);
     };
-    return (react_1.default.createElement(Autocomplete_1.default, { value: multi && !selectValue ? [] : selectValue, multiple: multi, fullWidth: true, options: data, getOptionLabel: function (option) { return option.title; }, isOptionEqualToValue: function (option, val) { return option.value === val.value; }, id: id, autoComplete: true, disabled: disabled, includeInputInList: true, renderInput: function (params) { return (react_1.default.createElement(TextField_1.default, __assign({}, params, { margin: "dense", label: label, required: required, helperText: helperText, error: error }))); }, size: "small", onChange: onChange }));
+    return (React.createElement(Autocomplete_1.default, { value: multi && !selectValue ? [] : selectValue, multiple: multi, fullWidth: true, options: data, getOptionLabel: function (option) { return option.title; }, isOptionEqualToValue: function (option, val) { return option.value === val.value; }, id: id, autoComplete: true, disabled: disabled, includeInputInList: true, renderInput: function (params) { return (React.createElement(TextField_1.default, __assign({}, params, { margin: "dense", label: label, required: required, helperText: helperText, error: error }))); }, size: "small", onChange: onChange }));
 }
 exports.default = Select;

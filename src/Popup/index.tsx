@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Dialog, DialogContent } from '@mui/material';
-import React from 'react';
+import * as React from 'react';
 
 const styles = {
   box: {

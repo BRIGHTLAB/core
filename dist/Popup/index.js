@@ -14,7 +14,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Box_1 = require("@mui/material/Box");
 var Grid_1 = require("@mui/material/Grid");
 var material_1 = require("@mui/material");
-var react_1 = require("react");
+var React = require("react");
 var styles = {
     box: {
         position: 'absolute',
@@ -30,9 +30,9 @@ var styles = {
 };
 function Popup(_a) {
     var open = _a.open, closeModal = _a.closeModal, children = _a.children, _b = _a.width, width = _b === void 0 ? '400px' : _b;
-    return (react_1.default.createElement(material_1.Dialog, { keepMounted: true, open: open, onClose: closeModal },
-        react_1.default.createElement(material_1.DialogContent, null,
-            react_1.default.createElement(Box_1.default, { sx: __assign(__assign({}, styles.box), { width: "".concat(width) }) },
-                react_1.default.createElement(Grid_1.default, { container: true }, children)))));
+    return (React.createElement(material_1.Dialog, { keepMounted: true, open: open, onClose: closeModal },
+        React.createElement(material_1.DialogContent, null,
+            React.createElement(Box_1.default, { sx: __assign(__assign({}, styles.box), { width: "".concat(width) }) },
+                React.createElement(Grid_1.default, { container: true }, children)))));
 }
 exports.default = Popup;

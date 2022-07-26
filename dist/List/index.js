@@ -11,8 +11,9 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var material_1 = require("@mui/material");
+var React = require("react");
 var react_1 = require("react");
+var material_1 = require("@mui/material");
 var styles = {
     card: {
         fontWeight: 'bold',
@@ -35,10 +36,10 @@ function ContainerList(_a) {
     (0, react_1.useEffect)(function () {
         setTotal(totalP);
     }, [totalP]);
-    return (react_1.default.createElement(material_1.Grid, { container: true, spacing: spacing },
-        data.length > 0 ? (data.map(function (row, idx) { return (react_1.default.createElement(material_1.Grid, __assign({ item: true, xs: 12 }, GridStyleItem, { key: "".concat(id, "_").concat(row.id || 'rand_' + idx) }), renderItem(row, idx))); })) : (react_1.default.createElement(material_1.Grid, { item: true, xs: 12 },
-            react_1.default.createElement(material_1.Card, { sx: styles.card }, loading ? react_1.default.createElement(material_1.CircularProgress, { size: 40 }) : 'NO DATA FOUND'))),
-        react_1.default.createElement(material_1.Grid, { item: true, xs: 12, sx: { textAlign: 'center', mt: '10px' } }, data.length < total && loadMoreP ? (react_1.default.createElement(material_1.Button, { variant: "contained", color: "info", size: "small", onClick: loadMoreP },
-            loading ? react_1.default.createElement(material_1.CircularProgress, { size: 22, sx: { color: 'white' } }) : 'Load More', " ".concat(data.length, "/").concat(total))) : null)));
+    return (React.createElement(material_1.Grid, { container: true, spacing: spacing },
+        data.length > 0 ? (data.map(function (row, idx) { return (React.createElement(material_1.Grid, __assign({ item: true, xs: 12 }, GridStyleItem, { key: "".concat(id, "_").concat(row.id || 'rand_' + idx) }), renderItem(row, idx))); })) : (React.createElement(material_1.Grid, { item: true, xs: 12 },
+            React.createElement(material_1.Card, { sx: styles.card }, loading ? React.createElement(material_1.CircularProgress, { size: 40 }) : 'NO DATA FOUND'))),
+        React.createElement(material_1.Grid, { item: true, xs: 12, sx: { textAlign: 'center', mt: '10px' } }, data.length < total && loadMoreP ? (React.createElement(material_1.Button, { variant: "contained", color: "info", size: "small", onClick: loadMoreP },
+            loading ? React.createElement(material_1.CircularProgress, { size: 22, sx: { color: 'white' } }) : 'Load More', " ".concat(data.length, "/").concat(total))) : null)));
 }
 exports.default = ContainerList;

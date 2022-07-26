@@ -1,6 +1,7 @@
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { Delete } from '@mui/icons-material';
 import { FormControlLabel, Grid, Radio, RadioGroup, TextField, Tooltip } from '@mui/material';
-import React, { useState, useEffect } from 'react';
 import { Dashboard, useUppy } from '@uppy/react';
 import Uppy from '@uppy/core';
 import AwsS3 from '@uppy/aws-s3';

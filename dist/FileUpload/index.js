@@ -47,9 +47,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
+var react_1 = require("react");
 var icons_material_1 = require("@mui/icons-material");
 var material_1 = require("@mui/material");
-var react_1 = require("react");
 var react_2 = require("@uppy/react");
 var core_1 = require("@uppy/core");
 var aws_s3_1 = require("@uppy/aws-s3");
@@ -127,23 +128,23 @@ function FileUpload(_a) {
     (0, react_1.useEffect)(function () {
         handleChange({ target: { name: name, value: state } });
     }, [state, name]);
-    return (react_1.default.createElement(material_1.Grid, __assign({ item: true }, grid, { key: id }),
-        react_1.default.createElement("span", { style: {
+    return (React.createElement(material_1.Grid, __assign({ item: true }, grid, { key: id }),
+        React.createElement("span", { style: {
                 color: error ? '#ff1744' : 'gray',
             } },
             label,
             " ",
-            required ? react_1.default.createElement("span", { className: "required" }, "*") : ''),
-        state && state.includes('https://') ? (react_1.default.createElement(material_1.Grid, { container: true },
-            react_1.default.createElement(material_1.Grid, { item: true, xs: 12, style: { paddingTop: '2px', display: 'flex' } },
-                react_1.default.createElement(material_1.Tooltip, { title: "Delete" },
-                    react_1.default.createElement(icons_material_1.Delete, { style: { color: '#f23729', cursor: 'pointer' }, onClick: function () {
+            required ? React.createElement("span", { className: "required" }, "*") : ''),
+        state && state.includes('https://') ? (React.createElement(material_1.Grid, { container: true },
+            React.createElement(material_1.Grid, { item: true, xs: 12, style: { paddingTop: '2px', display: 'flex' } },
+                React.createElement(material_1.Tooltip, { title: "Delete" },
+                    React.createElement(icons_material_1.Delete, { style: { color: '#f23729', cursor: 'pointer' }, onClick: function () {
                             onChange('');
                         } })),
-                type == 'image' ? (react_1.default.createElement("img", { width: 400, height: 300, src: state, alt: state, placeholder: "blur" })) : (react_1.default.createElement("a", { href: state, target: "_blank" }, state))))) : (react_1.default.createElement(react_1.default.Fragment, null,
-            allowURL && (react_1.default.createElement(material_1.RadioGroup, { row: true, "aria-label": "Upload type", name: "URL", value: URL, onChange: changeUploadType },
-                react_1.default.createElement(material_1.FormControlLabel, { value: "false", control: react_1.default.createElement(material_1.Radio, null), label: "File Upload" }),
-                react_1.default.createElement(material_1.FormControlLabel, { value: "true", control: react_1.default.createElement(material_1.Radio, null), label: "Url" }))),
-            URL === 'true' ? (react_1.default.createElement(material_1.TextField, { size: "small", value: state !== null && state !== void 0 ? state : '', id: id, name: name, disabled: disabled, type: "text", error: error, fullWidth: true, required: required, inputProps: { maxLength: 255 }, label: "Url", onChange: handleChange })) : (react_1.default.createElement(react_2.Dashboard, { uppy: uppy, showRemoveButtonAfterComplete: true, hideProgressAfterFinish: true, height: 400, width: "100%" }))))));
+                type == 'image' ? (React.createElement("img", { width: 400, height: 300, src: state, alt: state, placeholder: "blur" })) : (React.createElement("a", { href: state, target: "_blank" }, state))))) : (React.createElement(React.Fragment, null,
+            allowURL && (React.createElement(material_1.RadioGroup, { row: true, "aria-label": "Upload type", name: "URL", value: URL, onChange: changeUploadType },
+                React.createElement(material_1.FormControlLabel, { value: "false", control: React.createElement(material_1.Radio, null), label: "File Upload" }),
+                React.createElement(material_1.FormControlLabel, { value: "true", control: React.createElement(material_1.Radio, null), label: "Url" }))),
+            URL === 'true' ? (React.createElement(material_1.TextField, { size: "small", value: state !== null && state !== void 0 ? state : '', id: id, name: name, disabled: disabled, type: "text", error: error, fullWidth: true, required: required, inputProps: { maxLength: 255 }, label: "Url", onChange: handleChange })) : (React.createElement(react_2.Dashboard, { uppy: uppy, showRemoveButtonAfterComplete: true, hideProgressAfterFinish: true, height: 400, width: "100%" }))))));
 }
 exports.default = FileUpload;

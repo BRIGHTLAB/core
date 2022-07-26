@@ -11,6 +11,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
 var react_1 = require("react");
 var material_1 = require("@mui/material");
 // loading the default components
@@ -64,10 +65,10 @@ function Form(_a) {
                     return null;
                 };
             }
-            return (react_1.default.createElement(material_1.Grid, __assign({ item: true }, item.grid, { key: 'Dynamic_Form_' + idx }),
-                react_1.default.createElement(DynamicComponent, __assign({}, item, { type: (_a = item.inputType) !== null && _a !== void 0 ? _a : undefined, multi: (_b = item.multi) !== null && _b !== void 0 ? _b : undefined, fullWidth: true, helperText: customFieldsErrorData[item.name] || item.helperText || undefined, error: item.name in customFieldsErrorData, value: customFieldsData[item.name] || null, handleChange: function (name, value) { return handleFieldChange(name, value, item.id); } }))));
+            return (React.createElement(material_1.Grid, __assign({ item: true }, item.grid, { key: 'Dynamic_Form_' + idx }),
+                React.createElement(DynamicComponent, __assign({}, item, { type: (_a = item.inputType) !== null && _a !== void 0 ? _a : undefined, multi: (_b = item.multi) !== null && _b !== void 0 ? _b : undefined, fullWidth: true, helperText: customFieldsErrorData[item.name] || item.helperText || undefined, error: item.name in customFieldsErrorData, value: customFieldsData[item.name] || null, handleChange: function (name, value) { return handleFieldChange(name, value, item.id); } }))));
         });
     };
-    return (react_1.default.createElement(material_1.Grid, { container: true, spacing: 2 }, renderFields(fields, customComponents)));
+    return (React.createElement(material_1.Grid, { container: true, spacing: 2 }, renderFields(fields, customComponents)));
 }
 exports.default = Form;

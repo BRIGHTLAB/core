@@ -11,6 +11,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
 var react_1 = require("react");
 var FormControlLabel_1 = require("@mui/material/FormControlLabel");
 var FormControl_1 = require("@mui/material/FormControl");
@@ -28,9 +29,9 @@ function CheckBoxComp(_a) {
         setSelectValue(__assign(__assign({}, selectValue), (_a = {}, _a[e.target.name] = e.target.checked, _a)));
         handleChange(name, __assign(__assign({}, selectValue), (_b = {}, _b[e.target.name] = e.target.checked, _b)));
     };
-    return (react_1.default.createElement(FormControl_1.default, { disabled: disabled, required: required, component: "fieldset" },
-        react_1.default.createElement(FormLabel_1.default, { component: "legend", error: error }, label),
-        react_1.default.createElement("div", { style: { display: view } }, data === null || data === void 0 ? void 0 : data.map(function (row, idx) { return (react_1.default.createElement(FormControlLabel_1.default, __assign({ key: name + '_' + idx, control: react_1.default.createElement(Checkbox_1.default, { checked: selectValue ? (selectValue[row.value] ? true : false) : false, name: JSON.stringify(row.value), onChange: onChange }), label: row.title }, row.attr))); })),
-        react_1.default.createElement(Typography_1.default, { component: "p", color: error ? 'error' : 'inherit' }, helperText)));
+    return (React.createElement(FormControl_1.default, { disabled: disabled, required: required, component: "fieldset" },
+        React.createElement(FormLabel_1.default, { component: "legend", error: error }, label),
+        React.createElement("div", { style: { display: view } }, data === null || data === void 0 ? void 0 : data.map(function (row, idx) { return (React.createElement(FormControlLabel_1.default, __assign({ key: name + '_' + idx, control: React.createElement(Checkbox_1.default, { checked: selectValue ? (selectValue[row.value] ? true : false) : false, name: JSON.stringify(row.value), onChange: onChange }), label: row.title }, row.attr))); })),
+        React.createElement(Typography_1.default, { component: "p", color: error ? 'error' : 'inherit' }, helperText)));
 }
 exports.default = CheckBoxComp;
