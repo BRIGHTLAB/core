@@ -17,15 +17,13 @@ interface Props {
   label: string;
   disabled: boolean;
   maxLength: number;
-  min: string; // if type date
-  max: string; // if type date
 }
 
 export default function TextInput({
   id,
   value = '',
   name,
-  type,
+  type = 'text',
   helperText,
   error,
   required,
@@ -34,8 +32,6 @@ export default function TextInput({
   label,
   disabled,
   maxLength,
-  min,
-  max,
 }: Props) {
   const [state, setState] = useState(value);
 
@@ -52,32 +48,33 @@ export default function TextInput({
   };
 
   return (
-    <TextField
-      value={state}
-      margin="dense"
-      id={id}
-      size="small"
-      name={name}
-      disabled={disabled}
-      label={label}
-      type={type === 'number' ? 'text' : type}
-      helperText={helperText}
-      error={error}
-      fullWidth
-      multiline={type === 'textarea' ? true : false}
-      minRows={type === 'textarea' ? 4 : undefined}
-      required={required}
-      inputProps={{ maxLength: `${maxLength}` }}
-      onChange={onChange}
-      onBlur={
-        handleBlur
-          ? (event) => {
-              handleBlur(name, event.target.value);
-            }
-          : undefined
-      }
-      // min={min}
-      // max={max}
-    />
+    <>
+      {type.includes('date') ? label : null}
+      <TextField
+        value={state}
+        margin="dense"
+        id={id}
+        size="small"
+        name={name}
+        disabled={disabled}
+        label={type.includes('date') ? undefined : label}
+        type={type === 'number' ? 'text' : type}
+        helperText={helperText}
+        error={error}
+        fullWidth
+        multiline={type === 'textarea' ? true : false}
+        minRows={type === 'textarea' ? 4 : undefined}
+        required={required}
+        inputProps={{ maxLength: `${maxLength}` }}
+        onChange={onChange}
+        onBlur={
+          handleBlur
+            ? (event) => {
+                handleBlur(name, event.target.value);
+              }
+            : undefined
+        }
+      />
+    </>
   );
 }

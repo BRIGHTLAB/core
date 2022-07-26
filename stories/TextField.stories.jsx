@@ -20,3 +20,7 @@ stories.add('Number', () => {
 stories.add('Text + Max Length', () => {
   return <TextField handleChange={() => {}} label="Text" maxLength={20} />;
 });
+
+stories.add('Date', () => {
+  return <TextField handleChange={() => {}} label="Text" type="date" maxLength={20} />;
+});
