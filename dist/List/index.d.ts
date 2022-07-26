@@ -9,6 +9,7 @@ interface Props {
     loadMoreP: () => void;
     loadingP: boolean;
     id: string | number;
+    spacing: number;
 }
-export default function ContainerList({ dataP, renderItem, GridStyleItem, totalP, loadMoreP, loadingP, id, }: Props): JSX.Element;
+export default function ContainerList({ dataP, renderItem, GridStyleItem, totalP, loadMoreP, loadingP, id, spacing, }: Props): JSX.Element;
 export {};

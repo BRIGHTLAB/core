@@ -22,10 +22,10 @@ var styles = {
     },
 };
 function ContainerList(_a) {
-    var _b = _a.dataP, dataP = _b === void 0 ? [] : _b, renderItem = _a.renderItem, GridStyleItem = _a.GridStyleItem, _c = _a.totalP, totalP = _c === void 0 ? 10 : _c, loadMoreP = _a.loadMoreP, _d = _a.loadingP, loadingP = _d === void 0 ? false : _d, _e = _a.id, id = _e === void 0 ? '' : _e;
-    var _f = (0, react_1.useState)(dataP), data = _f[0], setData = _f[1];
-    var _g = (0, react_1.useState)(totalP), total = _g[0], setTotal = _g[1];
-    var _h = (0, react_1.useState)(loadingP), loading = _h[0], setLoading = _h[1];
+    var _b = _a.dataP, dataP = _b === void 0 ? [] : _b, renderItem = _a.renderItem, GridStyleItem = _a.GridStyleItem, _c = _a.totalP, totalP = _c === void 0 ? 10 : _c, loadMoreP = _a.loadMoreP, _d = _a.loadingP, loadingP = _d === void 0 ? false : _d, _e = _a.id, id = _e === void 0 ? '' : _e, _f = _a.spacing, spacing = _f === void 0 ? 3 : _f;
+    var _g = (0, react_1.useState)(dataP), data = _g[0], setData = _g[1];
+    var _h = (0, react_1.useState)(totalP), total = _h[0], setTotal = _h[1];
+    var _j = (0, react_1.useState)(loadingP), loading = _j[0], setLoading = _j[1];
     (0, react_1.useEffect)(function () {
         setData(dataP);
     }, [dataP]);
@@ -35,7 +35,7 @@ function ContainerList(_a) {
     (0, react_1.useEffect)(function () {
         setTotal(totalP);
     }, [totalP]);
-    return (react_1.default.createElement(material_1.Grid, { container: true, spacing: 3 },
+    return (react_1.default.createElement(material_1.Grid, { container: true, spacing: spacing },
         data.length > 0 ? (data.map(function (row, idx) { return (react_1.default.createElement(material_1.Grid, __assign({ item: true, xs: 12 }, GridStyleItem, { key: "".concat(id, "_").concat(row.id || 'rand_' + idx) }), renderItem(row, idx))); })) : (react_1.default.createElement(material_1.Grid, { item: true, xs: 12 },
             react_1.default.createElement(material_1.Card, { sx: styles.card }, loading ? react_1.default.createElement(material_1.CircularProgress, { size: 40 }) : 'NO DATA FOUND'))),
         react_1.default.createElement(material_1.Grid, { item: true, xs: 12, sx: { textAlign: 'center', mt: '10px' } }, data.length < total && loadMoreP ? (react_1.default.createElement(material_1.Button, { variant: "contained", color: "info", size: "small", onClick: loadMoreP },
