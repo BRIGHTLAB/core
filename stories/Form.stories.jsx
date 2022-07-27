@@ -10,17 +10,6 @@ let fields = [
     id: 'full_name',
     name: 'full_name',
     label: 'Full Name',
-    type: 'TextField',
-    required: true,
-    grid: {
-      xs: 12,
-      md: 6,
-    },
-  },
-  {
-    id: 'full_name',
-    name: 'full_name',
-    label: 'Full Name',
     type: 'Custom1',
     required: true,
     grid: {
@@ -40,145 +29,101 @@ let fields = [
     },
   },
   {
-    id: 'image_url',
-    name: 'image_url',
-    label: 'Image',
-    type: 'FileUpload',
+    id: 'school',
+    name: 'school',
+    label: 'School',
+    type: 'array',
     required: true,
-    grid: {
-      xs: 12,
-      md: 6,
-    },
-  },
-  {
-    id: 'deactivated',
-    name: 'deactivated',
-    label: 'Deactivated',
-    type: 'RadioGroup',
-    required: true,
-    grid: {
-      xs: 12,
-      md: 6,
-    },
+    helperText: 'Please specify the highest degree that you have reached',
     data: [
       {
-        title: 'Yes',
-        value: '0',
+        id: 'name',
+        name: 'name',
+        label: 'Name',
+        type: 'TextField',
+        required: true,
+        grid: {
+          xs: 12,
+          md: 6,
+        },
       },
       {
-        title: 'No',
-        value: '1',
-      },
-    ],
-  },
-  {
-    id: 'testing',
-    name: 'testing',
-    label: 'Testing',
-    type: 'CheckBox',
-    required: true,
-    grid: {
-      xs: 12,
-      md: 6,
-    },
-    data: [
-      {
-        title: 'Yes',
-        value: 0,
+        id: 'degree',
+        name: 'degree',
+        label: 'Degree',
+        type: 'TextField',
+        required: true,
+        grid: {
+          xs: 12,
+          md: 6,
+        },
       },
       {
-        title: 'No',
-        value: 1,
-      },
-    ],
-  },
-  {
-    id: 'company_obj',
-    name: 'company_obj',
-    label: 'Company',
-    type: 'Select',
-    required: true,
-    grid: {
-      xs: 12,
-      md: 6,
-    },
-    data: [
-      {
-        title: 'Yes',
-        value: '0',
+        id: 'country',
+        name: 'country',
+        label: 'Country',
+        type: 'TextField',
+        required: true,
+        grid: {
+          xs: 12,
+          md: 6,
+        },
       },
       {
-        title: 'No',
-        value: '1',
-      },
-    ],
-  },
-  {
-    id: 'departments_obj',
-    name: 'departments_obj',
-    label: 'Department',
-    type: 'Select',
-    required: true,
-    grid: {
-      xs: 12,
-      md: 6,
-    },
-    data: [
-      {
-        title: 'Yes',
-        value: '0',
+        id: 'major',
+        name: 'major',
+        label: 'Major',
+        type: 'TextField',
+        required: true,
+        grid: {
+          xs: 12,
+          md: 6,
+        },
       },
       {
-        title: 'No',
-        value: '1',
-      },
-    ],
-  },
-  {
-    id: 'positions_obj',
-    name: 'positions_obj',
-    label: 'Position',
-    type: 'Select',
-    required: true,
-    grid: {
-      xs: 12,
-      md: 6,
-    },
-    data: [
-      {
-        title: 'Yes',
-        value: '0',
+        id: 'from',
+        name: 'from',
+        label: 'From',
+        type: 'TextField',
+        itemType: 'date',
+        required: true,
+        grid: {
+          xs: 12,
+          md: 6,
+          lg: 9,
+        },
       },
       {
-        title: 'No',
-        value: '1',
-      },
-    ],
-  },
-  {
-    id: 'supervisor_obj',
-    name: 'supervisor_obj',
-    label: 'Supervisor',
-    type: 'Select',
-    required: true,
-    grid: {
-      xs: 12,
-      md: 6,
-    },
-    data: [
-      {
-        title: 'Yes',
-        value: '0',
+        id: 'to',
+        name: 'to',
+        label: '/ To',
+        type: 'TextField',
+        itemType: 'date',
+        required: true,
+        grid: {
+          xs: 12,
+          md: 6,
+          lg: 9,
+        },
       },
       {
-        title: 'No',
-        value: '1',
+        id: 'complete',
+        name: 'complete',
+        label: 'Complete',
+        type: 'RadioGroup',
+        required: true,
+        data: [
+          { value: 'Yes', title: 'Yes' },
+          { value: 'No', title: 'No' },
+        ],
+        grid: {
+          xs: 12,
+        },
       },
     ],
   },
 ];
-
-stories.add('Init', () => {
+const arrayFields = stories.add('Init', () => {
   return (
     <Form
       fields={fields}
@@ -246,4 +191,8 @@ stories.add('CustomComponents', () => {
       ]}
     />
   );
+});
+
+stories.add('Type array', () => {
+  return <Form fields={arrayFields} errorValues={{}} onChange={(values) => {}} defaultValues={{}} />;
 });
