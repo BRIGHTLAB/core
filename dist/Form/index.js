@@ -63,26 +63,32 @@ function Form(_a) {
     (0, react_1.useEffect)(function () {
         setCustomFieldsErrorData(errorValues);
     }, [errorValues]);
-    var handleFieldChange = function (key, value, id) {
-        var _a;
-        var tempFieldsData = __assign(__assign({}, customFieldsData), (_a = {}, _a[key] = value, _a));
+    var handleFieldChange = function (key, value, parentName) {
+        var _a, _b;
+        // if parentName exists means array and childs
+        var tempFieldsData = __assign(__assign({}, customFieldsData), (_a = {}, _a[parentName !== null && parentName !== void 0 ? parentName : key] = parentName
+            ? __assign(__assign({}, (typeof customFieldsData[parentName] === 'object'
+                ? customFieldsData[parentName]
+                : {})), (_b = {}, _b[key] = value, _b)) : value, _a));
         setCustomFieldsData(tempFieldsData);
         if (onChange)
             onChange(tempFieldsData);
     };
-    var renderFields = function (data, customComponents) {
+    var renderFields = function (data, customComponents, parentName) {
         if (!data || data.length < 1)
             return null;
         return data.map(function (item, idx) {
             var _a, _b;
             // load each component
             var DynamicComponent;
-            if (components[item.type]) {
+            if (item.type == 'Array') {
+                //Recursive function
+            }
+            else if (components[item.type]) {
                 DynamicComponent = components[item.type];
             }
             else {
-                DynamicComponent = function (_a) {
-                    var _b = _a.defaultValues, defaultValues = _b === void 0 ? {} : _b, _c = _a.errorValues, errorValues = _c === void 0 ? {} : _c, onChange = _a.onChange, fields = _a.fields, _d = _a.customComponents, customComponents = _d === void 0 ? [] : _d;
+                DynamicComponent = function () {
                     for (var index in customComponents) {
                         var row = customComponents[index];
                         if (row.type == item.type)
@@ -91,8 +97,7 @@ function Form(_a) {
                     return null;
                 };
             }
-            return (React.createElement(material_1.Grid, __assign({ item: true }, item.grid, { key: 'Dynamic_Form_' + idx }),
-                React.createElement(DynamicComponent, __assign({}, item, { type: (_a = item.inputType) !== null && _a !== void 0 ? _a : undefined, multi: (_b = item.multi) !== null && _b !== void 0 ? _b : undefined, fullWidth: true, helperText: customFieldsErrorData[item.name] || item.helperText || undefined, error: item.name in customFieldsErrorData, value: customFieldsData[item.name] || null, handleChange: function (name, value) { return handleFieldChange(name, value, item.id); } }))));
+            return (React.createElement(material_1.Grid, __assign({ item: true }, item.grid, { key: 'Dynamic_Form_' + idx }), DynamicComponent ? (React.createElement(DynamicComponent, __assign({}, item, { type: (_a = item.inputType) !== null && _a !== void 0 ? _a : undefined, multi: (_b = item.multi) !== null && _b !== void 0 ? _b : undefined, fullWidth: true, helperText: customFieldsErrorData[item.name] || item.helperText || undefined, error: item.name in customFieldsErrorData, value: customFieldsData[item.name] || null, handleChange: function (name, value) { return handleFieldChange(name, value, parentName); } }))) : (React.createElement(material_1.Grid, { container: true, spacing: 2 }, renderFields(item.data, [], item.name)))));
         });
     };
     return (React.createElement(material_1.Grid, { container: true, spacing: 2 }, renderFields(fields, customComponents)));
