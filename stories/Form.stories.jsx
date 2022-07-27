@@ -10,6 +10,17 @@ let fields = [
     id: 'full_name',
     name: 'full_name',
     label: 'Full Name',
+    type: 'TextField',
+    required: true,
+    grid: {
+      xs: 12,
+      md: 6,
+    },
+  },
+  {
+    id: 'full_name',
+    name: 'full_name',
+    label: 'Full Name',
     type: 'Custom1',
     required: true,
     grid: {
@@ -29,17 +40,200 @@ let fields = [
     },
   },
   {
-    id: 'school',
-    name: 'school',
-    label: 'School',
-    type: 'array',
+    id: 'image_url',
+    name: 'image_url',
+    label: 'Image',
+    type: 'FileUpload',
     required: true,
-    helperText: 'Please specify the highest degree that you have reached',
+    grid: {
+      xs: 12,
+      md: 6,
+    },
+  },
+  {
+    id: 'deactivated',
+    name: 'deactivated',
+    label: 'Deactivated',
+    type: 'RadioGroup',
+    required: true,
+    grid: {
+      xs: 12,
+      md: 6,
+    },
     data: [
       {
-        id: 'name',
-        name: 'name',
-        label: 'Name',
+        title: 'Yes',
+        value: '0',
+      },
+      {
+        title: 'No',
+        value: '1',
+      },
+    ],
+  },
+  {
+    id: 'testing',
+    name: 'testing',
+    label: 'Testing',
+    type: 'CheckBox',
+    required: true,
+    grid: {
+      xs: 12,
+      md: 6,
+    },
+    data: [
+      {
+        title: 'Yes',
+        value: 0,
+      },
+      {
+        title: 'No',
+        value: 1,
+      },
+    ],
+  },
+  {
+    id: 'company_obj',
+    name: 'company_obj',
+    label: 'Company',
+    type: 'Select',
+    required: true,
+    grid: {
+      xs: 12,
+      md: 6,
+    },
+    data: [
+      {
+        title: 'Yes',
+        value: '0',
+      },
+      {
+        title: 'No',
+        value: '1',
+      },
+    ],
+  },
+  {
+    id: 'departments_obj',
+    name: 'departments_obj',
+    label: 'Department',
+    type: 'Select',
+    required: true,
+    grid: {
+      xs: 12,
+      md: 6,
+    },
+    data: [
+      {
+        title: 'Yes',
+        value: '0',
+      },
+      {
+        title: 'No',
+        value: '1',
+      },
+    ],
+  },
+  {
+    id: 'positions_obj',
+    name: 'positions_obj',
+    label: 'Position',
+    type: 'Select',
+    required: true,
+    grid: {
+      xs: 12,
+      md: 6,
+    },
+    data: [
+      {
+        title: 'Yes',
+        value: '0',
+      },
+      {
+        title: 'No',
+        value: '1',
+      },
+    ],
+  },
+  {
+    id: 'supervisor_obj',
+    name: 'supervisor_obj',
+    label: 'Supervisor',
+    type: 'Select',
+    required: true,
+    grid: {
+      xs: 12,
+      md: 6,
+    },
+    data: [
+      {
+        title: 'Yes',
+        value: '0',
+      },
+      {
+        title: 'No',
+        value: '1',
+      },
+    ],
+  },
+];
+const arrayFields = [
+  {
+    id: 'supervisor_obj',
+    name: 'supervisor_obj',
+    label: 'Supervisor',
+    type: 'Select',
+    required: true,
+    grid: {
+      xs: 12,
+      md: 6,
+    },
+    data: [
+      {
+        title: 'Yes',
+        value: '0',
+      },
+      {
+        title: 'No',
+        value: '1',
+      },
+    ],
+  },
+  {
+    id: 'positions_obj',
+    name: 'positions_obj',
+    label: 'Position',
+    type: 'Select',
+    required: true,
+    grid: {
+      xs: 12,
+      md: 6,
+    },
+    data: [
+      {
+        title: 'Yes',
+        value: '0',
+      },
+      {
+        title: 'No',
+        value: '1',
+      },
+    ],
+  },
+  {
+    id: 'add-language',
+    name: 'add-language',
+    label: 'Add Language',
+    type: 'Array',
+    required: false,
+    grid: {
+      xs: 12,
+    },
+    data: [
+      {
+        id: 'language',
+        name: 'language',
+        label: 'Language',
         type: 'TextField',
         required: true,
         grid: {
@@ -48,82 +242,27 @@ let fields = [
         },
       },
       {
-        id: 'degree',
-        name: 'degree',
-        label: 'Degree',
-        type: 'TextField',
-        required: true,
-        grid: {
-          xs: 12,
-          md: 6,
-        },
-      },
-      {
-        id: 'country',
-        name: 'country',
-        label: 'Country',
-        type: 'TextField',
-        required: true,
-        grid: {
-          xs: 12,
-          md: 6,
-        },
-      },
-      {
-        id: 'major',
-        name: 'major',
-        label: 'Major',
-        type: 'TextField',
-        required: true,
-        grid: {
-          xs: 12,
-          md: 6,
-        },
-      },
-      {
-        id: 'from',
-        name: 'from',
-        label: 'From',
-        type: 'TextField',
-        itemType: 'date',
-        required: true,
-        grid: {
-          xs: 12,
-          md: 6,
-          lg: 9,
-        },
-      },
-      {
-        id: 'to',
-        name: 'to',
-        label: '/ To',
-        type: 'TextField',
-        itemType: 'date',
-        required: true,
-        grid: {
-          xs: 12,
-          md: 6,
-          lg: 9,
-        },
-      },
-      {
-        id: 'complete',
-        name: 'complete',
-        label: 'Complete',
+        id: 'lang_radio',
+        name: 'lang_radio',
+        label: '',
         type: 'RadioGroup',
         required: true,
         data: [
-          { value: 'Yes', title: 'Yes' },
-          { value: 'No', title: 'No' },
+          { value: 'Poor', title: 'Poor' },
+          { value: 'Fair', title: 'Fair' },
+          { value: 'Very Good', title: 'Very Good' },
+          { value: 'Excellent', title: 'Excellent' },
         ],
         grid: {
           xs: 12,
+          md: 6,
         },
       },
     ],
   },
 ];
-const arrayFields = stories.add('Init', () => {
+
+stories.add('Init', () => {
   return (
     <Form
       fields={fields}
@@ -194,5 +333,12 @@ stories.add('CustomComponents', () => {
 });
 
 stories.add('Type array', () => {
-  return <Form fields={arrayFields} errorValues={{}} onChange={(values) => {}} defaultValues={{}} />;
+  return (
+    <Form
+      fields={arrayFields}
+      errorValues={{}}
+      onChange={(values) => console.log('values', values)}
+      defaultValues={{}}
+    />
+  );
 });

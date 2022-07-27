@@ -43,9 +43,13 @@ export default function RadioGroupComp({
 
   return (
     <FormControl disabled={disabled} required={required} component="fieldset">
-      <FormLabel component="legend" error={error}>
-        {label}
-      </FormLabel>
+      {label ? (
+        <FormLabel component="legend" error={error}>
+          {label}
+        </FormLabel>
+      ) : (
+        <></>
+      )}
       <RadioGroup row aria-label="gender" name={name} value={selectValue} onChange={onChange}>
         {data?.map((row, idx) => (
           <FormControlLabel

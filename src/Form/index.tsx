@@ -67,29 +67,37 @@ export default function Form({ defaultValues = {}, errorValues = {}, onChange, f
     setCustomFieldsErrorData(errorValues);
   }, [errorValues]);
 
-  const handleFieldChange = (key: string, value: any, id: any) => {
-    let tempFieldsData = { ...customFieldsData, [key]: value };
+  const handleFieldChange = (key: string, value: any, parentName?: string) => {
+    // if parentName exists means array and childs
+    let tempFieldsData = {
+      ...customFieldsData,
+      [parentName ?? key]: parentName
+        ? {
+            ...(typeof customFieldsData[parentName as DataObjectKey] === 'object'
+              ? customFieldsData[parentName as DataObjectKey]
+              : {}),
+            [key]: value,
+          }
+        : value,
+    };
 
     setCustomFieldsData(tempFieldsData);
     if (onChange) onChange(tempFieldsData);
   };
 
-  const renderFields = (data: fieldsType[], customComponents: customComponentsType[]) => {
+  const renderFields = (data: fieldsType[], customComponents: customComponentsType[], parentName?: string) => {
     if (!data || data.length < 1) return null;
 
     return data.map((item: fieldsType, idx) => {
       // load each component
       let DynamicComponent: any;
-      if (components[item.type as ComponentObjectKey]) {
+
+      if (item.type == 'Array') {
+        //Recursive function
+      } else if (components[item.type as ComponentObjectKey]) {
         DynamicComponent = components[item.type as ComponentObjectKey];
       } else {
-        DynamicComponent = ({
-          defaultValues = {},
-          errorValues = {},
-          onChange,
-          fields,
-          customComponents = [],
-        }: Props) => {
+        DynamicComponent = () => {
           for (var index in customComponents) {
             const row: customComponentsType = customComponents[index];
             if (row.type == item.type)
@@ -101,16 +109,22 @@ export default function Form({ defaultValues = {}, errorValues = {}, onChange, f
 
       return (
         <Grid item {...item.grid} key={'Dynamic_Form_' + idx}>
-          <DynamicComponent
-            {...item}
-            type={item.inputType ?? undefined} //for textfield comp
-            multi={item.multi ?? undefined} //for select comp
-            fullWidth
-            helperText={customFieldsErrorData[item.name as ErrorDataObjectKey] || item.helperText || undefined}
-            error={item.name in customFieldsErrorData}
-            value={customFieldsData[item.name as DataObjectKey] || null}
-            handleChange={(name: string, value: any) => handleFieldChange(name, value, item.id)}
-          />
+          {DynamicComponent ? (
+            <DynamicComponent
+              {...item}
+              type={item.inputType ?? undefined} //for textfield comp
+              multi={item.multi ?? undefined} //for select comp
+              fullWidth
+              helperText={customFieldsErrorData[item.name as ErrorDataObjectKey] || item.helperText || undefined}
+              error={item.name in customFieldsErrorData}
+              value={customFieldsData[item.name as DataObjectKey] || null}
+              handleChange={(name: string, value: any) => handleFieldChange(name, value, parentName)}
+            />
+          ) : (
+            <Grid container spacing={2}>
+              {renderFields(item.data, [], item.name)}
+            </Grid>
+          )}
         </Grid>
       );
     });
