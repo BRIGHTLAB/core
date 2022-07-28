@@ -14,6 +14,7 @@ const stories = storiesOf('RadioGroup', module);
 stories.add('RadioGroup', () => {
   return (
     <RadioGroup
+      value={1}
       handleChange={() => {}}
       data={data}
       required={true}

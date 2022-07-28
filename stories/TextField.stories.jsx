@@ -6,7 +6,7 @@ import TextField from '../src/TextField';
 const stories = storiesOf('Text Field', module);
 
 stories.add('Text', () => {
-  return <TextField handleChange={() => {}} label="Text" />;
+  return <TextField value="Test valuue" handleChange={() => {}} label="Text" />;
 });
 
 stories.add('Text Area', () => {
@@ -22,5 +22,5 @@ stories.add('Text + Max Length', () => {
 });
 
 stories.add('Date', () => {
-  return <TextField handleChange={() => {}} label="Text" type="date" maxLength={20} />;
+  return <TextField handleChange={() => {}} value="2022-12-12" label="Text" type="date" maxLength={20} />;
 });
