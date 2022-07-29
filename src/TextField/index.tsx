@@ -36,7 +36,11 @@ export default function TextInput({
   const [state, setState] = useState(value);
 
   useEffect(() => {
-    setState(value);
+    if (type.includes('date')) {
+      setState(value ? value.substring(0, 10) : value);
+    } else {
+      setState(value);
+    }
   }, [value]);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
