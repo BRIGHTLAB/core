@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
 // loading the default components
 import Select from '../Select';
@@ -8,6 +8,7 @@ import FileUpload from '../FileUpload';
 import TextField from '../TextField';
 import RadioGroupComp from '../RadioGroup';
 import CheckBox from '../CheckBox';
+import PlusBotton from './PlusBotton';
 
 const components = {
   TextField: TextField,
@@ -55,6 +56,7 @@ interface Props {
 export default function Form({ defaultValues = {}, errorValues = {}, onChange, fields, customComponents = [] }: Props) {
   const [customFieldsData, setCustomFieldsData] = useState({});
   const [customFieldsErrorData, setCustomFieldsErrorData] = useState({});
+  const [tempParentArray, setTempParentArray] = useState([{}]);
 
   type DataObjectKey = keyof typeof customFieldsData;
   type ErrorDataObjectKey = keyof typeof customFieldsErrorData;
@@ -67,19 +69,31 @@ export default function Form({ defaultValues = {}, errorValues = {}, onChange, f
     setCustomFieldsErrorData(errorValues);
   }, [errorValues]);
 
-  const handleFieldChange = (key: string, value: any, parentName?: string) => {
+  const handleFieldChange = (key: string, value: any, parentName?: string, parentIdx?: number) => {
     // if parentName exists means array and childs
-    let tempFieldsData = {
-      ...customFieldsData,
-      [parentName ?? key]: parentName
-        ? {
-            ...(typeof customFieldsData[parentName as DataObjectKey] === 'object'
-              ? customFieldsData[parentName as DataObjectKey]
-              : {}),
-            [key]: value,
-          }
-        : value,
-    };
+    let tempFieldsData = {};
+    if (parentName) {
+      let tempArray = [...customFieldsData[parentName as DataObjectKey]];
+      type tempArrayKey = keyof typeof tempArray;
+
+      tempArray[parentIdx as tempArrayKey]; //TODO
+      tempFieldsData = {
+        ...customFieldsData,
+        [parentName ?? key]: parentName
+          ? {
+              ...(typeof customFieldsData[parentName as DataObjectKey] === 'object'
+                ? customFieldsData[parentName as DataObjectKey]
+                : {}),
+              [key]: value,
+            }
+          : value,
+      };
+    } else {
+      tempFieldsData = {
+        ...customFieldsData,
+        [key]: value,
+      };
+    }
 
     setCustomFieldsData(tempFieldsData);
     if (onChange) onChange(tempFieldsData);
@@ -122,7 +136,22 @@ export default function Form({ defaultValues = {}, errorValues = {}, onChange, f
             />
           ) : (
             <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Typography component="h1" variant="h5">
+                  {item.label} <PlusBotton onClick={() => setTempParentArray((oldTemp) => [...oldTemp, {}])} />
+                </Typography>
+              </Grid>
               {renderFields(item.data, [], item.name)}
+              {tempParentArray.length > 1 ? (
+                tempParentArray.map((parentRow, idx) => (
+                  <Grid item xs={12} key={'parentName_' + idx}>
+                    <hr></hr>
+                    {renderFields(item.data, [], item.name)}
+                  </Grid>
+                ))
+              ) : (
+                <></>
+              )}
             </Grid>
           )}
         </Grid>
