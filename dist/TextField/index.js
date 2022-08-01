@@ -34,7 +34,12 @@ function TextInput(_a) {
     var id = _a.id, _b = _a.value, value = _b === void 0 ? '' : _b, name = _a.name, _c = _a.type, type = _c === void 0 ? 'text' : _c, helperText = _a.helperText, error = _a.error, required = _a.required, handleChange = _a.handleChange, handleBlur = _a.handleBlur, label = _a.label, disabled = _a.disabled, maxLength = _a.maxLength;
     var _d = (0, react_1.useState)(value), state = _d[0], setState = _d[1];
     (0, react_1.useEffect)(function () {
-        setState(value);
+        if (type.includes('date')) {
+            setState(value ? value.substring(0, 10) : value);
+        }
+        else {
+            setState(value);
+        }
     }, [value]);
     var onChange = function (event) {
         if (type === 'number' && event.target.value && !IsNumber(event.target.value)) {
