@@ -33,6 +33,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -46,6 +55,7 @@ var FileUpload_1 = __importDefault(require("../FileUpload"));
 var TextField_1 = __importDefault(require("../TextField"));
 var RadioGroup_1 = __importDefault(require("../RadioGroup"));
 var CheckBox_1 = __importDefault(require("../CheckBox"));
+var PlusBotton_1 = __importDefault(require("./PlusBotton"));
 var components = {
     TextField: TextField_1.default,
     FileUpload: FileUpload_1.default,
@@ -57,19 +67,28 @@ function Form(_a) {
     var _b = _a.defaultValues, defaultValues = _b === void 0 ? {} : _b, _c = _a.errorValues, errorValues = _c === void 0 ? {} : _c, onChange = _a.onChange, fields = _a.fields, _d = _a.customComponents, customComponents = _d === void 0 ? [] : _d;
     var _e = (0, react_1.useState)({}), customFieldsData = _e[0], setCustomFieldsData = _e[1];
     var _f = (0, react_1.useState)({}), customFieldsErrorData = _f[0], setCustomFieldsErrorData = _f[1];
+    var _g = (0, react_1.useState)([{}]), tempParentArray = _g[0], setTempParentArray = _g[1];
     (0, react_1.useEffect)(function () {
         setCustomFieldsData(defaultValues);
     }, [defaultValues]);
     (0, react_1.useEffect)(function () {
         setCustomFieldsErrorData(errorValues);
     }, [errorValues]);
-    var handleFieldChange = function (key, value, parentName) {
-        var _a, _b;
+    var handleFieldChange = function (key, value, parentName, parentIdx) {
+        var _a, _b, _c;
         // if parentName exists means array and childs
-        var tempFieldsData = __assign(__assign({}, customFieldsData), (_a = {}, _a[parentName !== null && parentName !== void 0 ? parentName : key] = parentName
-            ? __assign(__assign({}, (typeof customFieldsData[parentName] === 'object'
-                ? customFieldsData[parentName]
-                : {})), (_b = {}, _b[key] = value, _b)) : value, _a));
+        var tempFieldsData = {};
+        if (parentName) {
+            var tempArray = __spreadArray([], customFieldsData[parentName], true);
+            tempArray[parentIdx]; //TODO
+            tempFieldsData = __assign(__assign({}, customFieldsData), (_a = {}, _a[parentName !== null && parentName !== void 0 ? parentName : key] = parentName
+                ? __assign(__assign({}, (typeof customFieldsData[parentName] === 'object'
+                    ? customFieldsData[parentName]
+                    : {})), (_b = {}, _b[key] = value, _b)) : value, _a));
+        }
+        else {
+            tempFieldsData = __assign(__assign({}, customFieldsData), (_c = {}, _c[key] = value, _c));
+        }
         setCustomFieldsData(tempFieldsData);
         if (onChange)
             onChange(tempFieldsData);
@@ -97,7 +116,16 @@ function Form(_a) {
                     return null;
                 };
             }
-            return (React.createElement(material_1.Grid, __assign({ item: true }, item.grid, { key: 'Dynamic_Form_' + idx }), DynamicComponent ? (React.createElement(DynamicComponent, __assign({}, item, { type: (_a = item.inputType) !== null && _a !== void 0 ? _a : undefined, multi: (_b = item.multi) !== null && _b !== void 0 ? _b : undefined, fullWidth: true, helperText: customFieldsErrorData[item.name] || item.helperText || undefined, error: item.name in customFieldsErrorData, value: customFieldsData[item.name] || null, handleChange: function (name, value) { return handleFieldChange(name, value, parentName); } }))) : (React.createElement(material_1.Grid, { container: true, spacing: 2 }, renderFields(item.data, [], item.name)))));
+            return (React.createElement(material_1.Grid, __assign({ item: true }, item.grid, { key: 'Dynamic_Form_' + idx }), DynamicComponent ? (React.createElement(DynamicComponent, __assign({}, item, { type: (_a = item.inputType) !== null && _a !== void 0 ? _a : undefined, multi: (_b = item.multi) !== null && _b !== void 0 ? _b : undefined, fullWidth: true, helperText: customFieldsErrorData[item.name] || item.helperText || undefined, error: item.name in customFieldsErrorData, value: customFieldsData[item.name] || null, handleChange: function (name, value) { return handleFieldChange(name, value, parentName); } }))) : (React.createElement(material_1.Grid, { container: true, spacing: 2 },
+                React.createElement(material_1.Grid, { item: true, xs: 12 },
+                    React.createElement(material_1.Typography, { component: "h1", variant: "h5" },
+                        item.label,
+                        " ",
+                        React.createElement(PlusBotton_1.default, { onClick: function () { return setTempParentArray(function (oldTemp) { return __spreadArray(__spreadArray([], oldTemp, true), [{}], false); }); } }))),
+                renderFields(item.data, [], item.name),
+                tempParentArray.length > 1 ? (tempParentArray.map(function (parentRow, idx) { return (React.createElement(material_1.Grid, { item: true, xs: 12, key: 'parentName_' + idx },
+                    React.createElement("hr", null),
+                    renderFields(item.data, [], item.name))); })) : (React.createElement(React.Fragment, null))))));
         });
     };
     return (React.createElement(material_1.Grid, { container: true, spacing: 2 }, renderFields(fields, customComponents)));

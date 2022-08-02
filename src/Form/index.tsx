@@ -56,10 +56,11 @@ interface Props {
 export default function Form({ defaultValues = {}, errorValues = {}, onChange, fields, customComponents = [] }: Props) {
   const [customFieldsData, setCustomFieldsData] = useState({});
   const [customFieldsErrorData, setCustomFieldsErrorData] = useState({});
-  const [tempParentArray, setTempParentArray] = useState([{}]);
+  const [tempParentObject, setTempParentObject] = useState({});
 
   type DataObjectKey = keyof typeof customFieldsData;
   type ErrorDataObjectKey = keyof typeof customFieldsErrorData;
+  type tempParentObjectKey = keyof typeof tempParentObject;
 
   useEffect(() => {
     setCustomFieldsData(defaultValues);
@@ -138,25 +139,38 @@ export default function Form({ defaultValues = {}, errorValues = {}, onChange, f
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Typography component="h1" variant="h5">
-                  {item.label} <PlusBotton onClick={() => setTempParentArray((oldTemp) => [...oldTemp, {}])} />
+                  {item.label}{' '}
+                  <PlusBotton
+                    onClick={() =>
+                      setTempParentObject((oldTemp) => ({
+                        ...oldTemp,
+                        [item.name as tempParentObjectKey]: (oldTemp[item.name as tempParentObjectKey] ?? 0) + 1,
+                      }))
+                    }
+                  />
                 </Typography>
               </Grid>
               {renderFields(item.data, [], item.name)}
-              {tempParentArray.length > 1 ? (
-                tempParentArray.map((parentRow, idx) => (
-                  <Grid item xs={12} key={'parentName_' + idx}>
-                    <hr></hr>
-                    {renderFields(item.data, [], item.name)}
-                  </Grid>
-                ))
-              ) : (
-                <></>
-              )}
+              {renderArray(item.name, item)}
             </Grid>
           )}
         </Grid>
       );
     });
+  };
+
+  const renderArray = (parentName: string | undefined, item: fieldsType) => {
+    let HTML = [];
+    for (let i = 1; i <= tempParentObject[parentName as tempParentObjectKey]; i++) {
+      HTML.push(
+        <Grid item xs={12} key={'parentName_' + parentName + '_' + i}>
+          <hr></hr>
+          {renderFields(item.data, [], item.name)}
+        </Grid>,
+      );
+    }
+
+    return HTML;
   };
 
   return (
