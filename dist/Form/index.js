@@ -67,7 +67,7 @@ function Form(_a) {
     var _b = _a.defaultValues, defaultValues = _b === void 0 ? {} : _b, _c = _a.errorValues, errorValues = _c === void 0 ? {} : _c, onChange = _a.onChange, fields = _a.fields, _d = _a.customComponents, customComponents = _d === void 0 ? [] : _d;
     var _e = (0, react_1.useState)({}), customFieldsData = _e[0], setCustomFieldsData = _e[1];
     var _f = (0, react_1.useState)({}), customFieldsErrorData = _f[0], setCustomFieldsErrorData = _f[1];
-    var _g = (0, react_1.useState)([{}]), tempParentArray = _g[0], setTempParentArray = _g[1];
+    var _g = (0, react_1.useState)({}), tempParentObject = _g[0], setTempParentObject = _g[1];
     (0, react_1.useEffect)(function () {
         setCustomFieldsData(defaultValues);
     }, [defaultValues]);
@@ -120,13 +120,26 @@ function Form(_a) {
                 React.createElement(material_1.Grid, { item: true, xs: 12 },
                     React.createElement(material_1.Typography, { component: "h1", variant: "h5" },
                         item.label,
-                        " ",
-                        React.createElement(PlusBotton_1.default, { onClick: function () { return setTempParentArray(function (oldTemp) { return __spreadArray(__spreadArray([], oldTemp, true), [{}], false); }); } }))),
+                        ' ',
+                        React.createElement(PlusBotton_1.default, { onClick: function () {
+                                return setTempParentObject(function (oldTemp) {
+                                    var _a;
+                                    var _b;
+                                    return (__assign(__assign({}, oldTemp), (_a = {}, _a[item.name] = ((_b = oldTemp[item.name]) !== null && _b !== void 0 ? _b : 0) + 1, _a)));
+                                });
+                            } }))),
                 renderFields(item.data, [], item.name),
-                tempParentArray.length > 1 ? (tempParentArray.map(function (parentRow, idx) { return (React.createElement(material_1.Grid, { item: true, xs: 12, key: 'parentName_' + idx },
-                    React.createElement("hr", null),
-                    renderFields(item.data, [], item.name))); })) : (React.createElement(React.Fragment, null))))));
+                renderArray(item.name, item)))));
         });
+    };
+    var renderArray = function (parentName, item) {
+        var HTML = [];
+        for (var i = 1; i <= tempParentObject[parentName]; i++) {
+            HTML.push(React.createElement(material_1.Grid, { item: true, xs: 12, key: 'parentName_' + parentName + '_' + i },
+                React.createElement("hr", null),
+                renderFields(item.data, [], item.name)));
+        }
+        return HTML;
     };
     return (React.createElement(material_1.Grid, { container: true, spacing: 2 }, renderFields(fields, customComponents)));
 }
