@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Form from '../src/Form';
@@ -461,41 +461,44 @@ const arrayFields = [
 ];
 
 stories.add('Init', () => {
-  return (
-    <Form
-      fields={fields}
-      onChange={(values) => {}}
-      defaultValues={{
-        id: '14',
-        roles_id: '1',
-        departments_id: '5',
-        positions_id: '1',
-        full_name: 'Sara Soboh',
-        email: 'ssoboh@bright-lab.com',
-        image_url: 'https://static.mirsad.app/no-profile-picture.webp',
-        total_points: '0',
-        deactivated: '0',
-        testing: { 0: true },
-        supervisor_obj: {
-          title: 'Yes',
-          value: '0',
-        },
-        permission_obj: false,
-        company_obj: {
-          title: 'Yes',
-          value: '0',
-        },
-        departments_obj: {
-          title: 'Yes',
-          value: '0',
-        },
-        positions_obj: {
-          title: 'Yes',
-          value: '0',
-        },
-      }}
-    />
-  );
+  const [state, setState] = useState();
+
+  useEffect(() => {
+    setTimeout(
+      () =>
+        setState({
+          id: '14',
+          roles_id: '1',
+          departments_id: '5',
+          positions_id: '1',
+          full_name: 'Sara Soboh',
+          email: 'ssoboh@bright-lab.com',
+          image_url: 'https://static.mirsad.app/no-profile-picture.webp',
+          total_points: '0',
+          deactivated: '0',
+          testing: { 0: true },
+          supervisor_obj: {
+            title: 'Yes',
+            value: '0',
+          },
+          permission_obj: false,
+          company_obj: {
+            title: 'Yes',
+            value: '0',
+          },
+          departments_obj: {
+            title: 'Yes',
+            value: '0',
+          },
+          positions_obj: {
+            title: 'Yes',
+            value: '0',
+          },
+        }),
+      1000,
+    );
+  }, []);
+  return <Form fields={fields} onChange={(values) => {}} defaultValues={state} />;
 });
 
 stories.add('Add', () => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import TextField from '../src/TextField';
@@ -6,7 +6,12 @@ import TextField from '../src/TextField';
 const stories = storiesOf('Text Field', module);
 
 stories.add('Text', () => {
-  return <TextField value="Test valuue" handleChange={() => {}} label="Text" />;
+  const [state, setState] = useState();
+
+  useEffect(() => {
+    setTimeout(() => setState('Test valuue'), 1000);
+  }, []);
+  return <TextField value={state} handleChange={() => {}} label="Text" />;
 });
 
 stories.add('Text Area', () => {
