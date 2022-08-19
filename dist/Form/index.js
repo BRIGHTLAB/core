@@ -69,10 +69,14 @@ function Form(_a) {
     var _f = (0, react_1.useState)({}), customFieldsErrorData = _f[0], setCustomFieldsErrorData = _f[1];
     var _g = (0, react_1.useState)({}), tempParentObject = _g[0], setTempParentObject = _g[1];
     (0, react_1.useEffect)(function () {
-        setCustomFieldsData(defaultValues);
+        if (Object.keys(defaultValues).length > 0) {
+            setCustomFieldsData(defaultValues);
+        }
     }, [defaultValues]);
     (0, react_1.useEffect)(function () {
-        setCustomFieldsErrorData(errorValues);
+        if (errorValues && Object.keys(errorValues).length > 0) {
+            setCustomFieldsErrorData(errorValues);
+        }
     }, [errorValues]);
     var handleFieldChange = function (key, value, parentName, parentIdx) {
         var _a, _b, _c;

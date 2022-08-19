@@ -2,7 +2,7 @@
 interface Props {
     value: string;
     name: string;
-    handleChange: (value: any) => void;
+    handleChange: (name: string, value: any) => void;
     type: string;
     grid: object;
     id: any;

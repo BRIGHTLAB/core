@@ -50,7 +50,7 @@ function TextInput(_a) {
     };
     return (React.createElement(React.Fragment, null,
         type.includes('date') ? label : null,
-        React.createElement(TextField_1.default, { value: state, margin: "dense", id: id, size: "small", name: name, disabled: disabled, label: type.includes('date') ? undefined : label, type: type === 'number' ? 'text' : type, helperText: helperText, error: error, fullWidth: true, multiline: type === 'textarea' ? true : false, minRows: type === 'textarea' ? 4 : undefined, required: required, inputProps: { maxLength: "".concat(maxLength) }, onChange: onChange, onBlur: handleBlur
+        React.createElement(TextField_1.default, { value: type.includes('date') ? state : state ? state : '', margin: "dense", id: id, size: "small", name: name, disabled: disabled, label: type.includes('date') ? undefined : label, type: type === 'number' ? 'text' : type, helperText: helperText, error: error, fullWidth: true, multiline: type === 'textarea' ? true : false, minRows: type === 'textarea' ? 4 : undefined, required: required, inputProps: { maxLength: "".concat(maxLength) }, onChange: onChange, onBlur: handleBlur
                 ? function (event) {
                     handleBlur(name, event.target.value);
                 }

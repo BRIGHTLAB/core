@@ -152,7 +152,7 @@ function FileUpload(_a) {
         setState(value);
     }, [value]);
     (0, react_1.useEffect)(function () {
-        handleChange({ target: { name: name, value: state } });
+        handleChange(name, state);
     }, [state, name]);
     return (React.createElement(material_1.Grid, __assign({ item: true }, grid, { key: id }),
         React.createElement("span", { style: {
@@ -171,6 +171,6 @@ function FileUpload(_a) {
             allowURL && (React.createElement(material_1.RadioGroup, { row: true, "aria-label": "Upload type", name: "URL", value: URL, onChange: changeUploadType },
                 React.createElement(material_1.FormControlLabel, { value: "false", control: React.createElement(material_1.Radio, null), label: "File Upload" }),
                 React.createElement(material_1.FormControlLabel, { value: "true", control: React.createElement(material_1.Radio, null), label: "Url" }))),
-            URL === 'true' ? (React.createElement(material_1.TextField, { size: "small", value: state !== null && state !== void 0 ? state : '', id: id, name: name, disabled: disabled, type: "text", error: error, fullWidth: true, required: required, inputProps: { maxLength: 255 }, label: "Url", onChange: handleChange })) : (React.createElement(react_2.Dashboard, { uppy: uppy, showRemoveButtonAfterComplete: true, hideProgressAfterFinish: true, height: 400, width: "100%" }))))));
+            URL === 'true' ? (React.createElement(material_1.TextField, { size: "small", value: state !== null && state !== void 0 ? state : '', id: id, name: name, disabled: disabled, type: "text", error: error, fullWidth: true, required: required, inputProps: { maxLength: 255 }, label: "Url", onChange: function (e) { var _a; return handleChange(name, (_a = e === null || e === void 0 ? void 0 : e.target) === null || _a === void 0 ? void 0 : _a.value); } })) : (React.createElement(react_2.Dashboard, { uppy: uppy, showRemoveButtonAfterComplete: true, hideProgressAfterFinish: true, height: 400, width: "100%" }))))));
 }
 exports.default = FileUpload;
