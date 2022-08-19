@@ -55,7 +55,7 @@ export default function TextInput({
     <>
       {type.includes('date') ? label : null}
       <TextField
-        value={state}
+        value={type.includes('date') ? state : state ? state : ''}
         margin="dense"
         id={id}
         size="small"

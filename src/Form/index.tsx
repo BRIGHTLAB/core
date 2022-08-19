@@ -63,11 +63,15 @@ export default function Form({ defaultValues = {}, errorValues = {}, onChange, f
   type tempParentObjectKey = keyof typeof tempParentObject;
 
   useEffect(() => {
-    setCustomFieldsData(defaultValues);
+    if (Object.keys(defaultValues).length > 0) {
+      setCustomFieldsData(defaultValues);
+    }
   }, [defaultValues]);
 
   useEffect(() => {
-    setCustomFieldsErrorData(errorValues);
+    if (errorValues && Object.keys(errorValues).length > 0) {
+      setCustomFieldsErrorData(errorValues);
+    }
   }, [errorValues]);
 
   const handleFieldChange = (key: string, value: any, parentName?: string, parentIdx?: number) => {

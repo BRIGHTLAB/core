@@ -9,7 +9,7 @@ import AwsS3 from '@uppy/aws-s3';
 interface Props {
   value: string;
   name: string;
-  handleChange: (value: any) => void;
+  handleChange: (name: string, value: any) => void;
   type: string;
   grid: object;
   id: any;
@@ -106,7 +106,7 @@ export default function FileUpload({
   }, [value]);
 
   useEffect(() => {
-    handleChange({ target: { name: name, value: state } });
+    handleChange(name, state);
   }, [state, name]);
 
   return (
@@ -159,7 +159,7 @@ export default function FileUpload({
               required={required}
               inputProps={{ maxLength: 255 }}
               label="Url"
-              onChange={handleChange}
+              onChange={(e) => handleChange(name, e?.target?.value)}
             />
           ) : (
             <Dashboard
