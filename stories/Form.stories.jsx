@@ -274,6 +274,11 @@ const arrayFields = [
             attr: {
               sx: { display: 'flex', flexDirection: 'column' },
             },
+            radioStyle: {
+              '&, &.Mui-checked': {
+                color: 'red',
+              },
+            },
           },
           {
             value: 'No',

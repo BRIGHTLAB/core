@@ -57,7 +57,7 @@ function RadioGroupComp(_a) {
     };
     return (React.createElement(FormControl_1.default, { disabled: disabled, required: required, component: "fieldset" },
         label ? (React.createElement(FormLabel_1.default, { component: "legend", error: error }, label)) : (React.createElement(React.Fragment, null)),
-        React.createElement(RadioGroup_1.default, { row: true, "aria-label": "gender", name: name, value: selectValue, onChange: onChange }, data === null || data === void 0 ? void 0 : data.map(function (row, idx) { return (React.createElement(FormControlLabel_1.default, __assign({ key: name + '_' + idx, value: row.value, control: React.createElement(Radio_1.default, null), label: row.title }, row.attr))); })),
+        React.createElement(RadioGroup_1.default, { row: true, "aria-label": "gender", name: name, value: selectValue, onChange: onChange }, data === null || data === void 0 ? void 0 : data.map(function (row, idx) { return (React.createElement(FormControlLabel_1.default, __assign({ key: name + '_' + idx, value: row.value, control: React.createElement(Radio_1.default, { sx: row.radioStyle }), label: row.title }, row.attr))); })),
         React.createElement(Typography_1.default, { component: "p", color: error ? 'error' : 'inherit' }, helperText)));
 }
 exports.default = RadioGroupComp;

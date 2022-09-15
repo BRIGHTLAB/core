@@ -7,6 +7,7 @@ interface Props {
         value: string | number;
         title: string;
         attr?: object;
+        radioStyle?: object;
     }[];
     disabled?: boolean;
     error?: boolean;

@@ -11,7 +11,7 @@ interface Props {
   value?: string;
   handleChange: (name: string, value: any) => void;
   label?: string;
-  data: { value: string | number; title: string; attr?: object }[];
+  data: { value: string | number; title: string; attr?: object; radioStyle?: object }[];
   disabled?: boolean;
   error?: boolean;
   helperText?: string;
@@ -55,7 +55,7 @@ export default function RadioGroupComp({
           <FormControlLabel
             key={name + '_' + idx}
             value={row.value}
-            control={<Radio />}
+            control={<Radio sx={row.radioStyle} />}
             label={row.title}
             {...row.attr}
           />
