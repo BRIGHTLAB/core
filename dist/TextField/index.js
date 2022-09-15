@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -31,8 +42,8 @@ var react_1 = require("react");
 var TextField_1 = __importDefault(require("@mui/material/TextField"));
 var IsNumber = function (string) { return /^[0-9]+$/.test(string); };
 function TextInput(_a) {
-    var id = _a.id, _b = _a.value, value = _b === void 0 ? '' : _b, name = _a.name, _c = _a.type, type = _c === void 0 ? 'text' : _c, helperText = _a.helperText, error = _a.error, required = _a.required, handleChange = _a.handleChange, handleBlur = _a.handleBlur, label = _a.label, disabled = _a.disabled, maxLength = _a.maxLength;
-    var _d = (0, react_1.useState)(value), state = _d[0], setState = _d[1];
+    var id = _a.id, _b = _a.value, value = _b === void 0 ? '' : _b, name = _a.name, _c = _a.type, type = _c === void 0 ? 'text' : _c, helperText = _a.helperText, error = _a.error, required = _a.required, handleChange = _a.handleChange, handleBlur = _a.handleBlur, label = _a.label, disabled = _a.disabled, maxLength = _a.maxLength, _d = _a.variant, variant = _d === void 0 ? 'outlined' : _d, sx = _a.sx, InputProps = _a.InputProps;
+    var _e = (0, react_1.useState)(value), state = _e[0], setState = _e[1];
     (0, react_1.useEffect)(function () {
         if (type.includes('date')) {
             setState(value ? value.substring(0, 10) : value);
@@ -50,7 +61,7 @@ function TextInput(_a) {
     };
     return (React.createElement(React.Fragment, null,
         type.includes('date') ? label : null,
-        React.createElement(TextField_1.default, { value: type.includes('date') ? state : state ? state : '', margin: "dense", id: id, size: "small", name: name, disabled: disabled, label: type.includes('date') ? undefined : label, type: type === 'number' ? 'text' : type, helperText: helperText, error: error, fullWidth: true, multiline: type === 'textarea' ? true : false, minRows: type === 'textarea' ? 4 : undefined, required: required, inputProps: { maxLength: "".concat(maxLength) }, onChange: onChange, onBlur: handleBlur
+        React.createElement(TextField_1.default, { value: type.includes('date') ? state : state ? state : '', margin: "dense", variant: variant, id: id, size: "small", name: name, disabled: disabled, label: type.includes('date') ? undefined : label, type: type === 'number' ? 'text' : type, helperText: helperText, error: error, fullWidth: true, multiline: type === 'textarea' ? true : false, minRows: type === 'textarea' ? 4 : undefined, required: required, sx: sx, InputProps: __assign({ maxLength: "".concat(maxLength) }, InputProps), onChange: onChange, onBlur: handleBlur
                 ? function (event) {
                     handleBlur(name, event.target.value);
                 }
