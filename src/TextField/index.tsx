@@ -17,6 +17,9 @@ interface Props {
   label: string;
   disabled: boolean;
   maxLength: number;
+  variant?: 'standard' | 'filled' | 'outlined';
+  sx: any;
+  InputProps: any;
 }
 
 export default function TextInput({
@@ -32,6 +35,9 @@ export default function TextInput({
   label,
   disabled,
   maxLength,
+  variant = 'outlined',
+  sx,
+  InputProps,
 }: Props) {
   const [state, setState] = useState(value);
 
@@ -57,6 +63,7 @@ export default function TextInput({
       <TextField
         value={type.includes('date') ? state : state ? state : ''}
         margin="dense"
+        variant={variant}
         id={id}
         size="small"
         name={name}
@@ -69,7 +76,8 @@ export default function TextInput({
         multiline={type === 'textarea' ? true : false}
         minRows={type === 'textarea' ? 4 : undefined}
         required={required}
-        inputProps={{ maxLength: `${maxLength}` }}
+        sx={sx}
+        InputProps={{ maxLength: `${maxLength}`, ...InputProps }}
         onChange={onChange}
         onBlur={
           handleBlur

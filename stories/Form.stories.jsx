@@ -191,6 +191,11 @@ const arrayFields = [
         name: 'name',
         label: 'Name',
         type: 'TextField',
+        variant: 'standard',
+        sx: {
+          borderBottom: '3px solid red',
+        },
+        InputProps: { disableUnderline: true },
         required: true,
         grid: {
           xs: 12,
@@ -263,8 +268,20 @@ const arrayFields = [
         type: 'RadioGroup',
         required: true,
         data: [
-          { value: 'Yes', title: 'Yes' },
-          { value: 'No', title: 'No' },
+          {
+            value: 'Yes',
+            title: 'Yes',
+            attr: {
+              sx: { display: 'flex', flexDirection: 'column' },
+            },
+          },
+          {
+            value: 'No',
+            title: 'No',
+            attr: {
+              sx: { display: 'flex', flexDirection: 'column' },
+            },
+          },
         ],
         grid: {
           xs: 12,
