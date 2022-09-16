@@ -79,25 +79,28 @@ function Form(_a) {
         }
     }, [errorValues]);
     var handleFieldChange = function (key, value, parentName, parentIdx) {
-        var _a, _b, _c;
+        var _a, _b, _c, _d;
+        var _e;
         // if parentName exists means array and childs
         var tempFieldsData = {};
         if (parentName) {
-            var tempArray = __spreadArray([], customFieldsData[parentName], true);
-            tempArray[parentIdx]; //TODO
-            tempFieldsData = __assign(__assign({}, customFieldsData), (_a = {}, _a[parentName !== null && parentName !== void 0 ? parentName : key] = parentName
-                ? __assign(__assign({}, (typeof customFieldsData[parentName] === 'object'
-                    ? customFieldsData[parentName]
-                    : {})), (_b = {}, _b[key] = value, _b)) : value, _a));
+            var tempArray = __spreadArray([], ((_e = customFieldsData[parentName]) !== null && _e !== void 0 ? _e : []), true);
+            if (tempArray.length > 0 && (parentIdx || parentIdx == 0)) {
+                tempArray[parentIdx] = __assign(__assign({}, tempArray[parentIdx]), (_a = {}, _a[key] = value, _a));
+            }
+            else {
+                tempArray.push((_b = {}, _b[key] = value, _b));
+            }
+            tempFieldsData = __assign(__assign({}, customFieldsData), (_c = {}, _c[parentName] = tempArray, _c));
         }
         else {
-            tempFieldsData = __assign(__assign({}, customFieldsData), (_c = {}, _c[key] = value, _c));
+            tempFieldsData = __assign(__assign({}, customFieldsData), (_d = {}, _d[key] = value, _d));
         }
         setCustomFieldsData(tempFieldsData);
         if (onChange)
             onChange(tempFieldsData);
     };
-    var renderFields = function (data, customComponents, parentName) {
+    var renderFields = function (data, customComponents, parentName, parentIdx) {
         if (!data || data.length < 1)
             return null;
         return data.map(function (item, idx) {
@@ -120,19 +123,23 @@ function Form(_a) {
                     return null;
                 };
             }
-            return (React.createElement(material_1.Grid, __assign({ item: true }, item.grid, { key: 'Dynamic_Form_' + idx }), DynamicComponent ? (React.createElement(DynamicComponent, __assign({}, item, { type: (_a = item.inputType) !== null && _a !== void 0 ? _a : undefined, multi: (_b = item.multi) !== null && _b !== void 0 ? _b : undefined, fullWidth: true, helperText: customFieldsErrorData[item.name] || item.helperText || undefined, error: item.name in customFieldsErrorData, value: customFieldsData[item.name] || null, handleChange: function (name, value) { return handleFieldChange(name, value, parentName); } }))) : (React.createElement(material_1.Grid, { container: true, spacing: 2 },
+            return (React.createElement(material_1.Grid, __assign({ item: true }, item.grid, { key: 'Dynamic_Form_' + idx }), DynamicComponent ? (React.createElement(DynamicComponent, __assign({}, item, { type: (_a = item.inputType) !== null && _a !== void 0 ? _a : undefined, multi: (_b = item.multi) !== null && _b !== void 0 ? _b : undefined, fullWidth: true, helperText: customFieldsErrorData[item.name] || item.helperText || undefined, error: item.name in customFieldsErrorData, value: customFieldsData[item.name] || null, handleChange: function (name, value) { return handleFieldChange(name, value, parentName, parentIdx); } }))) : (React.createElement(material_1.Grid, { container: true, spacing: 2 },
                 React.createElement(material_1.Grid, { item: true, xs: 12 },
                     React.createElement(material_1.Typography, { component: "h1", variant: "h5" },
                         item.label,
                         ' ',
-                        React.createElement(PlusBotton_1.default, { onClick: function () {
-                                return setTempParentObject(function (oldTemp) {
-                                    var _a;
-                                    var _b;
-                                    return (__assign(__assign({}, oldTemp), (_a = {}, _a[item.name] = ((_b = oldTemp[item.name]) !== null && _b !== void 0 ? _b : 0) + 1, _a)));
-                                });
-                            } }))),
-                renderFields(item.data, [], item.name),
+                        React.createElement(PlusBotton_1.default, { disabled: customFieldsData[item.name] && customFieldsData[item.name][0]
+                                ? false
+                                : true, onClick: customFieldsData[item.name] && customFieldsData[item.name][0]
+                                ? function () {
+                                    return setTempParentObject(function (oldTemp) {
+                                        var _a;
+                                        var _b;
+                                        return (__assign(__assign({}, oldTemp), (_a = {}, _a[item.name] = ((_b = oldTemp[item.name]) !== null && _b !== void 0 ? _b : 0) + 1, _a)));
+                                    });
+                                }
+                                : undefined }))),
+                renderFields(item.data, [], item.name, 0),
                 renderArray(item.name, item)))));
         });
     };
@@ -141,7 +148,7 @@ function Form(_a) {
         for (var i = 1; i <= tempParentObject[parentName]; i++) {
             HTML.push(React.createElement(material_1.Grid, { item: true, xs: 12, key: 'parentName_' + parentName + '_' + i },
                 React.createElement("hr", null),
-                renderFields(item.data, [], item.name)));
+                renderFields(item.data, [], item.name, i)));
         }
         return HTML;
     };

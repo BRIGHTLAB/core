@@ -1,6 +1,7 @@
 /// <reference types="react" />
 interface Props {
-    onClick: () => void;
+    onClick?: () => void;
+    disabled?: boolean;
 }
-export default function PlusBotton({ onClick }: Props): JSX.Element;
+export default function PlusBotton({ onClick, disabled }: Props): JSX.Element;
 export {};

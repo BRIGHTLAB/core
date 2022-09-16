@@ -78,20 +78,17 @@ export default function Form({ defaultValues = {}, errorValues = {}, onChange, f
     // if parentName exists means array and childs
     let tempFieldsData = {};
     if (parentName) {
-      let tempArray = [...customFieldsData[parentName as DataObjectKey]];
-      type tempArrayKey = keyof typeof tempArray;
+      let tempArray: {}[] = [...(customFieldsData[parentName as DataObjectKey] ?? [])];
 
-      tempArray[parentIdx as tempArrayKey]; //TODO
+      if (tempArray.length > 0 && (parentIdx || parentIdx == 0)) {
+        tempArray[parentIdx] = { ...tempArray[parentIdx], [key]: value };
+      } else {
+        tempArray.push({ [key]: value });
+      }
+
       tempFieldsData = {
         ...customFieldsData,
-        [parentName ?? key]: parentName
-          ? {
-              ...(typeof customFieldsData[parentName as DataObjectKey] === 'object'
-                ? customFieldsData[parentName as DataObjectKey]
-                : {}),
-              [key]: value,
-            }
-          : value,
+        [parentName]: tempArray,
       };
     } else {
       tempFieldsData = {
@@ -104,7 +101,12 @@ export default function Form({ defaultValues = {}, errorValues = {}, onChange, f
     if (onChange) onChange(tempFieldsData);
   };
 
-  const renderFields = (data: fieldsType[], customComponents: customComponentsType[], parentName?: string) => {
+  const renderFields = (
+    data: fieldsType[],
+    customComponents: customComponentsType[],
+    parentName?: string,
+    parentIdx?: number,
+  ) => {
     if (!data || data.length < 1) return null;
 
     return data.map((item: fieldsType, idx) => {
@@ -137,7 +139,7 @@ export default function Form({ defaultValues = {}, errorValues = {}, onChange, f
               helperText={customFieldsErrorData[item.name as ErrorDataObjectKey] || item.helperText || undefined}
               error={item.name in customFieldsErrorData}
               value={customFieldsData[item.name as DataObjectKey] || null}
-              handleChange={(name: string, value: any) => handleFieldChange(name, value, parentName)}
+              handleChange={(name: string, value: any) => handleFieldChange(name, value, parentName, parentIdx)}
             />
           ) : (
             <Grid container spacing={2}>
@@ -145,16 +147,24 @@ export default function Form({ defaultValues = {}, errorValues = {}, onChange, f
                 <Typography component="h1" variant="h5">
                   {item.label}{' '}
                   <PlusBotton
-                    onClick={() =>
-                      setTempParentObject((oldTemp) => ({
-                        ...oldTemp,
-                        [item.name as tempParentObjectKey]: (oldTemp[item.name as tempParentObjectKey] ?? 0) + 1,
-                      }))
+                    disabled={
+                      customFieldsData[item.name as DataObjectKey] && customFieldsData[item.name as DataObjectKey][0]
+                        ? false
+                        : true
+                    }
+                    onClick={
+                      customFieldsData[item.name as DataObjectKey] && customFieldsData[item.name as DataObjectKey][0]
+                        ? () =>
+                            setTempParentObject((oldTemp) => ({
+                              ...oldTemp,
+                              [item.name as tempParentObjectKey]: (oldTemp[item.name as tempParentObjectKey] ?? 0) + 1,
+                            }))
+                        : undefined
                     }
                   />
                 </Typography>
               </Grid>
-              {renderFields(item.data, [], item.name)}
+              {renderFields(item.data, [], item.name, 0)}
               {renderArray(item.name, item)}
             </Grid>
           )}
@@ -169,7 +179,7 @@ export default function Form({ defaultValues = {}, errorValues = {}, onChange, f
       HTML.push(
         <Grid item xs={12} key={'parentName_' + parentName + '_' + i}>
           <hr></hr>
-          {renderFields(item.data, [], item.name)}
+          {renderFields(item.data, [], item.name, i)}
         </Grid>,
       );
     }

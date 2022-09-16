@@ -179,6 +179,27 @@ let fields = [
 ];
 const arrayFields = [
   {
+    id: 'supervisor_obj',
+    name: 'supervisor_obj',
+    label: 'Supervisor',
+    type: 'Select',
+    required: true,
+    grid: {
+      xs: 12,
+      md: 6,
+    },
+    data: [
+      {
+        title: 'Yes',
+        value: '0',
+      },
+      {
+        title: 'No',
+        value: '1',
+      },
+    ],
+  },
+  {
     id: 'school',
     name: 'school',
     label: 'School',

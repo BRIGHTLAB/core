@@ -25,17 +25,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __importStar(require("react"));
 function PlusBotton(_a) {
-    var onClick = _a.onClick;
+    var onClick = _a.onClick, disabled = _a.disabled;
     return (React.createElement("span", { onClick: onClick, style: {
             display: 'inline-block',
             width: '30px',
             height: '30px',
-            background: '#0a9dad',
+            background: disabled ? 'grey' : '#0a9dad',
             textAlign: 'center',
             color: ' #fff',
             lineHeight: 1.2,
             marginRight: '0.5em',
-            cursor: 'pointer',
+            cursor: disabled ? 'not-allowed' : 'pointer',
         } }, "+"));
 }
 exports.default = PlusBotton;

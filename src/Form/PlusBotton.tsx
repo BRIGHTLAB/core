@@ -1,10 +1,11 @@
 import * as React from 'react';
 
 interface Props {
-  onClick: () => void;
+  onClick?: () => void;
+  disabled?: boolean;
 }
 
-export default function PlusBotton({ onClick }: Props) {
+export default function PlusBotton({ onClick, disabled }: Props) {
   return (
     <span
       onClick={onClick}
@@ -12,12 +13,12 @@ export default function PlusBotton({ onClick }: Props) {
         display: 'inline-block',
         width: '30px',
         height: '30px',
-        background: '#0a9dad',
+        background: disabled ? 'grey' : '#0a9dad',
         textAlign: 'center',
         color: ' #fff',
         lineHeight: 1.2,
         marginRight: '0.5em',
-        cursor: 'pointer',
+        cursor: disabled ? 'not-allowed' : 'pointer',
       }}
     >
       +
