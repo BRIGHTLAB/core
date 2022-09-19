@@ -44,6 +44,7 @@ var FormControl_1 = __importDefault(require("@mui/material/FormControl"));
 var FormLabel_1 = __importDefault(require("@mui/material/FormLabel"));
 var Typography_1 = __importDefault(require("@mui/material/Typography"));
 var Checkbox_1 = __importDefault(require("@mui/material/Checkbox"));
+var material_1 = require("@mui/material");
 function CheckBoxComp(_a) {
     var _b = _a.value, value = _b === void 0 ? {} : _b, handleChange = _a.handleChange, label = _a.label, data = _a.data, disabled = _a.disabled, error = _a.error, helperText = _a.helperText, required = _a.required, name = _a.name, _c = _a.view, view = _c === void 0 ? 'flex' : _c;
     var _d = (0, react_1.useState)(value), selectValue = _d[0], setSelectValue = _d[1];
@@ -57,7 +58,8 @@ function CheckBoxComp(_a) {
     };
     return (React.createElement(FormControl_1.default, { disabled: disabled, required: required, component: "fieldset" },
         React.createElement(FormLabel_1.default, { component: "legend", error: error }, label),
-        React.createElement("div", { style: { display: view } }, data === null || data === void 0 ? void 0 : data.map(function (row, idx) { return (React.createElement(FormControlLabel_1.default, __assign({ key: name + '_' + idx, control: React.createElement(Checkbox_1.default, { checked: selectValue ? (selectValue[row.value] ? true : false) : false, name: JSON.stringify(row.value), onChange: onChange }), label: row.title }, row.attr))); })),
+        view == 'grid' ? (React.createElement(material_1.Grid, { container: true, spacing: 2 }, data === null || data === void 0 ? void 0 : data.map(function (row, idx) { return (React.createElement(material_1.Grid, __assign({ item: true, xs: 4, key: name + '_' + idx }, row.attr),
+            React.createElement(FormControlLabel_1.default, { control: React.createElement(Checkbox_1.default, { checked: selectValue ? (selectValue[row.value] ? true : false) : false, name: JSON.stringify(row.value), onChange: onChange }), label: row.title }))); }))) : (React.createElement("div", { style: { display: view } }, data === null || data === void 0 ? void 0 : data.map(function (row, idx) { return (React.createElement(FormControlLabel_1.default, __assign({ key: name + '_' + idx, control: React.createElement(Checkbox_1.default, { checked: selectValue ? (selectValue[row.value] ? true : false) : false, name: JSON.stringify(row.value), onChange: onChange }), label: row.title }, row.attr))); }))),
         React.createElement(Typography_1.default, { component: "p", color: error ? 'error' : 'inherit' }, helperText)));
 }
 exports.default = CheckBoxComp;
