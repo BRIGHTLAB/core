@@ -56,7 +56,7 @@ export default function CheckBoxComp({
                 control={
                   <Checkbox
                     checked={selectValue ? (selectValue[row.value] ? true : false) : false}
-                    name={JSON.stringify(row.value)}
+                    name={typeof row.value == 'number' ? row.value.toString() : row.value}
                     onChange={onChange}
                   />
                 }
