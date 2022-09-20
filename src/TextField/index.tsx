@@ -20,6 +20,7 @@ interface Props {
   variant?: 'standard' | 'filled' | 'outlined';
   sx: any;
   InputProps: any;
+  minRows: number;
 }
 
 export default function TextInput({
@@ -38,6 +39,7 @@ export default function TextInput({
   variant = 'outlined',
   sx,
   InputProps,
+  minRows = 4,
 }: Props) {
   const [state, setState] = useState(value);
 
@@ -74,7 +76,7 @@ export default function TextInput({
         error={error}
         fullWidth
         multiline={type === 'textarea' ? true : false}
-        minRows={type === 'textarea' ? 4 : undefined}
+        minRows={type === 'textarea' ? minRows : undefined}
         required={required}
         sx={sx}
         InputProps={{ maxLength: `${maxLength}`, ...InputProps }}
