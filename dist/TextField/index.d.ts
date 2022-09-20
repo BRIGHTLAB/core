@@ -15,6 +15,7 @@ interface Props {
     variant?: 'standard' | 'filled' | 'outlined';
     sx: any;
     InputProps: any;
+    minRows: number;
 }
-export default function TextInput({ id, value, name, type, helperText, error, required, handleChange, handleBlur, label, disabled, maxLength, variant, sx, InputProps, }: Props): JSX.Element;
+export default function TextInput({ id, value, name, type, helperText, error, required, handleChange, handleBlur, label, disabled, maxLength, variant, sx, InputProps, minRows, }: Props): JSX.Element;
 export {};
