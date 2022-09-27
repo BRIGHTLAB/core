@@ -1,6 +1,6 @@
 /// <reference types="react" />
 interface Props {
-    value: string;
+    value: string | object;
     name: string;
     handleChange: (name: string, value: any) => void;
     type: string;

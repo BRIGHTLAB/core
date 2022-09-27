@@ -151,7 +151,8 @@ function FileUpload(_a) {
                 if (result.successful.length > 0) {
                     // add the file to the main postData array
                     var obj = result.successful[0];
-                    handleChange(name, obj.data);
+                    // handleChange(name, obj.data);
+                    onChange(obj.data);
                 }
                 else {
                     console.log('Upload error: ', result.failed); // if upload failed, let's see what went wrong
@@ -180,7 +181,7 @@ function FileUpload(_a) {
             label,
             " ",
             required ? React.createElement("span", { className: "required" }, "*") : ''),
-        state && state.includes('https://') ? (React.createElement(material_1.Grid, { container: true },
+        state && typeof state == 'string' && state.includes('https://') ? (React.createElement(material_1.Grid, { container: true },
             React.createElement(material_1.Grid, { item: true, xs: 12, style: { paddingTop: '2px', display: 'flex' } },
                 React.createElement(material_1.Tooltip, { title: "Delete" },
                     React.createElement(icons_material_1.Delete, { style: { color: '#f23729', cursor: 'pointer' }, onClick: function () {

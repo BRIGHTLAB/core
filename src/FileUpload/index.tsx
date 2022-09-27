@@ -7,7 +7,7 @@ import Uppy from '@uppy/core';
 import AwsS3 from '@uppy/aws-s3';
 
 interface Props {
-  value: string;
+  value: string | object;
   name: string;
   handleChange: (name: string, value: any) => void;
   type: string;
@@ -103,7 +103,8 @@ export default function FileUpload({
           if (result.successful.length > 0) {
             // add the file to the main postData array
             const obj = result.successful[0];
-            handleChange(name, obj.data);
+            // handleChange(name, obj.data);
+            onChange(obj.data);
           } else {
             console.log('Upload error: ', result.failed); // if upload failed, let's see what went wrong
           }
@@ -119,7 +120,7 @@ export default function FileUpload({
     setURL(e.target.value);
   };
 
-  const onChange = (value: string | undefined) => setState(value ?? '');
+  const onChange = (value: string | object | undefined) => setState(value ?? '');
 
   useEffect(() => {
     setState(value);
@@ -138,7 +139,7 @@ export default function FileUpload({
       >
         {label} {required ? <span className="required">*</span> : ''}
       </span>
-      {state && state.includes('https://') ? (
+      {state && typeof state == 'string' && state.includes('https://') ? (
         <Grid container>
           <Grid item xs={12} style={{ paddingTop: '2px', display: 'flex' }}>
             <Tooltip title="Delete">
