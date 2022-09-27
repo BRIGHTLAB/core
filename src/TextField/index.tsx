@@ -42,6 +42,7 @@ export default function TextInput({
   minRows = 4,
 }: Props) {
   const [state, setState] = useState(value);
+  const dateType = type.includes('date') || type.includes('time');
 
   useEffect(() => {
     if (type.includes('date')) {
@@ -61,16 +62,16 @@ export default function TextInput({
 
   return (
     <>
-      {type.includes('date') ? label : null}
+      {dateType ? label : null}
       <TextField
-        value={type.includes('date') ? state : state ? state : ''}
+        value={dateType ? state : state ? state : ''}
         margin="dense"
         variant={variant}
         id={id}
         size="small"
         name={name}
         disabled={disabled}
-        label={type.includes('date') ? undefined : label}
+        label={dateType ? undefined : label}
         type={type === 'number' ? 'text' : type}
         helperText={helperText}
         error={error}
