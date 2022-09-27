@@ -12,9 +12,10 @@ interface Props {
     allowURL: boolean;
     disabled: boolean;
     lang: string;
+    uploadType: string;
     Get: (url: string, lang: string) => Promise<{
         signedUrl: string;
     }>;
 }
-export default function FileUpload({ value, name, handleChange, type, grid, id, error, label, required, allowURL, disabled, lang, Get, }: Props): JSX.Element;
+export default function FileUpload({ value, name, handleChange, type, grid, id, error, label, required, allowURL, disabled, lang, Get, uploadType, }: Props): JSX.Element;
 export {};

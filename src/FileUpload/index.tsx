@@ -19,6 +19,7 @@ interface Props {
   allowURL: boolean;
   disabled: boolean;
   lang: string;
+  uploadType: string;
   Get: (url: string, lang: string) => Promise<{ signedUrl: string }>;
 }
 
@@ -36,6 +37,7 @@ export default function FileUpload({
   disabled,
   lang = 'en',
   Get,
+  uploadType = 'S3',
 }: Props) {
   const [URL, setURL] = useState('false');
   const [state, setState] = useState(value);
@@ -57,7 +59,7 @@ export default function FileUpload({
   }
 
   const uppy = useUppy(() => {
-    return new Uppy({
+    const opts = {
       id: name,
       autoProceed: true,
       restrictions: {
@@ -65,33 +67,51 @@ export default function FileUpload({
         maxNumberOfFiles: 1,
         allowedFileTypes: fileTypes,
       },
-    })
-      .use(AwsS3, {
-        // fields: [], // empty array
-        async getUploadParameters(file): Promise<any> {
-          const response = await Get(`sign_url?objectName=${file.name}`, lang);
+    };
 
-          return {
-            method: 'PUT',
-            url: response.signedUrl,
-            fields: [],
-          };
-        },
-      })
-      .on('complete', (result) => {
-        if (result.successful.length > 0) {
-          // add the file to the main postData array
-          const obj = result.successful[0];
-          const filename = obj.uploadURL.split('/').pop();
+    if (uploadType == 'S3') {
+      return new Uppy(opts)
+        .use(AwsS3, {
+          // fields: [], // empty array
+          async getUploadParameters(file): Promise<any> {
+            const response = await Get(`sign_url?objectName=${file.name}`, lang);
 
-          onChange(filename);
-        } else {
-          console.log('Upload error: ', result.failed); // if upload failed, let's see what went wrong
-        }
-      })
-      .on('file-removed', () => {
-        onChange('');
-      });
+            return {
+              method: 'PUT',
+              url: response.signedUrl,
+              fields: [],
+            };
+          },
+        })
+        .on('complete', (result) => {
+          if (result.successful.length > 0) {
+            // add the file to the main postData array
+            const obj = result.successful[0];
+            const filename = obj.uploadURL.split('/').pop();
+
+            onChange(filename);
+          } else {
+            console.log('Upload error: ', result.failed); // if upload failed, let's see what went wrong
+          }
+        })
+        .on('file-removed', () => {
+          onChange('');
+        });
+    } else {
+      return new Uppy(opts)
+        .on('complete', (result) => {
+          if (result.successful.length > 0) {
+            // add the file to the main postData array
+            const obj = result.successful[0];
+            handleChange(name, obj.data);
+          } else {
+            console.log('Upload error: ', result.failed); // if upload failed, let's see what went wrong
+          }
+        })
+        .on('file-removed', () => {
+          onChange('');
+        });
+    }
   });
 
   const changeUploadType = (e: React.ChangeEvent<HTMLInputElement>) => {

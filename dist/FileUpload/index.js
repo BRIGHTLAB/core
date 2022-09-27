@@ -81,9 +81,9 @@ var react_2 = require("@uppy/react");
 var core_1 = __importDefault(require("@uppy/core"));
 var aws_s3_1 = __importDefault(require("@uppy/aws-s3"));
 function FileUpload(_a) {
-    var value = _a.value, name = _a.name, handleChange = _a.handleChange, _b = _a.type, type = _b === void 0 ? 'image' : _b, grid = _a.grid, id = _a.id, error = _a.error, label = _a.label, required = _a.required, allowURL = _a.allowURL, disabled = _a.disabled, _c = _a.lang, lang = _c === void 0 ? 'en' : _c, Get = _a.Get;
-    var _d = (0, react_1.useState)('false'), URL = _d[0], setURL = _d[1];
-    var _e = (0, react_1.useState)(value), state = _e[0], setState = _e[1];
+    var value = _a.value, name = _a.name, handleChange = _a.handleChange, _b = _a.type, type = _b === void 0 ? 'image' : _b, grid = _a.grid, id = _a.id, error = _a.error, label = _a.label, required = _a.required, allowURL = _a.allowURL, disabled = _a.disabled, _c = _a.lang, lang = _c === void 0 ? 'en' : _c, Get = _a.Get, _d = _a.uploadType, uploadType = _d === void 0 ? 'S3' : _d;
+    var _e = (0, react_1.useState)('false'), URL = _e[0], setURL = _e[1];
+    var _f = (0, react_1.useState)(value), state = _f[0], setState = _f[1];
     var fileTypes = [];
     switch (type) {
         case 'image':
@@ -99,7 +99,7 @@ function FileUpload(_a) {
             fileTypes = ['.jpg', '.jpeg', '.png'];
     }
     var uppy = (0, react_2.useUppy)(function () {
-        return new core_1.default({
+        var opts = {
             id: name,
             autoProceed: true,
             restrictions: {
@@ -107,41 +107,60 @@ function FileUpload(_a) {
                 maxNumberOfFiles: 1,
                 allowedFileTypes: fileTypes,
             },
-        })
-            .use(aws_s3_1.default, {
-            // fields: [], // empty array
-            getUploadParameters: function (file) {
-                return __awaiter(this, void 0, void 0, function () {
-                    var response;
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0: return [4 /*yield*/, Get("sign_url?objectName=".concat(file.name), lang)];
-                            case 1:
-                                response = _a.sent();
-                                return [2 /*return*/, {
-                                        method: 'PUT',
-                                        url: response.signedUrl,
-                                        fields: [],
-                                    }];
-                        }
+        };
+        if (uploadType == 'S3') {
+            return new core_1.default(opts)
+                .use(aws_s3_1.default, {
+                // fields: [], // empty array
+                getUploadParameters: function (file) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var response;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, Get("sign_url?objectName=".concat(file.name), lang)];
+                                case 1:
+                                    response = _a.sent();
+                                    return [2 /*return*/, {
+                                            method: 'PUT',
+                                            url: response.signedUrl,
+                                            fields: [],
+                                        }];
+                            }
+                        });
                     });
-                });
-            },
-        })
-            .on('complete', function (result) {
-            if (result.successful.length > 0) {
-                // add the file to the main postData array
-                var obj = result.successful[0];
-                var filename = obj.uploadURL.split('/').pop();
-                onChange(filename);
-            }
-            else {
-                console.log('Upload error: ', result.failed); // if upload failed, let's see what went wrong
-            }
-        })
-            .on('file-removed', function () {
-            onChange('');
-        });
+                },
+            })
+                .on('complete', function (result) {
+                if (result.successful.length > 0) {
+                    // add the file to the main postData array
+                    var obj = result.successful[0];
+                    var filename = obj.uploadURL.split('/').pop();
+                    onChange(filename);
+                }
+                else {
+                    console.log('Upload error: ', result.failed); // if upload failed, let's see what went wrong
+                }
+            })
+                .on('file-removed', function () {
+                onChange('');
+            });
+        }
+        else {
+            return new core_1.default(opts)
+                .on('complete', function (result) {
+                if (result.successful.length > 0) {
+                    // add the file to the main postData array
+                    var obj = result.successful[0];
+                    handleChange(name, obj.data);
+                }
+                else {
+                    console.log('Upload error: ', result.failed); // if upload failed, let's see what went wrong
+                }
+            })
+                .on('file-removed', function () {
+                onChange('');
+            });
+        }
     });
     var changeUploadType = function (e) {
         onChange('');
