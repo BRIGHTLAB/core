@@ -44,6 +44,7 @@ var IsNumber = function (string) { return /^[0-9]+$/.test(string); };
 function TextInput(_a) {
     var id = _a.id, _b = _a.value, value = _b === void 0 ? '' : _b, name = _a.name, _c = _a.type, type = _c === void 0 ? 'text' : _c, helperText = _a.helperText, error = _a.error, required = _a.required, handleChange = _a.handleChange, handleBlur = _a.handleBlur, label = _a.label, disabled = _a.disabled, maxLength = _a.maxLength, _d = _a.variant, variant = _d === void 0 ? 'outlined' : _d, sx = _a.sx, InputProps = _a.InputProps, _e = _a.minRows, minRows = _e === void 0 ? 4 : _e;
     var _f = (0, react_1.useState)(value), state = _f[0], setState = _f[1];
+    var dateType = type.includes('date') || type.includes('time');
     (0, react_1.useEffect)(function () {
         if (type.includes('date')) {
             setState(value ? value.substring(0, 10) : value);
@@ -60,8 +61,8 @@ function TextInput(_a) {
         handleChange(name, event.target.value);
     };
     return (React.createElement(React.Fragment, null,
-        type.includes('date') ? label : null,
-        React.createElement(TextField_1.default, { value: type.includes('date') ? state : state ? state : '', margin: "dense", variant: variant, id: id, size: "small", name: name, disabled: disabled, label: type.includes('date') ? undefined : label, type: type === 'number' ? 'text' : type, helperText: helperText, error: error, fullWidth: true, multiline: type === 'textarea' ? true : false, minRows: type === 'textarea' ? minRows : undefined, required: required, sx: sx, InputProps: __assign({ maxLength: "".concat(maxLength) }, InputProps), onChange: onChange, onBlur: handleBlur
+        dateType ? label : null,
+        React.createElement(TextField_1.default, { value: dateType ? state : state ? state : '', margin: "dense", variant: variant, id: id, size: "small", name: name, disabled: disabled, label: dateType ? undefined : label, type: type === 'number' ? 'text' : type, helperText: helperText, error: error, fullWidth: true, multiline: type === 'textarea' ? true : false, minRows: type === 'textarea' ? minRows : undefined, required: required, sx: sx, InputProps: __assign({ maxLength: "".concat(maxLength) }, InputProps), onChange: onChange, onBlur: handleBlur
                 ? function (event) {
                     handleBlur(name, event.target.value);
                 }
