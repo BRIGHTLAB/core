@@ -5,6 +5,7 @@ import { FormControlLabel, Grid, Radio, RadioGroup, TextField, Tooltip } from '@
 import { Dashboard, useUppy } from '@uppy/react';
 import Uppy from '@uppy/core';
 import AwsS3 from '@uppy/aws-s3';
+import FileInput from '@uppy/file-input';
 
 interface Props {
   value: string | object;
@@ -21,6 +22,7 @@ interface Props {
   lang: string;
   uploadType: string;
   Get: (url: string, lang: string) => Promise<{ signedUrl: string }>;
+  onRestrictionError?: () => void;
 }
 
 export default function FileUpload({
@@ -38,6 +40,7 @@ export default function FileUpload({
   lang = 'en',
   Get,
   uploadType = 'S3',
+  onRestrictionError,
 }: Props) {
   const [URL, setURL] = useState('false');
   const [state, setState] = useState(value);
@@ -96,9 +99,11 @@ export default function FileUpload({
         })
         .on('file-removed', () => {
           onChange('');
-        });
+        })
+        .on('restriction-failed', () => (onRestrictionError ? onRestrictionError() : {}));
     } else {
       return new Uppy(opts)
+        .use(FileInput)
         .on('complete', (result) => {
           if (result.successful.length > 0) {
             // add the file to the main postData array
@@ -111,7 +116,8 @@ export default function FileUpload({
         })
         .on('file-removed', () => {
           onChange('');
-        });
+        })
+        .on('restriction-failed', () => (onRestrictionError ? onRestrictionError() : {}));
     }
   });
 

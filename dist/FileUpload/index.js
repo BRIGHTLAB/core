@@ -80,8 +80,9 @@ var material_1 = require("@mui/material");
 var react_2 = require("@uppy/react");
 var core_1 = __importDefault(require("@uppy/core"));
 var aws_s3_1 = __importDefault(require("@uppy/aws-s3"));
+var file_input_1 = __importDefault(require("@uppy/file-input"));
 function FileUpload(_a) {
-    var value = _a.value, name = _a.name, handleChange = _a.handleChange, _b = _a.type, type = _b === void 0 ? 'image' : _b, grid = _a.grid, id = _a.id, error = _a.error, label = _a.label, required = _a.required, allowURL = _a.allowURL, disabled = _a.disabled, _c = _a.lang, lang = _c === void 0 ? 'en' : _c, Get = _a.Get, _d = _a.uploadType, uploadType = _d === void 0 ? 'S3' : _d;
+    var value = _a.value, name = _a.name, handleChange = _a.handleChange, _b = _a.type, type = _b === void 0 ? 'image' : _b, grid = _a.grid, id = _a.id, error = _a.error, label = _a.label, required = _a.required, allowURL = _a.allowURL, disabled = _a.disabled, _c = _a.lang, lang = _c === void 0 ? 'en' : _c, Get = _a.Get, _d = _a.uploadType, uploadType = _d === void 0 ? 'S3' : _d, onRestrictionError = _a.onRestrictionError;
     var _e = (0, react_1.useState)('false'), URL = _e[0], setURL = _e[1];
     var _f = (0, react_1.useState)(value), state = _f[0], setState = _f[1];
     var fileTypes = [];
@@ -143,10 +144,12 @@ function FileUpload(_a) {
             })
                 .on('file-removed', function () {
                 onChange('');
-            });
+            })
+                .on('restriction-failed', function () { return (onRestrictionError ? onRestrictionError() : {}); });
         }
         else {
             return new core_1.default(opts)
+                .use(file_input_1.default)
                 .on('complete', function (result) {
                 if (result.successful.length > 0) {
                     // add the file to the main postData array
@@ -160,7 +163,8 @@ function FileUpload(_a) {
             })
                 .on('file-removed', function () {
                 onChange('');
-            });
+            })
+                .on('restriction-failed', function () { return (onRestrictionError ? onRestrictionError() : {}); });
         }
     });
     var changeUploadType = function (e) {

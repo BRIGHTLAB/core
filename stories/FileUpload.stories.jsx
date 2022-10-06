@@ -26,5 +26,17 @@ stories.add('audio', () => {
 
 stories.add('Allow URL', () => {
   const [state, setState] = useState('');
-  return <FileUpload handleChange={(e) => setState(e.target.value)} type="video" allowURL value={state} />;
+  return <FileUpload handleChange={(name, value) => setState(value)} type="video" allowURL value={state} />;
+});
+
+stories.add('Type File', () => {
+  const [state, setState] = useState('');
+  return (
+    <FileUpload
+      handleChange={(name, value) => setState(value)}
+      uploadType="file"
+      value={state}
+      onRestrictionError={() => console.log('error onRestrictionError')}
+    />
+  );
 });
