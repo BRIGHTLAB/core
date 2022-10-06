@@ -22,7 +22,7 @@ interface Props {
   lang: string;
   uploadType: string;
   Get: (url: string, lang: string) => Promise<{ signedUrl: string }>;
-  onRestrictionError?: () => void;
+  onRestrictionError?: (File: any, error: any) => void;
 }
 
 export default function FileUpload({
@@ -100,7 +100,7 @@ export default function FileUpload({
         .on('file-removed', () => {
           onChange('');
         })
-        .on('restriction-failed', () => (onRestrictionError ? onRestrictionError() : {}));
+        .on('restriction-failed', (file, error) => (onRestrictionError ? onRestrictionError(file, error) : {}));
     } else {
       return new Uppy(opts)
         .use(FileInput)
@@ -117,7 +117,7 @@ export default function FileUpload({
         .on('file-removed', () => {
           onChange('');
         })
-        .on('restriction-failed', () => (onRestrictionError ? onRestrictionError() : {}));
+        .on('restriction-failed', (file, error) => (onRestrictionError ? onRestrictionError(file, error) : {}));
     }
   });
 

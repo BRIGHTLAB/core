@@ -145,7 +145,7 @@ function FileUpload(_a) {
                 .on('file-removed', function () {
                 onChange('');
             })
-                .on('restriction-failed', function () { return (onRestrictionError ? onRestrictionError() : {}); });
+                .on('restriction-failed', function (file, error) { return (onRestrictionError ? onRestrictionError(file, error) : {}); });
         }
         else {
             return new core_1.default(opts)
@@ -164,7 +164,7 @@ function FileUpload(_a) {
                 .on('file-removed', function () {
                 onChange('');
             })
-                .on('restriction-failed', function () { return (onRestrictionError ? onRestrictionError() : {}); });
+                .on('restriction-failed', function (file, error) { return (onRestrictionError ? onRestrictionError(file, error) : {}); });
         }
     });
     var changeUploadType = function (e) {

@@ -16,7 +16,7 @@ interface Props {
     Get: (url: string, lang: string) => Promise<{
         signedUrl: string;
     }>;
-    onRestrictionError?: () => void;
+    onRestrictionError?: (File: any, error: any) => void;
 }
 export default function FileUpload({ value, name, handleChange, type, grid, id, error, label, required, allowURL, disabled, lang, Get, uploadType, onRestrictionError, }: Props): JSX.Element;
 export {};
