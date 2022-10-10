@@ -44,6 +44,7 @@ export default function FileUpload({
 }: Props) {
   const [URL, setURL] = useState('false');
   const [state, setState] = useState(value);
+  const [errorMessage, setErrorMessage] = useState('');
 
   let fileTypes: string[] = [];
 
@@ -117,7 +118,10 @@ export default function FileUpload({
         .on('file-removed', () => {
           onChange('');
         })
-        .on('restriction-failed', (file, error) => (onRestrictionError ? onRestrictionError(file, error) : {}));
+        .on('restriction-failed', (file, error) => {
+          setErrorMessage(error.message);
+          if (onRestrictionError) onRestrictionError(file, error);
+        });
     }
   });
 
@@ -143,7 +147,8 @@ export default function FileUpload({
           color: error ? '#ff1744' : 'gray',
         }}
       >
-        {label} {required ? <span className="required">*</span> : ''}
+        {label} {required ? <span className="required">*</span> : ''}{' '}
+        {errorMessage ? <span style={{ color: 'red' }}>{errorMessage}</span> : <></>}
       </span>
       {state && typeof state == 'string' && state.includes('https://') ? (
         <Grid container>

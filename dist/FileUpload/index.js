@@ -85,6 +85,7 @@ function FileUpload(_a) {
     var value = _a.value, name = _a.name, handleChange = _a.handleChange, _b = _a.type, type = _b === void 0 ? 'image' : _b, grid = _a.grid, id = _a.id, error = _a.error, label = _a.label, required = _a.required, allowURL = _a.allowURL, disabled = _a.disabled, _c = _a.lang, lang = _c === void 0 ? 'en' : _c, Get = _a.Get, _d = _a.uploadType, uploadType = _d === void 0 ? 'S3' : _d, onRestrictionError = _a.onRestrictionError;
     var _e = (0, react_1.useState)('false'), URL = _e[0], setURL = _e[1];
     var _f = (0, react_1.useState)(value), state = _f[0], setState = _f[1];
+    var _g = (0, react_1.useState)(''), errorMessage = _g[0], setErrorMessage = _g[1];
     var fileTypes = [];
     switch (type) {
         case 'image':
@@ -164,7 +165,11 @@ function FileUpload(_a) {
                 .on('file-removed', function () {
                 onChange('');
             })
-                .on('restriction-failed', function (file, error) { return (onRestrictionError ? onRestrictionError(file, error) : {}); });
+                .on('restriction-failed', function (file, error) {
+                setErrorMessage(error.message);
+                if (onRestrictionError)
+                    onRestrictionError(file, error);
+            });
         }
     });
     var changeUploadType = function (e) {
@@ -184,7 +189,9 @@ function FileUpload(_a) {
             } },
             label,
             " ",
-            required ? React.createElement("span", { className: "required" }, "*") : ''),
+            required ? React.createElement("span", { className: "required" }, "*") : '',
+            ' ',
+            errorMessage ? React.createElement("span", { style: { color: 'red' } }, errorMessage) : React.createElement(React.Fragment, null)),
         state && typeof state == 'string' && state.includes('https://') ? (React.createElement(material_1.Grid, { container: true },
             React.createElement(material_1.Grid, { item: true, xs: 12, style: { paddingTop: '2px', display: 'flex' } },
                 React.createElement(material_1.Tooltip, { title: "Delete" },

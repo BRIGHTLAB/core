@@ -36,6 +36,8 @@ stories.add('Type File', () => {
       handleChange={(name, value) => setState(value)}
       uploadType="file"
       value={state}
+      label="image"
+      required
       onRestrictionError={(File, error) => console.log(error.message)}
     />
   );
