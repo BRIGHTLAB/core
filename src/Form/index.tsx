@@ -52,12 +52,18 @@ interface Props {
   onChange: (values: any) => void;
   customComponents: customComponentsType[];
 }
-
 /**
+ * @type {fieldsType}
+ * @typedef {Object} fieldsType -Creates a new type named 'fieldsType'
+ *
+ * @type {customComponentsType}
+ * @typedef {Object} customComponentsType -Creates a new type named
+ *  'customComponentsType'
+ *
  * @property {[fieldsType]} fields -Array of fields to render specific
  *  components
- * @property {object} defaultValues -Old values if exists
- * @property  {object} errorValues -Errors of each field if exists with
+ * @property {Object} defaultValues -Old values if exists
+ * @property  {Object} errorValues -Errors of each field if exists with
  *  special message
  * @property {function} onChange -Returns values of all the fields
  * @property {array} customComponents -Array of custom components that are
