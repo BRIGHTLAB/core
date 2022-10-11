@@ -63,6 +63,12 @@ var components = {
     RadioGroup: RadioGroup_1.default,
     CheckBox: CheckBox_1.default,
 };
+/**
+ *
+ * @param param0
+ * @returns -A Smart form of React Special Elements Based
+ * on MUI and covered in MUI Grid item
+ */
 function Form(_a) {
     var _b = _a.defaultValues, defaultValues = _b === void 0 ? {} : _b, _c = _a.errorValues, errorValues = _c === void 0 ? {} : _c, onChange = _a.onChange, fields = _a.fields, _d = _a.customComponents, customComponents = _d === void 0 ? [] : _d;
     var _e = (0, react_1.useState)({}), customFieldsData = _e[0], setCustomFieldsData = _e[1];
