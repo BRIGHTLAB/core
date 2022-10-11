@@ -12,7 +12,10 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "docs-show": "firefox -new-tab ./docs/index.html -foreground",
+    "docs-gen": "npx documentation build {​​​​​​​src/utils/*.js,src/logic/*.js}​​​​​​​ --config documentation.yml -f html -o docs",
+    "docs": "npm run docs-gen && npm run docs-show"
   },
   "repository": {
     "type": "git",
@@ -70,6 +73,7 @@
     "@typescript-eslint/eslint-plugin": "^5.30.0",
     "@typescript-eslint/parser": "^5.30.0",
     "babel-loader": "^8.2.4",
+    "documentation": "^14.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^5.0.0",

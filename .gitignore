@@ -104,3 +104,6 @@ typings/
 
 #story book build files
 storybook-static/
+
+
+/docs
