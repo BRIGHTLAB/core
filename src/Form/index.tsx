@@ -54,8 +54,7 @@ interface Props {
 }
 
 /**
- *
- * @param param0
+ * @param defaultValues @type {object}
  * @returns -A Smart form of React Special Elements Based
  * on MUI and covered in MUI Grid item
  */

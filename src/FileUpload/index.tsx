@@ -147,8 +147,7 @@ export default function FileUpload({
           color: error ? '#ff1744' : 'gray',
         }}
       >
-        {label} {required ? <span className="required">*</span> : ''}{' '}
-        {errorMessage ? <span style={{ color: 'red' }}>{errorMessage}</span> : <></>}
+        {label} {required ? <span className="required">*</span> : ''}
       </span>
       {state && typeof state == 'string' && state.includes('https://') ? (
         <Grid container>
