@@ -64,9 +64,18 @@ var components = {
     CheckBox: CheckBox_1.default,
 };
 /**
- * @param defaultValues @type {object}
+ * @property {[fieldsType]} fields -Array of fields to render specific
+ *  components
+ * @property {object} defaultValues -Old values if exists
+ * @property  {object} errorValues -Errors of each field if exists with
+ *  special message
+ * @property {function} onChange -Returns values of all the fields
+ * @property {array} customComponents -Array of custom components that are
+ *  defined as custom type in fields props have type as string and
+ *  renderItem that have data row as params
+ *
  * @returns -A Smart form of React Special Elements Based
- * on MUI and covered in MUI Grid item
+ *  on MUI and covered in MUI Grid item
  */
 function Form(_a) {
     var _b = _a.defaultValues, defaultValues = _b === void 0 ? {} : _b, _c = _a.errorValues, errorValues = _c === void 0 ? {} : _c, onChange = _a.onChange, fields = _a.fields, _d = _a.customComponents, customComponents = _d === void 0 ? [] : _d;
